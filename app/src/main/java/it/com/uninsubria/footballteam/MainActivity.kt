@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         // Creazione Home
         creazioneFragment(home)
+        // Modifica metodo precedentemente deprecato
         bottom_navigation.setOnItemSelectedListener  {
             when(it.itemId) {
                 R.id.home -> creazioneFragment(home)
