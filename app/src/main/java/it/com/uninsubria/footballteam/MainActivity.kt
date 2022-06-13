@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         // Creazione Home
         creazioneFragment(home)
-        bottom_navigation.setOnNavigationItemSelectedListener {
+        bottom_navigation.setOnItemSelectedListener  {
             when(it.itemId) {
                 R.id.home -> creazioneFragment(home)
                 R.id.atleti -> creazioneFragment(atleti)
@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+
     }
 
     private fun creazioneFragment(fragment: Fragment) =
