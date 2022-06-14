@@ -1,3 +1,5 @@
+@file:JvmName("SignUpKt")
+
 package it.com.uninsubria.footballteam
 
 import android.os.Bundle
