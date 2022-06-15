@@ -34,7 +34,7 @@ class SignUp : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_In, container, false)
+        return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 
     companion object {

@@ -1,4 +1,3 @@
-@file:JvmName("SignUpKt")
 
 package it.com.uninsubria.footballteam
 
@@ -36,7 +35,7 @@ class SignIn : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_Up, container, false)
+        return inflater.inflate(R.layout.fragment_sign_up, container, false)
     }
 
     companion object {

@@ -15,9 +15,9 @@
     </style>
     <style name="Theme.Footballteam.login" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blu</item>
-        <item name="colorPrimaryVariant">@color/dark_blu</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/d_yellow</item>
+        <item name="colorPrimaryVariant">@color/golden_yellow</item>
+        <item name="colorOnPrimary">@color/dark_blu</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/orange</item>
         <item name="colorSecondaryVariant">@color/light_blu</item>

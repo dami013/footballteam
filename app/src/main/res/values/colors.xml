@@ -12,4 +12,6 @@
     <color name="dark_blu">	#152238</color>color>
     <color name="light_blu">	#4A6572</color>color>
     <color name="orange">	#F9AA33</color>color>
+    <color name="d_yellow">#F6BE00</color>
+    <color name="golden_yellow">#E6A519</color>
 </resources>
