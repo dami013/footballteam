@@ -2,7 +2,9 @@ package it.com.uninsubria.footballteam
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.fragment_sign_in.*
 import kotlinx.android.synthetic.main.login.*
+import kotlinx.android.synthetic.main.login.btn_SignIn
 
 class Login : AppCompatActivity() {
     private val signIn = SignIn()
@@ -23,5 +25,9 @@ class Login : AppCompatActivity() {
             transaction.replace(R.id.fragmentContainerView,signIn)
             transaction.commit()
         }
+
+
+
     }
+
 }
