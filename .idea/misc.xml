@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/admin/footballteam/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1105" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/drawable/btn_backgroung.xml" value="0.1" />
+        <entry key="..\:/Users/admin/footballteam/app/src/main/res/drawable/ic_baseline_priority_high_24.xml" value="0.1105" />
+        <entry key="..\:/Users/admin/footballteam/app/src/main/res/drawable/ic_baseline_security_24.xml" value="0.1105" />
+        <entry key="..\:/Users/admin/footballteam/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1105" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/drawable/ic_username.xml" value="0.155" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/drawable/tv_contorno.xml" value="0.1" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_sign_In.xml" value="0.20416666666666666" />
