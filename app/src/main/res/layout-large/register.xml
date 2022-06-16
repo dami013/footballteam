@@ -2,32 +2,49 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/accedi">
-
+    android:background="@drawable/registrati"
+    tools:context=".RegisterActivity">
 
     <EditText
-        android:id="@+id/et_email"
-        android:layout_width="match_parent"
+        android:id="@+id/email"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
         android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
         android:ems="10"
         android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toRightOf="@id/guidefour"
-        app:layout_constraintRight_toLeftOf="@id/guideone"
-        app:layout_constraintTop_toTopOf="@id/guidefive" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/tv_contorno"
+        android:drawableLeft="@drawable/ic_username"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guno" />
 
-    <!--password-->
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
@@ -41,30 +58,44 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="15dp"
-        app:layout_constraintRight_toLeftOf="@id/guideone"
-        app:layout_constraintLeft_toRightOf="@id/guidefour"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
-
-    <Button
-        android:id="@+id/btn_SignIn"
+    <EditText
+        android:id="@+id/confirm_pw"
         android:layout_width="0dp"
-
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
-        android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/guidesix"
+        android:drawableLeft="@drawable/ic_baseline_priority_high_24"
+        android:ems="10"
+        android:hint="Confirm password"
+        android:inputType="textPassword"
+        android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
+    <Button
+        android:id="@+id/btn_Register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/tv_contorno"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="@id/gtre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_pw"
+        app:layout_constraintVertical_bias="0.035" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -77,21 +108,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icona" />
 
-
-    <TextView
-        android:id="@+id/signUp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintDimensionRatio="1:1"
-        android:padding="5dp"
-        android:text="@string/Registrati"
-        app:layout_constraintBottom_toTopOf="@id/guideight"
-        app:layout_constraintEnd_toEndOf="@id/guideten"
-        app:layout_constraintStart_toStartOf="@id/guidenine"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintTop_toTopOf="@+id/guideseven" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.38" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideone"
@@ -108,61 +130,36 @@
         app:layout_constraintGuide_percent="0.90" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidethree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.06" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidefour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.94" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidefive"
+        android:id="@+id/gtre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
+        app:layout_constraintGuide_percent="0.91" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidesix"
+    <TextView
+        android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.77" />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideseven"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        android:text="Login"
+        app:layout_constraintDimensionRatio="1:1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/gcinque"
+        app:layout_constraintStart_toStartOf="@id/gquattro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Register"
+        app:layout_constraintVertical_bias="0.148" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidenine"
+        android:id="@+id/gquattro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.43"  />
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideten"
+        android:id="@+id/gcinque"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75" />
-
-
+        app:layout_constraintGuide_percent="0.57"  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

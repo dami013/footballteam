@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-
+import androidx.navigation.NavController
 import it.com.uninsubria.footballteam.fragments.AtletiFragment
 import it.com.uninsubria.footballteam.fragments.ChatFragment
 import it.com.uninsubria.footballteam.fragments.HomeFragment
