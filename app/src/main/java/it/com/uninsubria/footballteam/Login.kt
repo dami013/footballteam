@@ -3,12 +3,14 @@ package it.com.uninsubria.footballteam
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.login.*
+import java.util.regex.Pattern
 
 
 class Login : AppCompatActivity() {
@@ -34,17 +36,17 @@ class Login : AppCompatActivity() {
     }
 
     private fun onLoginClick() {
-        val name = et_email.text.toString().trim()
+        val mail = et_email.text.toString().trim()
         val pw = password.text.toString().trim()
-        if (name.isEmpty()) {
+        if (mail.isEmpty()||!isValidEmail(mail)) {
             et_email.error = "Enter email"
             return
         }
-        if (pw.isEmpty()) {
+        if (pw.isEmpty()||!isValidPassword(pw)) {
             password.error = "Enter password"
             return
         }
-        loginUser(name, pw)
+        loginUser(mail, pw)
     }
 
     private fun loginUser(name: String, pw: String) {
@@ -68,4 +70,17 @@ class Login : AppCompatActivity() {
 
         }
     }
+
+    private fun isValidEmail(email: String): Boolean {
+        val EMAIL_PATTERN = ("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+        val pattern = Pattern.compile(EMAIL_PATTERN)
+        val matcher = pattern.matcher(email)
+        return matcher.matches()
+    }
+
+    private fun isValidPassword(pass: String?): Boolean {
+        return pass != null && pass.length >= 4
+    }
+
 }
