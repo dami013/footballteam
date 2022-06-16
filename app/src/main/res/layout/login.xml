@@ -8,22 +8,22 @@
 
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
-        android:drawableLeft="@drawable/ic_username"
+        android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
         android:ems="10"
-        android:hint="Username"
+        android:hint="E-mail"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/guideone"
-        app:layout_constraintLeft_toRightOf="@id/guidefour"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/guidefour"
+        app:layout_constraintRight_toLeftOf="@id/guideone"
         app:layout_constraintTop_toTopOf="@id/guidefive" />
 
 
@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
 
     <Button
