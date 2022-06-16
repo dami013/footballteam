@@ -1,5 +1,6 @@
 package it.com.uninsubria.footballteam
 
+import CheckEmailPassword
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,11 +13,10 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.register.*
 
-
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var TAG = "SignUpActivity"
-
+    private val check = CheckEmailPassword()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,6 @@ class RegisterActivity : AppCompatActivity() {
         btn_Register.setOnClickListener{
             onSignUpClick()
         }
-
     }
 
     private fun onSignUpClick() {
@@ -42,11 +41,11 @@ class RegisterActivity : AppCompatActivity() {
             name.error = "Enter userName"
             return
         }
-        if (mail.isEmpty()) {
+        if (mail.isEmpty()||!check.isValidEmail(mail)) {
             email.error = "Enter email"
             return
         }
-        if (psw.isEmpty()) {
+        if (psw.isEmpty()||check.isValidPassword(psw)) {
             et_password.error = "Enter password"
             return
         }
