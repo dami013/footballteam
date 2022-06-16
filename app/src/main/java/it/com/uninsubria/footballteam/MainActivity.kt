@@ -2,6 +2,7 @@ package it.com.uninsubria.footballteam
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import it.com.uninsubria.footballteam.fragments.AtletiFragment
 import it.com.uninsubria.footballteam.fragments.ChatFragment
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        Toast.makeText(this,"Benvenuto",Toast.LENGTH_SHORT).show()
 
         val home = HomeFragment()
         val atleti = AtletiFragment()

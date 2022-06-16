@@ -11,6 +11,10 @@
         android:theme="@style/Theme.Footballteam">
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
