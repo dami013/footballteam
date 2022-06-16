@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import it.com.uninsubria.footballteam.fragments.AtletiFragment
 import it.com.uninsubria.footballteam.fragments.ChatFragment
 import it.com.uninsubria.footballteam.fragments.HomeFragment
@@ -11,6 +12,7 @@ import it.com.uninsubria.footballteam.fragments.LockFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         // Modifica metodo precedentemente deprecato
         bottom_navigation.setOnItemSelectedListener  {
             when(it.itemId) {
-                R.id.home -> creazioneFragment(home)
+                R.id.homeFrag -> creazioneFragment(home)
                 R.id.atleti -> creazioneFragment(atleti)
                 R.id.lock -> creazioneFragment(lock)
                 R.id.chat -> creazioneFragment(chat)
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun creazioneFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.contenitore, fragment)
+            replace(R.id.mainContainer, fragment)
             commit()
         }
 }

@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    // colori trasparenti
+    <color name="trans_green">#7525d366</color>
+    <color name="trans_red">#85DD2C00</color>
+    <color name="trans_purple">#7C6200EA</color>
+    <color name="trans_blue">#862962ff</color>
+    <color name="trans_yellow">#88ffd600</color>
 </resources>
