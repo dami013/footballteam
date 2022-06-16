@@ -1,5 +1,6 @@
 package it.com.uninsubria.footballteam
 
+import CheckEmailPassword
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import java.util.regex.Pattern
 class Login : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var TAG = "LoginActivity"
+    private val check = CheckEmailPassword()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +40,11 @@ class Login : AppCompatActivity() {
     private fun onLoginClick() {
         val mail = et_email.text.toString().trim()
         val pw = password.text.toString().trim()
-        if (mail.isEmpty()||!isValidEmail(mail)) {
+        if (mail.isEmpty()||!check.isValidEmail(mail)) {
             et_email.error = "Enter email"
             return
         }
-        if (pw.isEmpty()||!isValidPassword(pw)) {
+        if (pw.isEmpty()||!check.isValidPassword(pw)) {
             password.error = "Enter password"
             return
         }
@@ -67,20 +69,6 @@ class Login : AppCompatActivity() {
                     show()
                 }
             }
-
         }
     }
-
-    private fun isValidEmail(email: String): Boolean {
-        val EMAIL_PATTERN = ("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-        val pattern = Pattern.compile(EMAIL_PATTERN)
-        val matcher = pattern.matcher(email)
-        return matcher.matches()
-    }
-
-    private fun isValidPassword(pass: String?): Boolean {
-        return pass != null && pass.length >= 4
-    }
-
 }
