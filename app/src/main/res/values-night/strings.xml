@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="invalid_email">email non valida, prego riprovare</string>
+    <string name="invalid_password">la password deve contenere almeno 4 caratteri</string>
+</resources>

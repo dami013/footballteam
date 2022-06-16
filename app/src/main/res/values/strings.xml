@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">footballteam</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo">Logo</string>
     <string name="introduzione">L\'applicazione per veri allenatori</string>
     <string name="home">Home</string>
-    <string name="clear"></string>
-    <string name = "Registrati" > Non hai un account? <b>Registrati</b> </string>
     <string name="atleti">Atleti</string>
     <string name="personale">Personale</string>
     <string name="chat">Chat</string>
+    <string name="clear"></string>
+    <string name = "Registrati" > Non hai un account? <b>Registrati</b> </string>
+    <string name="invalid_email">email non valida, prego riprovare</string>
+    <string name="invalid_password">la password deve contenere almeno 4 caratteri</string>
+
 </resources>
