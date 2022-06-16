@@ -25,10 +25,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="@id/guno" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/et_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
     <Button
         android:id="@+id/btn_Register"
