@@ -61,6 +61,8 @@ class RegisterActivity : AppCompatActivity() {
                 val uid = currentUser!!.uid
                 val userMap = HashMap<String, String>()
                 userMap["name"] = userName
+                userMap["password"] = password
+                userMap["email"] = email
                 val database = FirebaseDatabase.getInstance().getReference("Users").child(uid)
                 database.setValue(userMap).addOnCompleteListener { task ->
                     if (task.isSuccessful) {

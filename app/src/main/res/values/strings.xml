@@ -8,4 +8,7 @@
     <string name="atleti">Atleti</string>
     <string name="personale">Personale</string>
     <string name="chat">Chat</string>
+    <string name="clear"></string>
+    <string name = "Registrati" > Non hai un account? <b>Registrati</b> </string>
+
 </resources>

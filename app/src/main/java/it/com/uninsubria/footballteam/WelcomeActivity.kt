@@ -13,7 +13,7 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcome)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent (this, MainActivity::class.java)
+            val intent = Intent (this, Login::class.java)
             startActivity(intent)
             finish()
         }, 1500)
