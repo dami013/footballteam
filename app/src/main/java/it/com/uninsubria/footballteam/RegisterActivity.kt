@@ -3,6 +3,7 @@ package it.com.uninsubria.footballteam
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -62,15 +63,18 @@ class RegisterActivity : AppCompatActivity() {
                 userMap["name"] = userName
                 val database = FirebaseDatabase.getInstance().getReference("Users").child(uid)
                 database.setValue(userMap).addOnCompleteListener { task ->
-                  //  if (task.isSuccessful) {
-                       // val intent = Intent(applicationContext, MainActivity::class.java)
-                    //    startActivity(intent)
-                      //  finish()
+                    if (task.isSuccessful) {
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                       startActivity(intent)
+                        finish()
                     }
-                }
+                     else {
+                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                         Toast.makeText(baseContext, "Authentication failed.",
+                         Toast.LENGTH_SHORT).show()
+                     }
+                 }
             }
         }
     }
-}
-
 }
