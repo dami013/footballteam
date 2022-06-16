@@ -86,15 +86,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
         android:text="Register"
+        app:layout_constraintBottom_toBottomOf="@id/gtre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/gdue"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_pw" />
+        app:layout_constraintTop_toBottomOf="@+id/confirm_pw"
+        app:layout_constraintVertical_bias="0.035" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -112,14 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gdue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
+        app:layout_constraintGuide_percent="0.38" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideone"
@@ -134,4 +128,38 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gtre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.91" />
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        app:layout_constraintDimensionRatio="1:1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/gcinque"
+        app:layout_constraintStart_toStartOf="@id/gquattro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Register"
+        app:layout_constraintVertical_bias="0.148" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gquattro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.43"  />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gcinque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.57"  />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
