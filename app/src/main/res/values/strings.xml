@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">footballteam</string>
+    <string name="logo">Logo</string>
+    <string name="introduzione">L\'applicazione per veri allenatori</string>
+    <string name="home">Home</string>
+    <string name="clear"></string>
+    <string name = "Registrati" > Non hai un account? <b>Registrati</b> </string>
+    <string name="atleti">Atleti</string>
+    <string name="personale">Personale</string>
+    <string name="chat">Chat</string>
 </resources>

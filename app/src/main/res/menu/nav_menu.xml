@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFrag"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/atleti"
+        android:icon="@drawable/ic_soccer"
+        android:title="@string/atleti" />
+    <item
+        android:id="@+id/lock"
+        android:icon="@drawable/ic_personale"
+        android:title="@string/personale" />
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/ic_chat"
+        android:title="@string/chat" />
+</menu>

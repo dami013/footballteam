@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1050858936989",
+    "project_id": "footballteam-d5795",
+    "storage_bucket": "footballteam-d5795.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050858936989:android:45fedeb8ba9b3788a8d274",
+        "android_client_info": {
+          "package_name": "it.com.uninsubria.footballteam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050858936989-jpp8f4s2ohsgnuj8631fmcttomo3etce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD13lqzUSN2388GjJkIT4aBY_fQeQnrSh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050858936989-jpp8f4s2ohsgnuj8631fmcttomo3etce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
