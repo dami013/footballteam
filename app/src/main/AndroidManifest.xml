@@ -20,6 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/Theme.Footballteam.login"
+            android:exported="false"
+            tools:ignore="Instantiatable"/>
     </application>
 
 </manifest>

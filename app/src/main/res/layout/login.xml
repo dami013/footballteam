@@ -3,58 +3,161 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/accedi">
+
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/tv_contorno"
+        android:drawableLeft="@drawable/ic_username"
+        android:ems="10"
+        android:hint="Username"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guidefive" />
+
+
+    <!--password-->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/tv_contorno"
+        android:drawableLeft="@drawable/ic_baseline_security_24"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
 
     <Button
         android:id="@+id/btn_SignIn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/btn_backgroung"
-        android:text="Login"
-        app:layout_constraintEnd_toStartOf="@+id/btn_SignUp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_SignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/btn_backgroung"
-        android:text="Sign up"
+        android:background="@drawable/tv_contorno"
+        android:text="Login"
+        app:layout_constraintBottom_toTopOf="@+id/guidesix"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_SignIn"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="it.com.uninsubria.footballteam.SignIn"
-        android:layout_width="0dp"
-        android:layout_height="516dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_SignIn"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="97dp"
-        android:layout_height="76dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/guidetwo"
+        app:layout_constraintStart_toStartOf="@id/guideone"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic" />
+        app:srcCompat="@drawable/icona" />
+
+
+    <TextView
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintDimensionRatio="1:1"
+        android:padding="5dp"
+        android:text="@string/Registrati"
+        app:layout_constraintBottom_toTopOf="@id/guideight"
+        app:layout_constraintEnd_toEndOf="@id/guideten"
+        app:layout_constraintStart_toStartOf="@id/guidenine"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintTop_toTopOf="@+id/guideseven" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.70" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidetwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidethree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidefour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.94" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidefive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidesix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="541dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideseven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidenine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

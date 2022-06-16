@@ -7,20 +7,16 @@ import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.register.*
 
 
-class Login : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login)
+        setContentView(R.layout.register)
 
-
-        signUp.setOnClickListener {
-            val intent = Intent(this,RegisterActivity::class.java)
+        login.setOnClickListener{
+            val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
-
-
-
 
     }
 
