@@ -1,11 +1,4 @@
 <resources>
-
-
-
-
-
-
-
     <string name="logo">Logo</string>
     <string name="introduzione">L\'applicazione per veri allenatori</string>
     <string name="home">Home</string>
