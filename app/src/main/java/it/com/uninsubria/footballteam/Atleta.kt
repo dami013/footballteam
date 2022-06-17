@@ -1,7 +1,5 @@
 package it.com.uninsubria.footballteam
 
-import java.util.*
-
 data class Atleta(
     var nome: String?,
     var cognome: String?,
@@ -12,33 +10,27 @@ data class Atleta(
     var image : String?,
     var risultati: String?,
     var id: String?) {
-    // Serve un costruttore vuoto per fb
+    // Serve un costruttore vuoto per firebase
 
     constructor() : this("","","","","","","","","")
 
-    // ci interssa di porre unicamente la descrizione
+    // ci interssa di porre nome e cognome
     override fun toString(): String {
         return nome.toString()
         return cognome.toString()
-        return dataNascita.toString()
         return ruolo.toString()
-        return phone.toString()
-        return certificazione.toString()
-        return image.toString()
-        return risultati.toString()
-        return id.toString()
     }
     // Permette di sovrascrivere i valori precedente con i nuovi
-    fun set(item: Atleta) {
-        nome = item.nome
-        cognome = item.cognome
-        dataNascita = item.dataNascita
-        ruolo = item.ruolo
-        phone = item.phone
-        certificazione = item.certificazione
-        image = item.image
-        risultati = item.risultati
-        id = item.id
+    fun set(atleta: Atleta) {
+        nome = atleta.nome
+        cognome = atleta.cognome
+        dataNascita = atleta.dataNascita
+        ruolo = atleta.ruolo
+        phone = atleta.phone
+        certificazione = atleta.certificazione
+        image = atleta.image
+        risultati = atleta.risultati
+        id = atleta.id
 
     }
 
