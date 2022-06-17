@@ -7,11 +7,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.login.*
 import kotlinx.android.synthetic.main.register.*
+
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -37,6 +39,7 @@ class RegisterActivity : AppCompatActivity() {
         val mail = email.text.toString().trim()
         val psw = et_password.text.toString().trim()
         val userName = name.text.toString().trim()
+        val confPw = confirm_pw.text.toString().trim()
         if (userName.isEmpty()) {
             name.error = "Enter userName"
             return
@@ -57,12 +60,16 @@ class RegisterActivity : AppCompatActivity() {
             et_password.error = "invalid password"
             return
         }
+        if(psw!=confPw){
+            confirm_pw.error = "password anc confirm passwort not mached"
+            return
+        }
         createUser(userName, mail, psw)
     }
 
     private fun createUser(userName: String, email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){ task->
-            if (task.isSuccessful) {
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){
+            if (it.isSuccessful) {
                 Log.d(TAG, "createUserWithEmail:success")
                 val currentUser = auth.currentUser
                 val uid = currentUser!!.uid
@@ -74,15 +81,24 @@ class RegisterActivity : AppCompatActivity() {
                 database.setValue(userMap).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val intent = Intent(applicationContext, MainActivity::class.java)
-                       startActivity(intent)
+                        startActivity(intent)
                         finish()
                     }
-                     else {
-                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                         Toast.makeText(baseContext, "Authentication failed.",
-                         Toast.LENGTH_SHORT).show()
-                     }
-                 }
+                    else {
+                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            else{
+                try {
+                    throw it.exception!!
+                } catch (e: FirebaseAuthUserCollisionException) {
+                    // email already in use
+                    Toast.makeText(applicationContext, "Email already taken!", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
     }
