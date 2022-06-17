@@ -1,3 +1,5 @@
+package it.com.uninsubria.footballteam
+
 import java.util.regex.Pattern
 
 class CheckEmailPassword {

@@ -1,17 +1,14 @@
 package it.com.uninsubria.footballteam
 
-import CheckEmailPassword
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.login.*
-import java.util.regex.Pattern
 
 
 class Login : AppCompatActivity() {
