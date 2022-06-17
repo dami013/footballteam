@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import it.com.uninsubria.footballteam.adapter.PlayerAdapter
 import it.com.uninsubria.footballteam.fragments.AtletiFragment
 import it.com.uninsubria.footballteam.fragments.ChatFragment
 import it.com.uninsubria.footballteam.fragments.HomeFragment
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        startRecyclerView()
 
 
     }
@@ -46,4 +50,9 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.mainContainer, fragment)
             commit()
         }
+    private fun startRecyclerView() {
+        val recycler = findViewById<RecyclerView>(R.id.recycler_view)
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = PlayerAdapter(Dataset.giocatori)
+    }
 }
