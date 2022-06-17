@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        startRecyclerView()
+
 
 
     }
@@ -50,9 +50,5 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.mainContainer, fragment)
             commit()
         }
-    private fun startRecyclerView() {
-        val recycler = findViewById<RecyclerView>(R.id.recycler_view)
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = PlayerAdapter(Dataset.giocatori)
-    }
+
 }

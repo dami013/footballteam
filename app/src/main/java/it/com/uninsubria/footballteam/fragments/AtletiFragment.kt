@@ -5,7 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import it.com.uninsubria.footballteam.Dataset
 import it.com.uninsubria.footballteam.R
+import it.com.uninsubria.footballteam.adapter.PlayerAdapter
+import kotlinx.android.synthetic.main.fragment_atleti.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +22,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [AtletiFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
 class AtletiFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -28,15 +34,26 @@ class AtletiFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_atleti, container, false)
+        val view = inflater.inflate(R.layout.fragment_atleti, container, false)
+        startRecyclerView(view)
+        return view
+
+
     }
+    private fun startRecyclerView(view: View) {
+        val recycler = view.findViewById<RecyclerView>(R.id.recycler_view)
+        recycler.layoutManager = LinearLayoutManager(view.context)
+        recycler.adapter = PlayerAdapter(Dataset.giocatori)
+
+    }
+
+
 
     companion object {
         /**
@@ -57,4 +74,6 @@ class AtletiFragment : Fragment() {
                 }
             }
     }
+
 }
+
