@@ -41,12 +41,20 @@ class RegisterActivity : AppCompatActivity() {
             name.error = "Enter userName"
             return
         }
-        if (mail.isEmpty()||!check.isValidEmail(mail)) {
+        if (mail.isEmpty()) {
             email.error = "Enter email"
             return
         }
-        if (psw.isEmpty()||check.isValidPassword(psw)) {
+        if(!check.isValidEmail(mail)){
+            email.error = "invalid email"
+            return
+        }
+        if (psw.isEmpty()) {
             et_password.error = "Enter password"
+            return
+        }
+        if(!check.isValidPassword(psw)){
+            et_password.error = "invalid password"
             return
         }
         createUser(userName, mail, psw)
