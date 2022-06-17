@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.com.uninsubria.footballteam.Dataset
@@ -48,8 +49,11 @@ class AtletiFragment : Fragment() {
     }
     private fun startRecyclerView(view: View) {
         val recycler = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recycler.layoutManager = LinearLayoutManager(view.context)
+        val manager = LinearLayoutManager(view.context)
+        val decorazione = DividerItemDecoration(view.context,manager.orientation)
+        recycler.layoutManager = manager
         recycler.adapter = PlayerAdapter(Dataset.giocatori)
+        recycler.addItemDecoration(decorazione)
 
     }
 
