@@ -3,9 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/login.xml" value="0.2971014492753623" />
-        <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/register.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/drawable/bottom_menu.xml" value="0.233" />
+        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1665" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/drawable/ic_chat.xml" value="0.233" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/drawable/tv_contorno.xml" value="0.21" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout-large/a.xml" value="0.6339285714285714" />
@@ -19,6 +18,7 @@
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout-large/login.xml" value="0.2" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout-large/register.xml" value="0.35283363802559414" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout-large/welcome_activity.xml" value="0.190625" />
+        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout-sw600dp/fragment_atleti.xml" value="0.190625" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/activity_welcome.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_atleti.xml" value="0.23550724637681159" />
