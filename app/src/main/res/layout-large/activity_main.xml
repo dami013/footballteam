@@ -24,6 +24,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/orange"
         app:itemBackground="@color/orange"
+        app:itemIconSize="32dp"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

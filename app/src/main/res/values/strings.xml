@@ -8,9 +8,14 @@
     <string name="atleti">Atleti</string>
     <string name="personale">Personale</string>
     <string name="chat">Chat</string>
-    <string name="clear"></string>
     <string name = "Registrati" > Non hai un account? <b>Registrati</b> </string>
     <string name="invalid_email">email non valida, prego riprovare</string>
     <string name="invalid_password">la password deve contenere almeno 4 caratteri</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="register">Register</string>
 
 </resources>

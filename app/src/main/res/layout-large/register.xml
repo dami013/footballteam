@@ -17,27 +17,30 @@
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
         android:drawableLeft="@drawable/ic_baseline_alternate_email_24"
+        android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="E-mail"
+        android:autofillHints="emailAddress"
+        android:hint="@string/e_mail"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints="username"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
         android:drawableLeft="@drawable/ic_username"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,16 +49,17 @@
         app:layout_constraintTop_toTopOf="@id/guno" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/et_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints="password"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
         android:drawableLeft="@drawable/ic_baseline_security_24"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,18 +72,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:autofillHints="password"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
         android:drawableLeft="@drawable/ic_baseline_priority_high_24"
         android:ems="10"
-        android:hint="Confirm password"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
     <Button
         android:id="@+id/btn_Register"
@@ -89,7 +94,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
-        android:text="Register"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="@id/gtre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -106,7 +111,8 @@
         app:layout_constraintEnd_toEndOf="@id/guidetwo"
         app:layout_constraintStart_toStartOf="@id/guideone"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icona" />
+        app:srcCompat="@drawable/icona"
+        android:contentDescription="@string/logo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guno"
@@ -140,12 +146,12 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        app:layout_constraintDimensionRatio="1:1"
+        android:text="@string/login"
+        android:autoSizeTextType="uniform"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/gcinque"
         app:layout_constraintStart_toStartOf="@id/gquattro"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/gtre"
         app:layout_constraintTop_toBottomOf="@+id/btn_Register"
         app:layout_constraintVertical_bias="0.148" />
 
