@@ -8,8 +8,8 @@
     tools:context=".fragments.ChatFragment">
 
 
-    <ListView
-        android:id = "@+id/lv"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id = "@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Hello World!"
@@ -18,7 +18,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         >
-    </ListView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

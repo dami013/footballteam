@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import it.com.uninsubria.footballteam.adapter.PlayerAdapter
 import it.com.uninsubria.footballteam.fragments.AtletiFragment
 import it.com.uninsubria.footballteam.fragments.ChatFragment
 import it.com.uninsubria.footballteam.fragments.HomeFragment
@@ -11,6 +14,7 @@ import it.com.uninsubria.footballteam.fragments.LockFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,9 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
+
+
     }
 
     private fun creazioneFragment(fragment: Fragment) =
@@ -43,4 +50,5 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.mainContainer, fragment)
             commit()
         }
+
 }

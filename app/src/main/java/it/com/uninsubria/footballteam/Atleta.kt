@@ -7,7 +7,7 @@ data class Atleta(
     var ruolo: String?,
     var phone: String?,
     var certificazione: String?,
-    var image : String?,
+    var photo : String?,
     var risultati: String?,
     var id: String?) {
     // Serve un costruttore vuoto per firebase
@@ -28,7 +28,7 @@ data class Atleta(
         ruolo = atleta.ruolo
         phone = atleta.phone
         certificazione = atleta.certificazione
-        image = atleta.image
+        photo = atleta.photo
         risultati = atleta.risultati
         id = atleta.id
 
