@@ -126,7 +126,6 @@
         android:id="@+id/immagine"
         android:layout_width="124dp"
         android:layout_height="129dp"
-
         app:layout_constraintBottom_toTopOf="@+id/nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.register_player_fragment.*
+import kotlinx.android.synthetic.main.register_player_fragment.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +22,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [register_player_fragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class register_player_fragment : Fragment() {
+class register_player_fragment : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -32,11 +33,8 @@ class register_player_fragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-
-            immagine.setOnClickListener{
-                openGalleryForImage()
-            }
         }
+
     }
 
     override fun onCreateView(
@@ -44,7 +42,12 @@ class register_player_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.register_player_fragment, container, false)
+        val view: View =  inflater.inflate(R.layout.register_player_fragment, container, false)
+
+        view.immagine.setOnClickListener{
+            openGalleryForImage()
+        }
+        return view
     }
 
     private fun openGalleryForImage() {
