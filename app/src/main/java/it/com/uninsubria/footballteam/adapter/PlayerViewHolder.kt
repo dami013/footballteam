@@ -17,7 +17,6 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val telefono = view.findViewById<TextView>(R.id.tvPhone)
     val certificazione = view.findViewById<TextView>(R.id.tvCertification)
     val result = view.findViewById<TextView>(R.id.tvResults)
-    val matricola = view.findViewById<TextView>(R.id.tvIdNumber)
     val foto = view.findViewById<ImageView>(R.id.ivPlayer)
 
     fun render(atleta: Atleta) {
@@ -27,7 +26,6 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         telefono.text = atleta.phone
         certificazione.text = atleta.certificazione
         result.text = atleta.risultati
-        matricola.text = atleta.id
         val requestOption = RequestOptions()
             .placeholder(R.drawable.icona)
             .error(R.drawable.icona) // In caso di errore

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Footballteam"
         android:usesCleartextTraffic="true">
         <activity
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.Footballteam.login"
             android:name=".MainActivity"
             android:exported="true"/>
         <activity

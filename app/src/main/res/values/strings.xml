@@ -8,7 +8,7 @@
     <string name="atleti">Atleti</string>
     <string name="personale">Personale</string>
     <string name="chat">Chat</string>
-    <string name = "Registrati" > Non hai un account? <b>Registrati</b> </string>
+    <string name="Registrati"> Non hai un account? <b>Registrati</b> </string>
     <string name="invalid_email">email non valida, prego riprovare</string>
     <string name="invalid_password">la password deve contenere almeno 4 caratteri</string>
     <string name="e_mail">E-mail</string>
@@ -18,5 +18,13 @@
     <string name="confirm_password">Confirm password</string>
     <string name="register">Register</string>
     <string name="pulsante_di_aggiunta">Pulsante di aggiunta</string>
+    <string name="certificazioni">certificazioni</string>
+    <string name="numero_di_telefono">numero di telefono</string>
+    <string name="data_di_nascita">data di nascita</string>
+    <string name="cognome">cognome</string>
+    <string name="nome">nome</string>
+    <string name="risultati">risultati</string>
+    <string name="registra">registra</string>
+    <string name="aggiungi_giocatore">Aggiungi atleta</string>
 
 </resources>

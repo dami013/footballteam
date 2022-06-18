@@ -9,10 +9,10 @@ data class Atleta(
     var certificazione: String?,
     var photo : String?,
     var risultati: String?,
-    var id: String?) {
+    ) {
     // Serve un costruttore vuoto per firebase
 
-    constructor() : this("","","","","","","","","")
+    constructor() : this("","","","","","","","")
 
     // ci interssa di porre nome e cognome
     override fun toString(): String {
@@ -30,8 +30,6 @@ data class Atleta(
         certificazione = atleta.certificazione
         photo = atleta.photo
         risultati = atleta.risultati
-        id = atleta.id
 
     }
-
 }
