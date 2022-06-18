@@ -2,26 +2,20 @@ package it.com.uninsubria.footballteam.fragments
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import it.com.uninsubria.footballteam.R
+import kotlinx.android.synthetic.main.register.*
 import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [register_player_fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class register_player_fragment : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -34,7 +28,6 @@ class register_player_fragment : Fragment(){
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
     override fun onCreateView(
@@ -47,8 +40,47 @@ class register_player_fragment : Fragment(){
         view.immagine.setOnClickListener{
             openGalleryForImage()
         }
+
+        view.register.setOnClickListener{
+            onRegisterClick()
+        }
+
         return view
     }
+
+    private fun onRegisterClick() {
+        val name = nome.text.toString().trim()
+        val cogn = cognome.text.toString().trim()
+        val image = immagine.resources.toString()
+        val dataN = dataNascita.text.toString().trim()
+        val cel = phone.text.toString().trim()
+        val cert = certificazione?.text.toString().trim()  //certificazioni e risultati possono essere nulli
+        val ris = risultati?.text.toString().trim()
+
+        if(name.isEmpty()){
+            nome.error = "inserire nome"
+            return
+        }
+        if(cogn.isEmpty()){
+            cognome.error = "inserire cognome"
+            return
+        }
+        if(dataN.isEmpty()){
+            dataNascita.error = "inserire data di nascita"
+            return
+        }
+        if(cel.isEmpty()){
+            phone.error = "inserire numerop di telefono"
+            return
+        }
+
+        saveData(name,cogn,dataN,cel,cert,ris,image)
+    }
+
+    private fun saveData(name: String, cogn: String, dataN: String, cel: String, cert: String, ris: String, image: String) {
+
+    }
+
 
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -61,25 +93,5 @@ class register_player_fragment : Fragment(){
         if (resultCode == Activity.RESULT_OK && requestCode == FOTO) {
             immagine.setImageURI(data?.data) // handle chosen image
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment register_player_fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            register_player_fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
