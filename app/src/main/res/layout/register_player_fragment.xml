@@ -17,7 +17,7 @@
         android:hint="@string/nome"
         android:inputType="textPersonName"
         android:padding="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/cognome"
+        app:layout_constraintBottom_toTopOf="@+id/cf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +32,23 @@
         android:background="@drawable/tv_contorno"
         android:ems="10"
         android:hint="@string/cognome"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataNascita" />
+
+    <EditText
+        android:id="@+id/cf"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/tv_contorno"
+        android:ems="10"
+        android:hint="@string/codice_fiscale"
         android:inputType="textPersonName"
         android:padding="15dp"
         app:layout_constraintBottom_toTopOf="@+id/dataNascita"
@@ -51,11 +68,11 @@
         android:hint="@string/data_di_nascita"
         android:inputType="date"
         android:padding="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/phone"
+        app:layout_constraintBottom_toTopOf="@+id/cognome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cognome" />
+        app:layout_constraintTop_toBottomOf="@+id/cf" />
 
     <EditText
         android:id="@+id/phone"
@@ -72,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataNascita" />
+        app:layout_constraintTop_toBottomOf="@+id/cognome" />
 
     <EditText
         android:id="@+id/certificazione"
@@ -112,13 +129,12 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
         android:background="@drawable/btn_backgroung"
         android:padding="15dp"
         android:text="@string/registra"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/risultati" />
 
@@ -128,7 +144,7 @@
         android:layout_height="129dp"
         app:layout_constraintBottom_toTopOf="@+id/nome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_person_24" />

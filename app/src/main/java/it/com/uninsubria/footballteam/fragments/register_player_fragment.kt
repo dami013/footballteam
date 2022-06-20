@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.FirebaseDatabase
 import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.register.*
 import kotlinx.android.synthetic.main.register_player_fragment.*
@@ -23,6 +24,7 @@ class register_player_fragment : Fragment(){
     private var param1: String? = null
     private var param2: String? = null
     private val FOTO = 1
+    private val FireBaseRef = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/").getReference("atleta")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +55,7 @@ class register_player_fragment : Fragment(){
     private fun onRegisterClick() {
         val bytearros = ByteArrayOutputStream()
         val name = nome.text.toString().trim()
+        val codFisc = cf.text.toString().trim()
         val cogn = cognome.text.toString().trim()
         (immagine.drawable as BitmapDrawable).bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytearros)
         val data = bytearros.toByteArray()
@@ -78,12 +81,22 @@ class register_player_fragment : Fragment(){
             return
         }
 
-        saveData(name,cogn,dataN,cel,cert,ris,data)
+        saveData(name,cogn,dataN,codFisc,cel,cert,ris,data)
     }
 
-    private fun saveData(name: String, cogn: String, dataN: String, cel: String, cert: String, ris: String, image: ByteArray) {
+    private fun saveData(
+        name: String,
+        cogn: String,
+        dataN: String,
+        codFisc: String,
+        cel: String,
+        cert: String,
+        ris: String,
+        data: ByteArray
+    ) {
 
     }
+
 
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)

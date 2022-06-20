@@ -26,5 +26,6 @@
     <string name="risultati">risultati</string>
     <string name="registra">registra</string>
     <string name="aggiungi_giocatore">Aggiungi atleta</string>
+    <string name="codice_fiscale">codice fiscale</string>
 
 </resources>
