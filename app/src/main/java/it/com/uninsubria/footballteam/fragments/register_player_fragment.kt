@@ -2,16 +2,18 @@ package it.com.uninsubria.footballteam.fragments
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.register.*
 import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
+import java.io.ByteArrayOutputStream
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -49,9 +51,11 @@ class register_player_fragment : Fragment(){
     }
 
     private fun onRegisterClick() {
+        val bytearros = ByteArrayOutputStream()
         val name = nome.text.toString().trim()
         val cogn = cognome.text.toString().trim()
-        val image = immagine.resources.toString()
+        (immagine.drawable as BitmapDrawable).bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytearros)
+        val data = bytearros.toByteArray()
         val dataN = dataNascita.text.toString().trim()
         val cel = phone.text.toString().trim()
         val cert = certificazione?.text.toString().trim()  //certificazioni e risultati possono essere nulli
@@ -74,13 +78,12 @@ class register_player_fragment : Fragment(){
             return
         }
 
-        saveData(name,cogn,dataN,cel,cert,ris,image)
+        saveData(name,cogn,dataN,cel,cert,ris,data)
     }
 
-    private fun saveData(name: String, cogn: String, dataN: String, cel: String, cert: String, ris: String, image: String) {
+    private fun saveData(name: String, cogn: String, dataN: String, cel: String, cert: String, ris: String, image: ByteArray) {
 
     }
-
 
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -91,7 +94,7 @@ class register_player_fragment : Fragment(){
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == FOTO) {
-            immagine.setImageURI(data?.data) // handle chosen image
+            immagine.setImageURI(data?.data)// handle chosen image
         }
     }
 }
