@@ -34,7 +34,7 @@ class register_player_fragment : Fragment(){
     private var param1: String? = null
     private var param2: String? = null
     private val FOTO = 1
-    private val ref = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/").getReference("Atleti")
+    private val ref = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/").getReference("Users")
     private lateinit var auth: FirebaseAuth
 
 
@@ -146,7 +146,7 @@ class register_player_fragment : Fragment(){
         atletiMap["certificazioni"] = cert
         atletiMap["risultati"] = ris
         atletiMap["immagine"] = data
-        ref.child(uid).setValue(atletiMap)
+        ref.child(uid).child("Atleti").child(codFisc).setValue(atletiMap)
     }
 
 
