@@ -13,13 +13,13 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val nome = view.findViewById<TextView>(R.id.tvPlayerName)
     val cognome = view.findViewById<TextView>(R.id.tvSurname)
-    val codiceFiscale = view.findViewById<TextView>(R.id.tvRole)
+    val ruolo = view.findViewById<TextView>(R.id.tvRole)
     val foto = view.findViewById<ImageView>(R.id.ivPlayer)
 
     fun render(atleta: Atleta) {
         nome.text = atleta.nome
         cognome.text = atleta.cognome
-        codiceFiscale.text = atleta.ruolo
+        ruolo.text = atleta.ruolo
 
         val requestOption = RequestOptions()
             .placeholder(R.drawable.icona)

@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,7 +14,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import it.com.uninsubria.footballteam.Atleta
-import it.com.uninsubria.footballteam.Dataset
 import it.com.uninsubria.footballteam.R
 import it.com.uninsubria.footballteam.adapter.PlayerAdapter
 import kotlinx.android.synthetic.main.fragment_atleti.*
@@ -34,7 +31,6 @@ class AtletiFragment : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
-    private val fragmentAtl = register_player_fragment()
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
     private  lateinit var db: DatabaseReference
@@ -78,31 +74,17 @@ class AtletiFragment : Fragment() {
         return view
     }
 
-    /*private fun startRecyclerView(view: View) {
-        val recycler = view.findViewById<RecyclerView>(R.id.recycler_view)
-        val manager = LinearLayoutManager(view.context)
-        val decorazione = DividerItemDecoration(view.context,manager.orientation)
-        recycler.layoutManager = manager
-        recycler.adapter = PlayerAdapter(Dataset.giocatori)
-        recycler.addItemDecoration(decorazione)
-    } */
-
-    private fun readData(view: View) {
-        reg = view.findViewById(R.id.recycler_view)
-        val manager = LinearLayoutManager(view.context)
-        reg.setHasFixedSize(true)
-        val decorazione = DividerItemDecoration(view.context,manager.orientation)
-        reg.addItemDecoration(decorazione)
-        reg.layoutManager = manager
 
 
-    }
 
     private fun readAtlethData() {
         val auth = Firebase.auth
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid
-        db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/").getReference("Users").child(uid).child("Atleti")
+        db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
+            .getReference("Users")
+            .child(uid)
+            .child("Atleti")
         db.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
