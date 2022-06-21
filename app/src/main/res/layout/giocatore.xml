@@ -9,6 +9,7 @@
 
 
     <ImageView
+        android:id="@+id/ivPlayer"
         android:src="@drawable/ic_username"
         android:layout_gravity="right"
         android:layout_width="100dp"
