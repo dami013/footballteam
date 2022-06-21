@@ -61,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
         if(psw!=confPw){
-            confirm_pw.error = "password anc confirm passwort not mached"
+            confirm_pw.error = "password and confirm password not mached"
             return
         }
         createUser(userName, mail, psw)

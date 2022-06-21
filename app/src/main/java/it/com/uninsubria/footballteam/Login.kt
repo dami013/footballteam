@@ -22,13 +22,11 @@ class Login : AppCompatActivity() {
 
         auth = Firebase.auth
 
-
         signUp.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }
-
         btn_SignIn.setOnClickListener {
             onLoginClick()
         }
@@ -38,11 +36,11 @@ class Login : AppCompatActivity() {
         val mail = et_email.text.toString().trim()
         val pw = password.text.toString().trim()
         if (mail.isEmpty()||!check.isValidEmail(mail)) {
-            et_email.error = "Enter email"
+            et_email.error = "empty password or invalid"
             return
         }
         if (pw.isEmpty()||!check.isValidPassword(pw)) {
-            password.error = "Enter password"
+            password.error = "empty password or invalid"
             return
         }
         loginUser(mail, pw)
@@ -57,14 +55,6 @@ class Login : AppCompatActivity() {
                 finish()
             }else{
                 Log.w(TAG,"SignIn failed", task.exception)
-                val builder = AlertDialog.Builder(this)
-                with(builder)
-                {
-                    setTitle("Authentication failed")
-                    setMessage(task.exception?.message)
-                    setPositiveButton("OK", null)
-                    show()
-                }
             }
         }
     }
