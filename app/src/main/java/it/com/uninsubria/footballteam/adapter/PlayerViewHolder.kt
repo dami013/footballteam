@@ -12,20 +12,15 @@ import it.com.uninsubria.footballteam.R
 class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val nome = view.findViewById<TextView>(R.id.tvPlayerName)
-    val dataNascita = view.findViewById<TextView>(R.id.tvBirthDate)
-    val ruolo = view.findViewById<TextView>(R.id.tvRole)
-    val telefono = view.findViewById<TextView>(R.id.tvPhone)
-    val certificazione = view.findViewById<TextView>(R.id.tvCertification)
-    val result = view.findViewById<TextView>(R.id.tvResults)
+    val cognome = view.findViewById<TextView>(R.id.tvSurname)
+    val codiceFiscale = view.findViewById<TextView>(R.id.tvRole)
     val foto = view.findViewById<ImageView>(R.id.ivPlayer)
 
     fun render(atleta: Atleta) {
         nome.text = atleta.nome
-        dataNascita.text = atleta.dataNascita
-        ruolo.text = atleta.ruolo
-        telefono.text = atleta.phone
-        certificazione.text = atleta.certificazione
-        result.text = atleta.risultati
+        cognome.text = atleta.cognome
+        codiceFiscale.text = atleta.ruolo
+
         val requestOption = RequestOptions()
             .placeholder(R.drawable.icona)
             .error(R.drawable.icona) // In caso di errore

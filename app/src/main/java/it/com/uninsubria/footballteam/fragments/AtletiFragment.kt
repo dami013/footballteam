@@ -1,14 +1,21 @@
 package it.com.uninsubria.footballteam.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
+import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.Dataset
 import it.com.uninsubria.footballteam.R
 import it.com.uninsubria.footballteam.adapter.PlayerAdapter
@@ -28,6 +35,10 @@ class AtletiFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private val fragmentAtl = register_player_fragment()
+    private lateinit var reg: RecyclerView
+    private lateinit var list: ArrayList<Atleta>
+    private  lateinit var db: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,38 +51,79 @@ class AtletiFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_atleti, container, false)
-        startRecyclerView(view)
+
+
+        reg = view.findViewById(R.id.recycler_view)
+        reg.layoutManager = LinearLayoutManager(view.context)
+        reg.setHasFixedSize(true)
+        list = arrayListOf<Atleta>()
+        readAtlethData()
+
+
+
+
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener{
+            val nuovo = register_player_fragment()
+            val fragmentManager = parentFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(
+                R.id.mainContainer,
+                nuovo
+            )
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+        }
         return view
     }
 
-    private fun startRecyclerView(view: View) {
+    /*private fun startRecyclerView(view: View) {
         val recycler = view.findViewById<RecyclerView>(R.id.recycler_view)
         val manager = LinearLayoutManager(view.context)
         val decorazione = DividerItemDecoration(view.context,manager.orientation)
         recycler.layoutManager = manager
         recycler.adapter = PlayerAdapter(Dataset.giocatori)
         recycler.addItemDecoration(decorazione)
+    } */
+
+    private fun readData(view: View) {
+        reg = view.findViewById(R.id.recycler_view)
+        val manager = LinearLayoutManager(view.context)
+        reg.setHasFixedSize(true)
+        val decorazione = DividerItemDecoration(view.context,manager.orientation)
+        reg.addItemDecoration(decorazione)
+        reg.layoutManager = manager
+
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AtletiFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AtletiFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun readAtlethData() {
+        val auth = Firebase.auth
+        val currentUser = auth.currentUser
+        val uid = currentUser!!.uid
+        db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/").getReference("Users").child(uid).child("Atleti")
+        db.addValueEventListener(object :ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    for( data in snapshot.children) {
+                        val atleta = data.getValue(Atleta::class.java)
+                        list.add(atleta!!)
+                    }
+                    reg.adapter = PlayerAdapter(list)
+
                 }
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("TEST","Failed to read value")
+            }
+
+        })
+
     }
+
+
 
 }
 

@@ -22,43 +22,27 @@
         android:layout_height="wrap_content"
         android:textSize="21sp"
         android:textStyle="bold"
-        tools:text="Ciao"
+        tools:text="Mario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivPlayer"/>
     <TextView
-        android:id="@+id/tvBirthDate"
+        android:id="@+id/tvSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="dd-mm-yyyy"
-        app:layout_constraintTop_toBottomOf="@id/tvPlayerName"
-        app:layout_constraintStart_toEndOf="@+id/ivPlayer"/>
+        android:textSize="21sp"
+        android:textStyle="bold"
+        tools:text="Rossi"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvPlayerName"/>
+
     <TextView
         android:id="@+id/tvRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Striker"
-        app:layout_constraintTop_toBottomOf="@id/tvBirthDate"
+        app:layout_constraintTop_toBottomOf="@id/tvPlayerName"
         app:layout_constraintStart_toEndOf="@+id/ivPlayer"/>
-    <TextView
-        android:id="@+id/tvPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="123456789"
-        app:layout_constraintTop_toBottomOf="@id/tvRole"
-        app:layout_constraintStart_toEndOf="@+id/ivPlayer"/>
-    <TextView
-        android:id="@+id/tvCertification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Gold"
-        app:layout_constraintTop_toBottomOf="@id/tvPhone"
-        app:layout_constraintStart_toEndOf="@+id/ivPlayer"/>
-    <TextView
-        android:id="@+id/tvResults"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Good"
-        app:layout_constraintTop_toBottomOf="@id/tvCertification"
-        app:layout_constraintStart_toEndOf="@+id/ivPlayer"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
