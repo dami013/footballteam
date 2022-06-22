@@ -54,22 +54,6 @@ class register_player_fragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
-    private fun drawableToBitmap(drawable: Drawable): Bitmap? {
-        if (drawable is BitmapDrawable) {
-            return drawable.bitmap
-        }
-        var width = drawable.intrinsicWidth
-        width = if (width > 0) width else 1
-        var height = drawable.intrinsicHeight
-        height = if (height > 0) height else 1
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight())
-        drawable.draw(canvas)
-        return bitmap
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -135,7 +119,7 @@ class register_player_fragment : Fragment() {
 
         val TAG = "FirebaseStorageManager"
         val ref =
-            FirebaseStorage.getInstance().reference.child("/image/${FirebaseAuth.getInstance().currentUser?.email}")
+            FirebaseStorage.getInstance().reference.child("/image/${name}")
         // caricamento
         ref.putFile(img).addOnSuccessListener {
             Log.e(TAG, "OK")
