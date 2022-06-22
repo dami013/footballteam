@@ -58,6 +58,7 @@ class AtletiFragment : Fragment() {
 
 
 
+
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener{
             val nuovo = register_player_fragment()

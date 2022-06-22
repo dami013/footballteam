@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Footballteam"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PlayerDetails"
+            android:exported="false" />
+        <activity
             android:name=".ReadActivity"
             android:exported="false" />
         <activity
