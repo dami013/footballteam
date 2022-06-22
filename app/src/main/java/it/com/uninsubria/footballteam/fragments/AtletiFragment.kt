@@ -55,10 +55,6 @@ class AtletiFragment : Fragment() {
         list = arrayListOf<Atleta>()
         readAtlethData()
 
-
-
-
-
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener{
             val nuovo = register_player_fragment()
@@ -74,8 +70,6 @@ class AtletiFragment : Fragment() {
         }
         return view
     }
-
-
 
 
     private fun readAtlethData() {
@@ -94,19 +88,14 @@ class AtletiFragment : Fragment() {
                         list.add(atleta!!)
                     }
                     reg.adapter = PlayerAdapter(list)
-
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.w("TEST","Failed to read value")
             }
-
         })
 
     }
-
-
-
 }
 
