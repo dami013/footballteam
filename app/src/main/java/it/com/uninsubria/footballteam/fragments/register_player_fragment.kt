@@ -101,6 +101,7 @@ class register_player_fragment : Fragment(){
         val data = String (bytearros.toByteArray())
         val dataN = dataNascita.text.toString().trim()
         val cel = phone.text.toString().trim()
+        val rol = ruolo.text.toString().trim()
         val cert = certificazione?.text.toString().trim()  //certificazioni e risultati possono essere nulli
         val ris = risultati?.text.toString().trim()
 
@@ -116,12 +117,16 @@ class register_player_fragment : Fragment(){
             dataNascita.error = "inserire data di nascita"
             return
         }
+        if(rol.isEmpty()){
+            cognome.error = "inserire ruolo"
+            return
+        }
         if(cel.isEmpty()){
             phone.error = "inserire numero di telefono"
             return
         }
 
-        saveData(name,cogn,dataN,codFisc,cel,cert,ris,data)
+        saveData(name,cogn,dataN,codFisc,rol, cel,cert,ris,data)
     }
 
     private fun saveData(
@@ -129,6 +134,7 @@ class register_player_fragment : Fragment(){
         cogn: String,
         dataN: String,
         codFisc: String,
+        rol: String,
         cel: String,
         cert: String,
         ris: String,
@@ -143,6 +149,7 @@ class register_player_fragment : Fragment(){
         atletiMap["dataNascita"] = dataN
         atletiMap["codiceFiscale"] = codFisc
         atletiMap["telefono"] = cel
+        atletiMap["ruolo"] = rol
         atletiMap["certificazioni"] = cert
         atletiMap["risultati"] = ris
         atletiMap["immagine"] = data
