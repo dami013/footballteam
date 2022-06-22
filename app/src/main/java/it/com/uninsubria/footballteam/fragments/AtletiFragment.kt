@@ -17,6 +17,7 @@ import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.R
 import it.com.uninsubria.footballteam.adapter.PlayerAdapter
 import kotlinx.android.synthetic.main.fragment_atleti.*
+import kotlinx.android.synthetic.main.giocatore.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
