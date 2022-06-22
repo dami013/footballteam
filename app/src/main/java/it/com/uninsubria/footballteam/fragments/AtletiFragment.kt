@@ -27,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 
-class AtletiFragment : Fragment() {
+class AtletiFragment : Fragment(){
 
     private var param1: String? = null
     private var param2: String? = null
@@ -83,7 +83,7 @@ class AtletiFragment : Fragment() {
         db.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
-                    for( data in snapshot.children) {
+                    for(data in snapshot.children) {
                         val atleta = data.getValue(Atleta::class.java)
                         list.add(atleta!!)
                     }

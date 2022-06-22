@@ -84,17 +84,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ruolo: "
+                android:text="CF: "
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/tvRole"
+                android:id="@+id/tvCf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Punta"
+                android:text="XXXXXXXXXXXXXXX"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
 

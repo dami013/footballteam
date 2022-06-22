@@ -15,14 +15,14 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val nome = view.findViewById<TextView>(R.id.tvPlayerName)
     val cognome = view.findViewById<TextView>(R.id.tvSurname)
-    val ruolo = view.findViewById<TextView>(R.id.tvRole)
+    val cf = view.findViewById<TextView>(R.id.tvCf)
     val foto = view.findViewById<ImageView>(R.id.ivPlayer)
 
 
     fun render(atleta: Atleta) {
         nome.text = atleta.nome
         cognome.text = atleta.cognome
-        ruolo.text = atleta.ruolo
+        cf.text = atleta.codiceFiscale
 
         val requestOption = RequestOptions()
             .placeholder(R.drawable.icona)
@@ -33,11 +33,10 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             .into(foto)
 
         itemView.setOnClickListener {
-            var a = Intent(itemView.context, PlayerDetails::class.java)
-            itemView.context.startActivity(a)
-
+            val intent = Intent(itemView.context, PlayerDetails::class.java)
+            intent.putExtra("cf",cf.text)
+            itemView.context.startActivity(intent)
         }
-
-
     }
+
 }
