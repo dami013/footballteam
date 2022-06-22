@@ -16,7 +16,7 @@ class PlayerDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_details)
         val cf = intent.getStringExtra("cf")
-
+        insertData(cf!!)
     }
 
     private fun insertData(cf: String){
