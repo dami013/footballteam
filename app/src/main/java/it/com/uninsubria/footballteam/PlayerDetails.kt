@@ -32,14 +32,14 @@ class PlayerDetails : AppCompatActivity() {
                 if(snapshot.exists()) {
                     val atleta = snapshot.getValue(Atleta::class.java)
                     //manca foto
-                    name.text = "nome" + atleta!!.nome
-                    surname.text = atleta.cognome
-                    codFisc.text = atleta.codiceFiscale
-                    dataN.text = atleta.dataNascita
-                    ruolo.text = atleta.ruolo
-                    phone.text = atleta.phone
-                    results.text = atleta.risultati
-                    certificazioni.text = atleta.certificazione
+                    name.setText(atleta!!.nome)
+                    surname.setText(atleta.cognome)
+                    codFisc.setText(atleta.codiceFiscale)
+                    dataN.setText(atleta.dataNascita)
+                    ruolo.setText(atleta.ruolo)
+                    phone.setText(atleta.phone)
+                    results.setText(atleta.risultati)
+                    certificazioni.setText(atleta.certificazione)
                 }
             }
 
