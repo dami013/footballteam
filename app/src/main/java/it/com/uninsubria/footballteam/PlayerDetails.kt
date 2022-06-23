@@ -29,18 +29,19 @@ class PlayerDetails : AppCompatActivity() {
             .child("Atleti")
             .child(cf)
         db.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
                     val atleta = snapshot.getValue(Atleta::class.java)
                     //manca foto
-                    name.setText(atleta!!.nome)
-                    surname.setText(atleta.cognome)
-                    codFisc.setText(atleta.codiceFiscale)
-                    dataN.setText(atleta.dataNascita)
-                    ruolo.setText(atleta.ruolo)
-                    phone.setText(atleta.phone)
-                    results.setText(atleta.risultati)
-                    certificazioni.setText(atleta.certificazione)
+                    name.setText("nome ${atleta!!.nome}")
+                    surname.setText("cognome ${atleta.cognome}")
+                    codFisc.setText("codice fiscale : ${atleta.codiceFiscale}")
+                    dataN.setText(" data di nascita  + ${atleta.dataNascita}")
+                    ruolo.setText("ruolo + ${atleta.ruolo}")
+                    phone.setText("telefono ${atleta.phone}")
+                    results.setText("risultati ${atleta.risultati}")
+                    certificazioni.setText("certificazioni ${atleta.certificazione}")
                 }
             }
 
