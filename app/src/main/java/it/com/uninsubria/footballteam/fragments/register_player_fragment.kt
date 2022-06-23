@@ -3,29 +3,21 @@ package it.com.uninsubria.footballteam.fragments
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.graphics.Canvas
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.text.TextUtils.replace
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import it.com.uninsubria.footballteam.MainActivity
 import it.com.uninsubria.footballteam.R
-import kotlinx.android.synthetic.main.register.*
 import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
 import java.util.*
@@ -97,7 +89,7 @@ class register_player_fragment : Fragment() {
 
         val name = nome.text.toString().trim()
         val codFisc = cf.text.toString().trim().uppercase()
-        val cogn = cf.text.toString().trim()
+        val cogn = cognome.text.toString().trim()
         val dataN = dataNascita.text.toString().trim()
         val cel = phone.text.toString().trim()
         val rol = ruolo.text.toString().trim()
@@ -110,7 +102,7 @@ class register_player_fragment : Fragment() {
             return
         }
         if (cogn.isEmpty()) {
-            cf.error = "inserire cognome"
+            cognome.error = "inserire cognome"
             return
         }
         if (dataN.isEmpty()) {
@@ -118,7 +110,7 @@ class register_player_fragment : Fragment() {
             return
         }
         if (rol.isEmpty()) {
-            cf.error = "inserire ruolo"
+            ruolo.error = "inserire ruolo"
             return
         }
         if (cel.isEmpty()) {
@@ -143,6 +135,7 @@ class register_player_fragment : Fragment() {
 
 
     }
+
 
     private fun saveData(
         name: String,
