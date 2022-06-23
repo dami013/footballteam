@@ -121,6 +121,14 @@ class register_player_fragment : Fragment(){
             phone.error = "inserire numero di telefono"
             return
         }
+        if(cert.isEmpty()){
+            certificazione.error = "inserire certificazione"
+            return
+        }
+        if(ris.isEmpty()){
+            risultati.error = "inserire risultati ottenuti"
+            return
+        }
 
         saveData(name,cogn,dataN,codFisc,rol, cel,cert,ris,data)
     }
