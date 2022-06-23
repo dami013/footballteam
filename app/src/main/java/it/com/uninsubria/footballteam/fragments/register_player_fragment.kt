@@ -117,6 +117,10 @@ class register_player_fragment : Fragment(){
             cognome.error = "inserire ruolo"
             return
         }
+        if(codFisc.isEmpty()||codFisc.length!=16){
+            cf.error = "codice fiscale non corretto o inesistente"
+            return
+        }
         if(cel.isEmpty()){
             phone.error = "inserire numero di telefono"
             return
