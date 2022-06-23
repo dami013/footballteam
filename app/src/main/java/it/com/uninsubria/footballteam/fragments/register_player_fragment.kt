@@ -98,8 +98,8 @@ class register_player_fragment : Fragment(){
         val dataN = dataNascita.text.toString().trim()
         val cel = phone.text.toString().trim()
         val rol = ruolo.text.toString().trim()
-        val cert = certificazione?.text.toString().trim()  //certificazioni e risultati possono essere nulli
-        val ris = risultati?.text.toString().trim()
+        val cert = certificazione.text.toString().trim()  //certificazioni e risultati possono essere nulli
+        val ris = risultati.text.toString().trim()
 
         if(name.isEmpty()){
             nome.error = "inserire nome"
