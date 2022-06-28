@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
 
 class PlayerDetails : AppCompatActivity() {
     private  lateinit var db: DatabaseReference
-    private val fragmentDetails = viusalize_players_details()
+    private val fragmentDetails = visualize_players_details()
     private val changeDetails = Change_player_details()
 
     override fun onCreate(savedInstanceState: Bundle?) {

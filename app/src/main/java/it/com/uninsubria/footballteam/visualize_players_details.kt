@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class viusalize_players_details : Fragment() {
+class visualize_players_details : Fragment() {
     private  lateinit var db: DatabaseReference
     private val changePlayers = Change_player_details()
     private var param1: String? = null
@@ -31,7 +31,7 @@ class viusalize_players_details : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,14 +47,11 @@ class viusalize_players_details : Fragment() {
         })
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_visualize_players_details,container, false)
-
         val args = Bundle()
         val cf = args.getString("cf", "")
         insertData(cf!!)

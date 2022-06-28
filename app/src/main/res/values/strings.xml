@@ -29,5 +29,6 @@
     <string name="codice_fiscale">codice fiscale</string>
     <string name="Cognome">Cognome:</string>
     <string name="modifica">modifica</string>
+    <string name="visualizza">visualizza</string>
 
 </resources>
