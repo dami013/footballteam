@@ -35,6 +35,7 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.setOnClickListener {
             val intent = Intent(itemView.context, PlayerDetails::class.java)
             intent.putExtra("cf",cf.text)
+            println("ATTENZIONE ${cf}")
             itemView.context.startActivity(intent)
         }
     }

@@ -21,20 +21,26 @@ private const val ARG_PARAM2 = "param2"
 
 class visualize_players_details : Fragment() {
     private  lateinit var db: DatabaseReference
-    private val changePlayers = Change_player_details()
     private var param1: String? = null
     private var param2: String? = null
+    private var cf :String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            val bundle = arguments
+            if (bundle != null) {
+                cf = bundle.getString("cf").toString()
+            }
+            insertData(cf)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val changePlayers = Change_player_details()
         mod.setOnClickListener(View.OnClickListener {
             val fragmentManager = parentFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
@@ -43,6 +49,9 @@ class visualize_players_details : Fragment() {
                 changePlayers
             )
             fragmentTransaction.addToBackStack(null)
+            val args = Bundle()
+            args.putString("cf", cf)
+            changePlayers.arguments = args
             fragmentTransaction.commit()
         })
     }
@@ -52,9 +61,7 @@ class visualize_players_details : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_visualize_players_details,container, false)
-        val args = Bundle()
-        val cf = args.getString("cf", "")
-        insertData(cf!!)
+        insertData(cf)
         return view
     }
 
@@ -75,12 +82,12 @@ class visualize_players_details : Fragment() {
                     //manca foto
                     nome.text = "nome: ${atleta!!.nome}"
                     cognome.text = "cognome: ${atleta.cognome}"
-                    codFisc.text = "codice fiscale : ${atleta.codiceFiscale}"
-                    dataN.text = " data di nascita  + ${atleta.dataNascita}"
-                    ruolo.text = "ruolo + ${atleta.ruolo}"
-                    telefono.text = "telefono ${atleta.phone}"
-                    risultati.text = "risultati ${atleta.risultati}"
-                    certificati.text = "certificazioni ${atleta.certificazione}"
+                    codFisc.text = "codice fiscale: ${atleta.codiceFiscale}"
+                    dataN.text = " data di nascita: ${atleta.dataNascita}"
+                    ruolo.text = "ruolo: ${atleta.ruolo}"
+                    telefono.text = "telefono: ${atleta.phone}"
+                    risultati.text = "risultati: ${atleta.risultati}"
+                    certificati.text = "certificazioni: ${atleta.certificazione}"
                 }
             }
 

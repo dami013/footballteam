@@ -22,4 +22,16 @@ data class Atleta(
         return ruolo
     }
     // Permette di sovrascrivere i valori precedente con i nuovi
+    fun set(atleta: Atleta) {
+        nome = atleta.nome
+        cognome = atleta.cognome
+        dataNascita = atleta.dataNascita
+        codiceFiscale = atleta.codiceFiscale
+        ruolo = atleta.ruolo
+        phone = atleta.phone
+        certificazione = atleta.certificazione
+        photo = atleta.photo
+        risultati = atleta.risultati
+
+    }
 }

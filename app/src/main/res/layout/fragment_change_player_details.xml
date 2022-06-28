@@ -35,40 +35,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/codFisc"
+        app:layout_constraintBottom_toTopOf="@+id/codFiscale"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <EditText
-        android:id="@+id/codFisc"
+        android:id="@+id/codFiscale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/dataN"
+        app:layout_constraintBottom_toTopOf="@+id/dataNasc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/surname" />
 
     <EditText
-        android:id="@+id/dataN"
+        android:id="@+id/dataNasc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/ruolo"
+        app:layout_constraintBottom_toTopOf="@+id/ruoloc"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/codFisc" />
+        app:layout_constraintTop_toBottomOf="@+id/codFiscale" />
 
     <EditText
-        android:id="@+id/ruolo"
+        android:id="@+id/ruoloc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/phone"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataN" />
+        app:layout_constraintTop_toBottomOf="@+id/dataNasc" />
 
     <EditText
         android:id="@+id/phone"
@@ -78,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ruolo" />
+        app:layout_constraintTop_toBottomOf="@+id/ruoloc" />
 
     <EditText
         android:id="@+id/results"
