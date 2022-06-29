@@ -6,9 +6,9 @@ data class Atleta(
     var dataNascita: String?,
     var codiceFiscale: String?,
     var ruolo: String?,
-    var phone: String?,
-    var certificazione: String?,
-    var photo : String?,
+    var telefono: String?,
+    var certificazioni: String?,
+    var immagine : String?,
     var risultati: String?,
     ) {
     // Serve un constructor vuoto per firebase
@@ -28,9 +28,9 @@ data class Atleta(
         dataNascita = atleta.dataNascita
         codiceFiscale = atleta.codiceFiscale
         ruolo = atleta.ruolo
-        phone = atleta.phone
-        certificazione = atleta.certificazione
-        photo = atleta.photo
+        telefono = atleta.telefono
+        certificazioni = atleta.certificazioni
+        immagine = atleta.immagine
         risultati = atleta.risultati
 
     }
