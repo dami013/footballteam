@@ -13,6 +13,11 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
+import kotlinx.android.synthetic.main.fragment_visualize_players_details.cognome
+import kotlinx.android.synthetic.main.fragment_visualize_players_details.nome
+import kotlinx.android.synthetic.main.fragment_visualize_players_details.risultati
+import kotlinx.android.synthetic.main.fragment_visualize_players_details.ruolo
+import kotlinx.android.synthetic.main.register_player_fragment.*
 
 
 class visualize_players_details : Fragment(){
@@ -82,7 +87,7 @@ class visualize_players_details : Fragment(){
             val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
             with(builder){
-                setTitle("modifica informazione")
+                setTitle("modifica nome")
                 setPositiveButton("modifica"){dialog, which ->
                     nome.text = editText.text.toString()
                 }
@@ -91,6 +96,138 @@ class visualize_players_details : Fragment(){
                 }
                 setView(dialogLayout)
                 show()
+            }
+        }
+
+        cognome.setOnClickListener{
+            val builder = AlertDialog.Builder(this.requireContext())
+            val inflater = layoutInflater
+            val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+            val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+
+            with(builder){
+                setTitle("modifica cognome")
+                setPositiveButton("modifica"){dialog, which ->
+                    nome.text = editText.text.toString()
+                }
+                setNegativeButton("elimina"){dialog,which->
+                    Log.d("negativeButton", "negative button clicked")
+                }
+                setView(dialogLayout)
+                show()
+            }
+
+            dataN.setOnClickListener{
+                val builder = AlertDialog.Builder(this.requireContext())
+                val inflater = layoutInflater
+                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+
+                with(builder){
+                    setTitle("modifica data di nascita")
+                    setPositiveButton("modifica"){dialog, which ->
+                        nome.text = editText.text.toString()
+                    }
+                    setNegativeButton("elimina"){dialog,which->
+                        Log.d("negativeButton", "negative button clicked")
+                    }
+                    setView(dialogLayout)
+                    show()
+                }
+            }
+
+            codFisc.setOnClickListener{
+                val builder = AlertDialog.Builder(this.requireContext())
+                val inflater = layoutInflater
+                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+
+                with(builder){
+                    setTitle("modifica codice fiscale")
+                    setPositiveButton("modifica"){dialog, which ->
+                        nome.text = editText.text.toString()
+                    }
+                    setNegativeButton("elimina"){dialog,which->
+                        Log.d("negativeButton", "negative button clicked")
+                    }
+                    setView(dialogLayout)
+                    show()
+                }
+            }
+
+            ruolo.setOnClickListener{
+                val builder = AlertDialog.Builder(this.requireContext())
+                val inflater = layoutInflater
+                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+
+                with(builder){
+                    setTitle("modifica ruolo")
+                    setPositiveButton("modifica"){dialog, which ->
+                        nome.text = editText.text.toString()
+                    }
+                    setNegativeButton("elimina"){dialog,which->
+                        Log.d("negativeButton", "negative button clicked")
+                    }
+                    setView(dialogLayout)
+                    show()
+                }
+            }
+
+            telefono.setOnClickListener{
+                val builder = AlertDialog.Builder(this.requireContext())
+                val inflater = layoutInflater
+                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+
+                with(builder){
+                    setTitle("modifica numero cellulare")
+                    setPositiveButton("modifica"){dialog, which ->
+                        nome.text = editText.text.toString()
+                    }
+                    setNegativeButton("elimina"){dialog,which->
+                        Log.d("negativeButton", "negative button clicked")
+                    }
+                    setView(dialogLayout)
+                    show()
+                }
+            }
+            certificati.setOnClickListener{
+                val builder = AlertDialog.Builder(this.requireContext())
+                val inflater = layoutInflater
+                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+
+                with(builder){
+                    setTitle("modifica certificati")
+                    setPositiveButton("modifica"){dialog, which ->
+                        nome.text = editText.text.toString()
+                    }
+                    setNegativeButton("elimina"){dialog,which->
+                        Log.d("negativeButton", "negative button clicked")
+                    }
+                    setView(dialogLayout)
+                    show()
+                }
+            }
+
+            risultati.setOnClickListener{
+                val builder = AlertDialog.Builder(this.requireContext())
+                val inflater = layoutInflater
+                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+
+                with(builder){
+                    setTitle("modifica risultati")
+                    setPositiveButton("modifica"){dialog, which ->
+                        nome.text = editText.text.toString()
+                    }
+                    setNegativeButton("elimina"){dialog,which->
+                        Log.d("negativeButton", "negative button clicked")
+                    }
+                    setView(dialogLayout)
+                    show()
+                }
             }
         }
     }
