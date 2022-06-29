@@ -27,11 +27,11 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         nome.text = atleta.nome
         cognome.text = atleta.cognome
         ruolo.text = atleta.ruolo
-        Log.w("Prova","${atleta.photo}")
-        Log.w("Prova","${atleta.nome}")
+       // Log.w("Prova","${atleta.immagine}")
+       // Log.w("Prova","${atleta.nome}")
 
         Glide.with(foto.context)
-            .load(atleta.photo)
+            .load(atleta.immagine)
             .into(foto)
 
     }
