@@ -18,14 +18,16 @@
     <string name="confirm_password">Confirm password</string>
     <string name="register">Register</string>
     <string name="pulsante_di_aggiunta">Pulsante di aggiunta</string>
-    <string name="certificazioni">certificazioni</string>
-    <string name="numero_di_telefono">numero di telefono</string>
-    <string name="data_di_nascita">data di nascita</string>
-    <string name="cognome">cognome</string>
-    <string name="nome">nome</string>
-    <string name="risultati">risultati</string>
-    <string name="registra">registra</string>
+    <string name="certificazioni">Certificazioni</string>
+    <string name="numero_di_telefono">Numero di telefono</string>
+    <string name="data_di_nascita">Seleziona la data di nascita</string>
+    <string name="cognome">Cognome</string>
+    <string name="nome">Nome</string>
+    <string name="risultati">Risultati</string>
+    <string name="registra">Registra</string>
     <string name="aggiungi_giocatore">Aggiungi atleta</string>
-    <string name="codice_fiscale">codice fiscale</string>
+    <string name="codice_fiscale">Codice fiscale</string>
+    <string name="ruolo">Ruolo</string>
+    <string name="foto_profilo">Foto profilo</string>
 
 </resources>

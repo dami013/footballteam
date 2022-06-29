@@ -8,6 +8,8 @@
 
     <EditText
         android:id="@+id/nome"
+        android:drawableStart="@drawable/ic_username"
+        android:autofillHints="name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -25,6 +27,8 @@
 
     <EditText
         android:id="@+id/cognome"
+        android:autofillHints="name"
+        android:drawableStart="@drawable/ic_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -42,6 +46,8 @@
 
     <EditText
         android:id="@+id/cf"
+        android:drawableStart="@drawable/ic_baseline_credit_card_24"
+        android:importantForAutofill="no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -57,16 +63,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nome" />
 
-    <EditText
+    <TextView
         android:id="@+id/dataNascita"
         android:layout_width="0dp"
+        android:drawableStart="@drawable/ic_baseline_calendar_today_24"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
         android:ems="10"
-        android:hint="@string/data_di_nascita"
-        android:inputType="date"
+        android:text="@string/data_di_nascita"
         android:padding="15dp"
         app:layout_constraintBottom_toTopOf="@+id/cognome"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +83,8 @@
 
     <EditText
         android:id="@+id/phone"
+        android:autofillHints="phone"
+        android:drawableStart="@drawable/ic_baseline_local_phone_24"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -93,6 +102,8 @@
 
     <EditText
         android:id="@+id/certificazione"
+        android:drawableStart="@drawable/ic_baseline_check_24"
+        android:importantForAutofill="no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -110,6 +121,8 @@
 
     <EditText
         android:id="@+id/risultati"
+        android:drawableStart="@drawable/ic_baseline_trending_up_24"
+        android:importantForAutofill="no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -126,13 +139,15 @@
         app:layout_constraintTop_toBottomOf="@+id/certificazione" />
     <EditText
         android:id="@+id/ruolo"
+        android:drawableStart="@drawable/ic_baseline_sports_24"
+        android:importantForAutofill="no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/tv_contorno"
         android:ems="10"
-        android:hint="ruolo"
+        android:hint="@string/ruolo"
         android:inputType="textPersonName"
         android:padding="15dp"
         app:layout_constraintBottom_toTopOf="@+id/register"
@@ -155,6 +170,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ruolo" />
 
     <ImageView
+        android:contentDescription="@string/foto_profilo"
         android:id="@+id/immagine"
         android:layout_width="124dp"
         android:layout_height="129dp"

@@ -11,7 +11,7 @@ data class Atleta(
     var photo : String?,
     var risultati: String?,
     ) {
-    // Serve un costruttore vuoto per firebase
+    // Serve un constructor vuoto per firebase
 
     constructor() : this("","","","","","","","","")
 

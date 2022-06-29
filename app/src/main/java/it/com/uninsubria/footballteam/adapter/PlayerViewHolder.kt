@@ -1,6 +1,7 @@
 package it.com.uninsubria.footballteam.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -26,6 +27,9 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         nome.text = atleta.nome
         cognome.text = atleta.cognome
         ruolo.text = atleta.ruolo
+        Log.w("Prova","${atleta.photo}")
+        Log.w("Prova","${atleta.nome}")
+
         Glide.with(foto.context)
             .load(atleta.photo)
             .into(foto)

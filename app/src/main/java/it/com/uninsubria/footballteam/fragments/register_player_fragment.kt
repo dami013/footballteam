@@ -1,33 +1,27 @@
 package it.com.uninsubria.footballteam.fragments
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.text.TextUtils.replace
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import it.com.uninsubria.footballteam.MainActivity
 import it.com.uninsubria.footballteam.R
-import kotlinx.android.synthetic.main.register.*
 import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
-import java.io.ByteArrayOutputStream
+import java.util.*
+import kotlin.collections.HashMap
 
 
 private const val ARG_PARAM1 = "param1"
@@ -57,19 +51,26 @@ class register_player_fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.register_player_fragment, container, false)
         auth = Firebase.auth
+
+        val date = view.findViewById<TextView>(R.id.dataNascita)
+
         val main = AtletiFragment()
 
         view.immagine.setOnClickListener {
             openGalleryForImage()
         }
+        date.setOnClickListener {
+            dataPicker()
+        }
+
 
         view.register.setOnClickListener {
             onRegisterClick()
-            view.register.setOnClickListener(View.OnClickListener {
+            view.register.setOnClickListener {
                 val fragmentManager = parentFragmentManager
                 val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.replace(
@@ -78,7 +79,7 @@ class register_player_fragment : Fragment() {
                 )
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
-            })
+            }
         }
 
         return view
@@ -87,7 +88,7 @@ class register_player_fragment : Fragment() {
     private fun onRegisterClick() {
 
         val name = nome.text.toString().trim()
-        val codFisc = cf.text.toString().trim()
+        val codFisc = cf.text.toString().trim().uppercase()
         val cogn = cognome.text.toString().trim()
         val dataN = dataNascita.text.toString().trim()
         val cel = phone.text.toString().trim()
@@ -109,7 +110,7 @@ class register_player_fragment : Fragment() {
             return
         }
         if (rol.isEmpty()) {
-            cognome.error = "inserire ruolo"
+            ruolo.error = "inserire ruolo"
             return
         }
         if (cel.isEmpty()) {
@@ -134,6 +135,7 @@ class register_player_fragment : Fragment() {
 
 
     }
+
 
     private fun saveData(
         name: String,
@@ -175,6 +177,22 @@ class register_player_fragment : Fragment() {
             img = data?.data!!
             immagine.setImageURI(img)
         }
+    }
+
+    fun dataPicker() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        DatePickerDialog(view?.context!!,{
+                view, y, m, d ->
+                val a = "$d/${m+1}/$y"
+                dataNascita.text = a
+
+
+        },year,month,day).show()
+
+
     }
 
 
