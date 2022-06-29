@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -13,7 +15,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
 
 
-class visualize_players_details : Fragment() {
+class visualize_players_details : Fragment(){
     private  lateinit var db: DatabaseReference
     private var cf: String? = null
 
@@ -25,6 +27,11 @@ class visualize_players_details : Fragment() {
             }
         insertData(cf!!)
         }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        showEditTextDialog()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,5 +72,26 @@ class visualize_players_details : Fragment() {
                 Log.w("TEST","Failed to read value")
             }
         })
+    }
+
+    private fun showEditTextDialog(){
+        nome.setOnClickListener{
+            val builder = AlertDialog.Builder(this.requireContext())
+            val inflater = layoutInflater
+            val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+            val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+
+            with(builder){
+                setTitle("modifica informazione")
+                setPositiveButton("modifica"){dialog, which ->
+                    nome.text = editText.text.toString()
+                }
+                setNegativeButton("elimina"){dialog,which->
+                  Log.d("negativeButton", "negative button clicked")
+                }
+                setView(dialogLayout)
+                show()
+            }
+        }
     }
 }
