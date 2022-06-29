@@ -1,5 +1,7 @@
 package it.com.uninsubria.footballteam
 
+import java.io.Serializable
+
 data class Atleta(
     var nome: String,
     var cognome: String,
@@ -10,7 +12,7 @@ data class Atleta(
     var certificazione: String,
     var photo : String,
     var risultati: String,
-    ) {
+    ) : Serializable {
     // Serve un costruttore vuoto per firebase
 
     constructor() : this("","","","","","","","","")
