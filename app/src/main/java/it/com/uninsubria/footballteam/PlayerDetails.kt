@@ -2,7 +2,6 @@ package it.com.uninsubria.footballteam
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.*
 
 
 class PlayerDetails : AppCompatActivity() {

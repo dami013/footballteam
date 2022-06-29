@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
@@ -17,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_visualize_players_details.cognome
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.nome
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.risultati
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.ruolo
-import kotlinx.android.synthetic.main.register_player_fragment.*
 
 
 class visualize_players_details : Fragment(){
@@ -36,6 +36,21 @@ class visualize_players_details : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showEditTextDialog()
+    }
+
+    fun dataChange(info:String, update :String){
+        val auth = Firebase.auth
+        val currentUser = auth.currentUser
+        val uid = currentUser!!.uid
+
+        val map: MutableMap<String,Any> = HashMap()
+        map[info] = update
+        db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
+            .getReference("Users")
+            .child(uid)
+            .child("Atleti")
+            .child(cf!!)
+        db.updateChildren(map)
     }
 
     override fun onCreateView(
@@ -89,7 +104,9 @@ class visualize_players_details : Fragment(){
             with(builder){
                 setTitle("modifica nome")
                 setPositiveButton("modifica"){dialog, which ->
-                    nome.text = editText.text.toString()
+                   var str = editText.text.toString()
+                   nome.text = str
+                    dataChange("nome",str)
                 }
                 setNegativeButton("elimina"){dialog,which->
                   Log.d("negativeButton", "negative button clicked")
@@ -108,7 +125,9 @@ class visualize_players_details : Fragment(){
             with(builder){
                 setTitle("modifica cognome")
                 setPositiveButton("modifica"){dialog, which ->
-                    nome.text = editText.text.toString()
+                    val str = editText.text.toString()
+                    cognome.text = str
+                    dataChange("cognome",str)
                 }
                 setNegativeButton("elimina"){dialog,which->
                     Log.d("negativeButton", "negative button clicked")
@@ -126,7 +145,9 @@ class visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("modifica data di nascita")
                     setPositiveButton("modifica"){dialog, which ->
-                        nome.text = editText.text.toString()
+                        val str = editText.text.toString()
+                        dataN.text = str
+                        dataChange("dataNascita",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -145,7 +166,9 @@ class visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("modifica codice fiscale")
                     setPositiveButton("modifica"){dialog, which ->
-                        nome.text = editText.text.toString()
+                        val str = editText.text.toString()
+                        codFisc.text = str
+                        dataChange("codiceFiscale",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -164,7 +187,9 @@ class visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("modifica ruolo")
                     setPositiveButton("modifica"){dialog, which ->
-                        nome.text = editText.text.toString()
+                        val str = editText.text.toString()
+                        ruolo.text = str
+                        dataChange("ruolo",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -181,9 +206,11 @@ class visualize_players_details : Fragment(){
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
                 with(builder){
-                    setTitle("modifica numero cellulare")
+                    setTitle("modifica numero di telefono")
                     setPositiveButton("modifica"){dialog, which ->
-                        nome.text = editText.text.toString()
+                        val str = editText.text.toString()
+                        telefono.text = str
+                        dataChange("telefono",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -199,9 +226,11 @@ class visualize_players_details : Fragment(){
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
                 with(builder){
-                    setTitle("modifica certificati")
+                    setTitle("modifica certificazioni")
                     setPositiveButton("modifica"){dialog, which ->
-                        nome.text = editText.text.toString()
+                        val str = editText.text.toString()
+                        certificati.text = str
+                        dataChange("certificazioni",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -220,7 +249,9 @@ class visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("modifica risultati")
                     setPositiveButton("modifica"){dialog, which ->
-                        nome.text = editText.text.toString()
+                        val str = editText.text.toString()
+                        risultati.text = str
+                        dataChange("risultati",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
