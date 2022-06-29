@@ -17,9 +17,10 @@ data class Atleta(
 
     // ci interssa di porre nome e cognome
     override fun toString(): String {
-        return nome.toString()
-        return cognome
-        return ruolo
+        var str : String = nome.toString()
+        str+= cognome
+        str+= ruolo
+        return str
     }
     // Permette di sovrascrivere i valori precedente con i nuovi
     fun set(atleta: Atleta) {
