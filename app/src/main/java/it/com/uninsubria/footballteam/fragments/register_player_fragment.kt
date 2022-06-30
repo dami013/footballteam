@@ -93,9 +93,8 @@ class register_player_fragment : Fragment() {
         val dataN = dataNascita.text.toString().trim()
         val cel = phone.text.toString().trim()
         val rol = ruolo.text.toString().trim()
-        val cert = certificazione?.text.toString()
-            .trim()  //certificazioni e risultati possono essere nulli
-        val ris = risultati?.text.toString().trim()
+        val cert = certificazione.text.toString().trim()  //certificazioni e risultati possono essere nulli
+        val ris = risultati.text.toString().trim()
 
         if (name.isEmpty()) {
             nome.error = "inserire nome"
@@ -113,8 +112,20 @@ class register_player_fragment : Fragment() {
             ruolo.error = "inserire ruolo"
             return
         }
+        if(codFisc.isEmpty()||codFisc.length!=16){
+            cf.error = "codice fiscale non corretto o inesistente"
+            return
+        }
         if (cel.isEmpty()) {
             phone.error = "inserire numero di telefono"
+            return
+        }
+        if(cert.isEmpty()){
+            certificazione.error = "inserire certificazione"
+            return
+        }
+        if(ris.isEmpty()){
+            risultati.error = "inserire risultati ottenuti"
             return
         }
 
@@ -131,11 +142,7 @@ class register_player_fragment : Fragment() {
         }.addOnFailureListener {
             Log.e(TAG, "KO")
         }
-
-
-
     }
-
 
     private fun saveData(
         name: String,
@@ -189,16 +196,8 @@ class register_player_fragment : Fragment() {
                 val a = "$d/${m+1}/$y"
                 dataNascita.text = a
 
-
         },year,month,day).show()
 
-
     }
-
-
-
-
-
-
 }
 

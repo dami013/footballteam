@@ -3,9 +3,12 @@ package it.com.uninsubria.footballteam
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.login.*
@@ -54,7 +57,13 @@ class Login : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }else{
-                Log.w(TAG,"SignIn failed", task.exception)
+                try {
+                    throw task.exception!!
+                } catch (e: FirebaseAuthException) {
+                    // email already in use
+                    Toast.makeText(applicationContext, "login failed", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
         }
     }

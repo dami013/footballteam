@@ -10,7 +10,6 @@ import it.com.uninsubria.footballteam.R
 
 class PlayerAdapter(private val atleti:List<Atleta>) : RecyclerView.Adapter<PlayerViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context).inflate(R.layout.giocatore, parent,false)
         return PlayerViewHolder(layoutInflater)
@@ -19,12 +18,6 @@ class PlayerAdapter(private val atleti:List<Atleta>) : RecyclerView.Adapter<Play
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
         val oggetto = atleti[position]
         holder.render(oggetto)
-
-
-
     }
-
     override fun getItemCount(): Int = atleti.size
-
-
 }

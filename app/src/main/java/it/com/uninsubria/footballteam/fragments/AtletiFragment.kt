@@ -28,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 
-class AtletiFragment : Fragment() {
+class AtletiFragment : Fragment(){
 
     private var param1: String? = null
     private var param2: String? = null
@@ -49,6 +49,7 @@ class AtletiFragment : Fragment() {
         reg.setHasFixedSize(true)
         list = arrayListOf<Atleta>()
         readAtlethData()
+
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener{
             val nuovo = register_player_fragment()
@@ -66,8 +67,6 @@ class AtletiFragment : Fragment() {
     }
 
 
-
-
     private fun readAtlethData() {
         val auth = Firebase.auth
         val currentUser = auth.currentUser
@@ -79,7 +78,7 @@ class AtletiFragment : Fragment() {
         db.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
-                    for( data in snapshot.children) {
+                    for(data in snapshot.children) {
                         val atleta = data.getValue(Atleta::class.java)
                         list.add(atleta!!)
                        // Log.e("Atleta","${atleta.immagine}")
@@ -87,19 +86,14 @@ class AtletiFragment : Fragment() {
                         //Log.e("Atleta","${atleta.dataNascita}")
                     }
                     reg.adapter = PlayerAdapter(list)
-
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.w("TEST",error.getMessage())
             }
-
         })
 
     }
-
-
-
 }
 
