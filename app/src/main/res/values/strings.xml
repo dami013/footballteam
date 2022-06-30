@@ -30,7 +30,6 @@
     <string name="Cognome">Cognome:</string>
     <string name="modifica">modifica</string>
     <string name="visualizza">visualizza</string>
-    <string name="codice_fiscale">Codice fiscale</string>
     <string name="ruolo">Ruolo</string>
     <string name="foto_profilo">Foto profilo</string>
 </resources>

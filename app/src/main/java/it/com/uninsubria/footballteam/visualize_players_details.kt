@@ -82,9 +82,9 @@ class visualize_players_details : Fragment(){
                     codFisc.text = "codice fiscale: ${atleta!!.codiceFiscale}"
                     dataN.text = " data di nascita: ${atleta!!.dataNascita}"
                     ruolo.text = "ruolo: ${atleta!!.ruolo}"
-                    telefono.text = "telefono: ${atleta!!.phone}"
+                    telefono.text = "telefono: ${atleta!!.telefono}"
                     risultati.text = "risultati: ${atleta!!.risultati}"
-                    certificati.text = "certificazioni: ${atleta!!.certificazione}"
+                    certificati.text = "certificazioni: ${atleta!!.certificazioni}"
                 }
             }
 
