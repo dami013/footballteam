@@ -1,4 +1,4 @@
-package it.com.uninsubria.footballteam
+package it.com.uninsubria.footballteam.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,15 +9,12 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import it.com.uninsubria.footballteam.Atleta
+import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
-import kotlinx.android.synthetic.main.fragment_visualize_players_details.cognome
-import kotlinx.android.synthetic.main.fragment_visualize_players_details.nome
-import kotlinx.android.synthetic.main.fragment_visualize_players_details.risultati
-import kotlinx.android.synthetic.main.fragment_visualize_players_details.ruolo
 
 
 class visualize_players_details : Fragment(){
@@ -38,20 +35,7 @@ class visualize_players_details : Fragment(){
         showEditTextDialog()
     }
 
-    fun dataChange(info:String, update :String){
-        val auth = Firebase.auth
-        val currentUser = auth.currentUser
-        val uid = currentUser!!.uid
 
-        val map: MutableMap<String,Any> = HashMap()
-        map[info] = update
-        db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
-            .getReference("Users")
-            .child(uid)
-            .child("Atleti")
-            .child(cf!!)
-        db.updateChildren(map)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,11 +45,28 @@ class visualize_players_details : Fragment(){
         return view
     }
 
+    fun dataChange(info:String, update :String){
+        val auth = Firebase.auth
+        val currentUser = auth.currentUser
+        val uid = currentUser!!.uid
+
+
+        val map: MutableMap<String,Any> = HashMap()
+        map[info] = update
+        db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
+            .getReference("Users")
+            .child(uid)
+            .child("Atleti")
+            .child(cf!!)
+        db.updateChildren(map)
+
+    }
+
     private fun insertData(cf: String){
         val auth = Firebase.auth
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid
-        var atleta :Atleta? = null
+        var atleta : Atleta? = null
         db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
             .getReference("Users")
             .child(uid)
@@ -260,6 +261,8 @@ class visualize_players_details : Fragment(){
                     show()
                 }
             }
+
         }
     }
+
 }

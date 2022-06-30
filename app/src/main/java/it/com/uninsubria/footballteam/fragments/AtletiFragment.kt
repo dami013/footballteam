@@ -41,6 +41,7 @@ class AtletiFragment : Fragment(){
         super.onCreate(savedInstanceState)
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_atleti, container, false)
@@ -49,6 +50,7 @@ class AtletiFragment : Fragment(){
         reg.setHasFixedSize(true)
         list = arrayListOf<Atleta>()
         readAtlethData()
+
 
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener{
@@ -77,6 +79,7 @@ class AtletiFragment : Fragment(){
             .child("Atleti")
         db.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                list.clear()
                 if(snapshot.exists()) {
                     for(data in snapshot.children) {
                         val atleta = data.getValue(Atleta::class.java)
