@@ -30,8 +30,6 @@ private const val ARG_PARAM2 = "param2"
 
 class AtletiFragment : Fragment(){
 
-    private var param1: String? = null
-    private var param2: String? = null
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
     private  lateinit var db: DatabaseReference
@@ -61,7 +59,6 @@ class AtletiFragment : Fragment(){
             )
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
-
         }
         return view
     }

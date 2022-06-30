@@ -23,10 +23,6 @@ import kotlinx.android.synthetic.main.register_player_fragment.view.*
 import java.util.*
 import kotlin.collections.HashMap
 
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class register_player_fragment : Fragment() {
 
     private val FOTO = 1
@@ -58,7 +54,6 @@ class register_player_fragment : Fragment() {
             dataPicker()
         }
 
-
         view.register.setOnClickListener {
             onRegisterClick()
             view.register.setOnClickListener {
@@ -72,7 +67,6 @@ class register_player_fragment : Fragment() {
                 fragmentTransaction.commit()
             }
         }
-
         return view
     }
 
@@ -150,6 +144,7 @@ class register_player_fragment : Fragment() {
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid
         val atletiMap = HashMap<String, String>()
+        atletiMap["immagine"] = data
         atletiMap["nome"] = name
         atletiMap["cognome"] = cogn
         atletiMap["dataNascita"] = dataN
@@ -158,10 +153,9 @@ class register_player_fragment : Fragment() {
         atletiMap["ruolo"] = rol
         atletiMap["certificazioni"] = cert
         atletiMap["risultati"] = ris
-        atletiMap["immagine"] = data
+
         ref.child(uid).child("Atleti").child(codFisc).setValue(atletiMap)
     }
-
 
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)

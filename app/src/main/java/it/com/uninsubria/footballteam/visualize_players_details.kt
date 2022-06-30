@@ -9,15 +9,12 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
-import kotlinx.android.synthetic.main.fragment_visualize_players_details.cognome
-import kotlinx.android.synthetic.main.fragment_visualize_players_details.nome
-import kotlinx.android.synthetic.main.fragment_visualize_players_details.risultati
-import kotlinx.android.synthetic.main.fragment_visualize_players_details.ruolo
+
 
 
 class visualize_players_details : Fragment(){
@@ -65,7 +62,7 @@ class visualize_players_details : Fragment(){
         val auth = Firebase.auth
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid
-        var atleta :Atleta? = null
+        var atleta :Atleta
         db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
             .getReference("Users")
             .child(uid)
@@ -75,16 +72,19 @@ class visualize_players_details : Fragment(){
             @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
-                     atleta = snapshot.getValue(Atleta::class.java)
-                    //manca foto
-                    nome.text = "nome: ${atleta!!.nome}"
-                    cognome.text = "cognome: ${atleta!!.cognome}"
-                    codFisc.text = "codice fiscale: ${atleta!!.codiceFiscale}"
-                    dataN.text = " data di nascita: ${atleta!!.dataNascita}"
-                    ruolo.text = "ruolo: ${atleta!!.ruolo}"
-                    telefono.text = "telefono: ${atleta!!.telefono}"
-                    risultati.text = "risultati: ${atleta!!.risultati}"
-                    certificati.text = "certificazioni: ${atleta!!.certificazioni}"
+                    atleta = snapshot.getValue(Atleta::class.java)!!
+                    nomeV.text = atleta.nome!!.toUpperCase()
+                    cognomeV.text = atleta.cognome!!.toUpperCase()
+                    cfV.text = atleta.codiceFiscale!!.toUpperCase()
+                    dnV.text = atleta.dataNascita!!
+                    ruoloV.text = atleta.ruolo!!.toUpperCase()
+                    telV.text = atleta.telefono!!.toUpperCase()
+                    risV.text = atleta.risultati!!.toUpperCase()
+                    certV.text = atleta.certificazioni!!.toUpperCase()
+
+                    Glide.with(img.context)
+                        .load(atleta!!.immagine)
+                        .into(img)
                 }
             }
 
@@ -95,7 +95,7 @@ class visualize_players_details : Fragment(){
     }
 
     private fun showEditTextDialog(){
-        nome.setOnClickListener{
+        nomeV.setOnClickListener{
             val builder = AlertDialog.Builder(this.requireContext())
             val inflater = layoutInflater
             val dialogLayout = inflater.inflate(R.layout.edit_text,null)
@@ -105,7 +105,7 @@ class visualize_players_details : Fragment(){
                 setTitle("modifica nome")
                 setPositiveButton("modifica"){dialog, which ->
                    var str = editText.text.toString()
-                   nome.text = str
+                   nomeV.text = str
                     dataChange("nome",str)
                 }
                 setNegativeButton("elimina"){dialog,which->
@@ -116,7 +116,7 @@ class visualize_players_details : Fragment(){
             }
         }
 
-        cognome.setOnClickListener{
+        cognomeV.setOnClickListener{
             val builder = AlertDialog.Builder(this.requireContext())
             val inflater = layoutInflater
             val dialogLayout = inflater.inflate(R.layout.edit_text,null)
@@ -126,7 +126,7 @@ class visualize_players_details : Fragment(){
                 setTitle("modifica cognome")
                 setPositiveButton("modifica"){dialog, which ->
                     val str = editText.text.toString()
-                    cognome.text = str
+                    cognomeV.text = str
                     dataChange("cognome",str)
                 }
                 setNegativeButton("elimina"){dialog,which->
@@ -136,7 +136,7 @@ class visualize_players_details : Fragment(){
                 show()
             }
 
-            dataN.setOnClickListener{
+            dnV.setOnClickListener{
                 val builder = AlertDialog.Builder(this.requireContext())
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
@@ -146,7 +146,7 @@ class visualize_players_details : Fragment(){
                     setTitle("modifica data di nascita")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        dataN.text = str
+                        dnV.text = str
                         dataChange("dataNascita",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
@@ -157,7 +157,7 @@ class visualize_players_details : Fragment(){
                 }
             }
 
-            codFisc.setOnClickListener{
+            cfV.setOnClickListener{
                 val builder = AlertDialog.Builder(this.requireContext())
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
@@ -167,7 +167,7 @@ class visualize_players_details : Fragment(){
                     setTitle("modifica codice fiscale")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        codFisc.text = str
+                        cfV.text = str
                         dataChange("codiceFiscale",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
@@ -178,7 +178,7 @@ class visualize_players_details : Fragment(){
                 }
             }
 
-            ruolo.setOnClickListener{
+            ruoloV.setOnClickListener{
                 val builder = AlertDialog.Builder(this.requireContext())
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
@@ -188,7 +188,7 @@ class visualize_players_details : Fragment(){
                     setTitle("modifica ruolo")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        ruolo.text = str
+                        ruoloV.text = str
                         dataChange("ruolo",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
@@ -199,7 +199,7 @@ class visualize_players_details : Fragment(){
                 }
             }
 
-            telefono.setOnClickListener{
+            telV.setOnClickListener{
                 val builder = AlertDialog.Builder(this.requireContext())
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
@@ -209,7 +209,7 @@ class visualize_players_details : Fragment(){
                     setTitle("modifica numero di telefono")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        telefono.text = str
+                        telV.text = str
                         dataChange("telefono",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
@@ -219,7 +219,7 @@ class visualize_players_details : Fragment(){
                     show()
                 }
             }
-            certificati.setOnClickListener{
+            certV.setOnClickListener{
                 val builder = AlertDialog.Builder(this.requireContext())
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
@@ -229,7 +229,7 @@ class visualize_players_details : Fragment(){
                     setTitle("modifica certificazioni")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        certificati.text = str
+                        certV.text = str
                         dataChange("certificazioni",str)
                     }
                     setNegativeButton("elimina"){dialog,which->
@@ -240,7 +240,7 @@ class visualize_players_details : Fragment(){
                 }
             }
 
-            risultati.setOnClickListener{
+            risV.setOnClickListener{
                 val builder = AlertDialog.Builder(this.requireContext())
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
@@ -250,7 +250,7 @@ class visualize_players_details : Fragment(){
                     setTitle("modifica risultati")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        risultati.text = str
+                        risV.text = str
                         dataChange("risultati",str)
                     }
                     setNegativeButton("elimina"){dialog,which->

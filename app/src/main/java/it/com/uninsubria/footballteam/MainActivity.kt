@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.setOnItemSelectedListener  {
             when(it.itemId) {
                 R.id.atleti -> creazioneFragment(atleti)
-                R.id.nuovo -> creazioneFragment(nuovo)
                 R.id.chat -> creazioneFragment(chat)
             }
             true
@@ -42,5 +41,4 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.mainContainer, fragment)
             commit()
         }
-
 }

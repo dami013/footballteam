@@ -6,10 +6,6 @@
         android:icon="@drawable/ic_soccer"
         android:title="@string/atleti" />
     <item
-        android:id="@+id/nuovo"
-        android:icon="@drawable/ic_personale"
-        android:title="@string/aggiungi_giocatore" />
-    <item
         android:id="@+id/chat"
         android:icon="@drawable/ic_chat"
         android:title="@string/chat" />
