@@ -14,7 +14,7 @@ data class Atleta(
     var risultati: String,
     ) : Serializable {
     // Serve un costruttore vuoto per firebase
-
+    
     constructor() : this("","","","","","","","","")
 
     // ci interssa di porre nome e cognome
@@ -31,9 +31,9 @@ data class Atleta(
         dataNascita = atleta.dataNascita
         codiceFiscale = atleta.codiceFiscale
         ruolo = atleta.ruolo
-        phone = atleta.phone
-        certificazione = atleta.certificazione
-        photo = atleta.photo
+        telefono = atleta.telefono
+        certificazioni = atleta.certificazioni
+        immagine = atleta.immagine
         risultati = atleta.risultati
 
     }

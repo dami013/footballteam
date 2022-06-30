@@ -1,37 +1,43 @@
 package it.com.uninsubria.footballteam.fragments
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
-import java.io.ByteArrayOutputStream
+import java.util.*
+import kotlin.collections.HashMap
 
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class register_player_fragment : Fragment(){
+class register_player_fragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private val FOTO = 1
-    private val ref = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/").getReference("Users")
+    private val ref =
+        FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
+            .getReference("Users")
     private lateinit var auth: FirebaseAuth
+    private lateinit var img: Uri
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,38 +48,29 @@ class register_player_fragment : Fragment(){
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
-    private fun drawableToBitmap(drawable: Drawable): Bitmap? {
-        if (drawable is BitmapDrawable) {
-            return drawable.bitmap
-        }
-        var width = drawable.intrinsicWidth
-        width = if (width > 0) width else 1
-        var height = drawable.intrinsicHeight
-        height = if (height > 0) height else 1
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight())
-        drawable.draw(canvas)
-        return bitmap
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view: View =  inflater.inflate(R.layout.register_player_fragment, container, false)
+        val view: View = inflater.inflate(R.layout.register_player_fragment, container, false)
         auth = Firebase.auth
-         val main = AtletiFragment()
 
-        view.immagine.setOnClickListener{
+        val date = view.findViewById<TextView>(R.id.dataNascita)
+
+        val main = AtletiFragment()
+
+        view.immagine.setOnClickListener {
             openGalleryForImage()
         }
+        date.setOnClickListener {
+            dataPicker()
+        }
 
-        view.register.setOnClickListener{
+
+        view.register.setOnClickListener {
             onRegisterClick()
-            view.register.setOnClickListener(View.OnClickListener {
+            view.register.setOnClickListener {
                 val fragmentManager = parentFragmentManager
                 val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.replace(
@@ -82,46 +79,44 @@ class register_player_fragment : Fragment(){
                 )
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
-            })
+            }
         }
 
         return view
     }
 
     private fun onRegisterClick() {
-        val bytearros = ByteArrayOutputStream()
+
         val name = nome.text.toString().trim()
-        val codFisc = cf.text.toString().trim()
+        val codFisc = cf.text.toString().trim().uppercase()
         val cogn = cognome.text.toString().trim()
-        drawableToBitmap(immagine.drawable)?.compress(Bitmap.CompressFormat.JPEG, 100, bytearros)
-        val data = String (bytearros.toByteArray())
         val dataN = dataNascita.text.toString().trim()
         val cel = phone.text.toString().trim()
         val rol = ruolo.text.toString().trim()
         val cert = certificazione.text.toString().trim()  //certificazioni e risultati possono essere nulli
         val ris = risultati.text.toString().trim()
 
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             nome.error = "inserire nome"
             return
         }
-        if(cogn.isEmpty()){
+        if (cogn.isEmpty()) {
             cognome.error = "inserire cognome"
             return
         }
-        if(dataN.isEmpty()){
+        if (dataN.isEmpty()) {
             dataNascita.error = "inserire data di nascita"
             return
         }
-        if(rol.isEmpty()){
-            cognome.error = "inserire ruolo"
+        if (rol.isEmpty()) {
+            ruolo.error = "inserire ruolo"
             return
         }
         if(codFisc.isEmpty()||codFisc.length!=16){
             cf.error = "codice fiscale non corretto o inesistente"
             return
         }
-        if(cel.isEmpty()){
+        if (cel.isEmpty()) {
             phone.error = "inserire numero di telefono"
             return
         }
@@ -134,7 +129,19 @@ class register_player_fragment : Fragment(){
             return
         }
 
-        saveData(name,cogn,dataN,codFisc,rol, cel,cert,ris,data)
+        val TAG = "FirebaseStorageManager"
+        val ref =
+            FirebaseStorage.getInstance().reference.child("/image/${name}")
+        // caricamento
+        ref.putFile(img).addOnSuccessListener {
+            Log.e(TAG, "OK")
+            ref.downloadUrl.addOnSuccessListener {
+                Log.e(TAG,"$it")
+                saveData(name, cogn, dataN, codFisc, rol, cel, cert, ris,it.toString())
+            }
+        }.addOnFailureListener {
+            Log.e(TAG, "KO")
+        }
     }
 
     private fun saveData(
@@ -174,7 +181,23 @@ class register_player_fragment : Fragment(){
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == FOTO) {
-            immagine.setImageURI(data?.data)// handle chosen image
+            img = data?.data!!
+            immagine.setImageURI(img)
         }
     }
+
+    fun dataPicker() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        DatePickerDialog(view?.context!!,{
+                view, y, m, d ->
+                val a = "$d/${m+1}/$y"
+                dataNascita.text = a
+
+        },year,month,day).show()
+
+    }
 }
+

@@ -17,6 +17,7 @@ import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.R
 import it.com.uninsubria.footballteam.adapter.PlayerAdapter
 import kotlinx.android.synthetic.main.fragment_atleti.*
+import kotlinx.android.synthetic.main.giocatore.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -38,17 +39,11 @@ class AtletiFragment : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_atleti, container, false)
-
-
         reg = view.findViewById(R.id.recycler_view)
         reg.layoutManager = LinearLayoutManager(view.context)
         reg.setHasFixedSize(true)
@@ -86,13 +81,16 @@ class AtletiFragment : Fragment(){
                     for(data in snapshot.children) {
                         val atleta = data.getValue(Atleta::class.java)
                         list.add(atleta!!)
+                       // Log.e("Atleta","${atleta.immagine}")
+                        //Log.e("Atleta","${atleta.nome}")
+                        //Log.e("Atleta","${atleta.dataNascita}")
                     }
                     reg.adapter = PlayerAdapter(list)
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w("TEST","Failed to read value")
+                Log.w("TEST",error.getMessage())
             }
         })
 

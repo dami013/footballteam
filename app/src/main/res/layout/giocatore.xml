@@ -10,9 +10,9 @@
     android:layout_margin="16dp">
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivPlayer"
-        android:src="@drawable/ic_username"
+        android:src="@drawable/ic_baseline_account_circle"
         android:layout_gravity="right"
         android:layout_width="100dp"
         android:layout_height="100dp" />
