@@ -1,6 +1,7 @@
 package it.com.uninsubria.footballteam.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,7 +12,7 @@ import it.com.uninsubria.footballteam.PlayerDetails
 import it.com.uninsubria.footballteam.R
 
 class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+    private lateinit var selected: ArrayList<Atleta>
     val nome = view.findViewById<TextView>(R.id.tvPlayerName)
     val cognome = view.findViewById<TextView>(R.id.tvSurname)
     val cf = view.findViewById<TextView>(R.id.tvCf)
@@ -32,8 +33,9 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.setOnClickListener {
             val intent = Intent(itemView.context, PlayerDetails::class.java)
             intent.putExtra("cf",cf.text)
-            println("ATTENZIONE ${cf}")
+            Log.e("ATTENZIONE", "${cf}")
             itemView.context.startActivity(intent)
         }
     }
+
 }

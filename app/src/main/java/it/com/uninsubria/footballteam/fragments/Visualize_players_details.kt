@@ -1,6 +1,7 @@
 package it.com.uninsubria.footballteam.fragments
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,13 @@ import com.google.firebase.ktx.Firebase
 import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
+import kotlinx.android.synthetic.main.fragment_visualize_players_details.cognome
+import kotlinx.android.synthetic.main.fragment_visualize_players_details.nome
+import kotlinx.android.synthetic.main.fragment_visualize_players_details.risultati
+import kotlinx.android.synthetic.main.fragment_visualize_players_details.ruolo
+import kotlinx.android.synthetic.main.register_player_fragment.*
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class visualize_players_details : Fragment(){
@@ -263,6 +271,10 @@ class visualize_players_details : Fragment(){
             }
 
         }
+
     }
+
+
+
 
 }

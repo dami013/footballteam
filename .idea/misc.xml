@@ -36,6 +36,7 @@
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/activity_read.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/activity_welcome.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/add_player.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/edit_date.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/edit_text.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_atleti.xml" value="0.264" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_blank.xml" value="0.25416666666666665" />
@@ -47,7 +48,7 @@
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/giocatore.xml" value="0.264" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/login.xml" value="0.536" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/register.xml" value="0.264" />
-        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/register_player_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/register_player_fragment.xml" value="0.1" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/welcome_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/menu/nav_menu.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1435" />
