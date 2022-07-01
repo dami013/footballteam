@@ -36,8 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nome: "
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/tvPlayerName"
@@ -45,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:text="Mario"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
@@ -61,8 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/Cognome"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/tvSurname"
@@ -70,6 +69,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:text="Rossi"
+
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
@@ -86,14 +87,15 @@
                 android:layout_height="wrap_content"
                 android:text="CF: "
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/tvCf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cfProva"
+
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
