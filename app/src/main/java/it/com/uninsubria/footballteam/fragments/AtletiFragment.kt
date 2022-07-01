@@ -14,6 +14,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.R
 import it.com.uninsubria.footballteam.adapter.PlayerAdapter
@@ -37,6 +40,7 @@ class AtletiFragment : Fragment(){
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
     private  lateinit var db: DatabaseReference
+    private  lateinit var sd: StorageReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +61,7 @@ class AtletiFragment : Fragment(){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val a: Atleta = list.removeAt(position)
+                // Rimozione Giocatore
                 db = a.codiceFiscale?.let {
                     FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
                         .getReference("Users")
@@ -64,8 +69,13 @@ class AtletiFragment : Fragment(){
                         .child("Atleti")
                         .child(it)
 
+
                 }!!
+                // Rimozione immagine
+                var path = "/image/${a.nome}"
+                Firebase.storage.reference.child(path).delete()
                 db.removeValue()
+
                 reg.adapter?.notifyItemRemoved(position)
             }
         }
