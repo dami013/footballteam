@@ -40,4 +40,5 @@
     <string name="cognome1">cognome:</string>
     <string name="certificati1">certificati:</string>
     <string name="nome1">nome:</string>
+    <string name="cfV">CF:</string>
 </resources>

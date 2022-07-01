@@ -78,7 +78,7 @@ class visualize_players_details : Fragment(){
                     cfV.text = atleta.codiceFiscale!!.toUpperCase()
                     dnV.text = atleta.dataNascita!!
                     ruoloV.text = atleta.ruolo!!.toUpperCase()
-                    telV.text = atleta.telefono!!.toUpperCase()
+                    telv.text = atleta.telefono!!.toUpperCase()
                     risV.text = atleta.risultati!!.toUpperCase()
                     certV.text = atleta.certificazioni!!.toUpperCase()
 
