@@ -72,6 +72,7 @@ class register_player_fragment : Fragment() {
 
     private fun onRegisterClick() {
 
+
         val name = nome.text.toString().trim()
         val codFisc = cf.text.toString().trim().uppercase()
         val cogn = cognome.text.toString().trim()
@@ -117,7 +118,7 @@ class register_player_fragment : Fragment() {
         val TAG = "FirebaseStorageManager"
         val ref =
             FirebaseStorage.getInstance().reference.child("/image/${name}")
-        // caricamento
+        // caricamento dell'immagine
         ref.putFile(img).addOnSuccessListener {
             Log.e(TAG, "OK")
             ref.downloadUrl.addOnSuccessListener {
@@ -129,16 +130,8 @@ class register_player_fragment : Fragment() {
         }
     }
 
-    private fun saveData(
-        name: String,
-        cogn: String,
-        dataN: String,
-        codFisc: String,
-        rol: String,
-        cel: String,
-        cert: String,
-        ris: String,
-        data: String
+    private fun saveData(name: String, cogn: String, dataN: String, codFisc: String, rol: String,
+                         cel: String, cert: String, ris: String, data: String
     ) {
 
         val currentUser = auth.currentUser
@@ -171,7 +164,7 @@ class register_player_fragment : Fragment() {
         }
     }
 
-    fun dataPicker() {
+    private fun dataPicker() {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
