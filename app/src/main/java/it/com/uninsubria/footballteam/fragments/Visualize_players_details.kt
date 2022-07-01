@@ -80,11 +80,10 @@ class visualize_players_details : Fragment(){
                     ris2.text = atleta.risultati!!.toUpperCase()
                     cert2.text = atleta.certificazioni!!.toUpperCase()
 
-                    thread(start=true) {
-                        Glide.with(imagine.context)
-                            .load(atleta!!.immagine)
-                            .into(imagine)
-                    }
+                    Glide.with(imagine.context)
+                        .load(atleta!!.immagine)
+                        .into(imagine)
+
                 }
             }
 
