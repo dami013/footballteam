@@ -33,81 +33,38 @@ private const val ARG_PARAM2 = "param2"
 
 class AtletiFragment : Fragment(){
 
-    private var param1: String? = null
-    private var param2: String? = null
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
-    private  lateinit var db: DatabaseReference
+    private var db: DatabaseReference = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
+        .getReference("Users")
+        .child(Firebase.auth.currentUser!!.uid)
+        .child("Atleti")
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
-
+    //callback simile a onCreate per le activity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_atleti, container, false)
-        reg = view.findViewById(R.id.recycler_view)
-        reg.layoutManager = LinearLayoutManager(view.context)
-        reg.setHasFixedSize(true)
-        list = arrayListOf<Atleta>()
-        readPlayers()
-
-        val deleteElement = object: SwipeToDeleteCallback() {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                val a: Atleta = list.removeAt(position)
-                // Rimozione Giocatore
-                db = a.codiceFiscale?.let {
-                    FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
-                        .getReference("Users")
-                        .child(Firebase.auth.currentUser!!.uid)
-                        .child("Atleti")
-                        .child(it)
-
-
-                }!!
-                // Rimozione immagine
-                var path = "/image/${a.nome}"
-                Firebase.storage.reference.child(path).delete()
-                // Rimozione effettiva player
-                db.removeValue()
-
-                reg.adapter?.notifyItemRemoved(position)
-            }
-        }
-        // Sistema di gestione dello swipw
-        val itemTouchHelper = ItemTouchHelper(deleteElement)
-        itemTouchHelper.attachToRecyclerView(reg)
-
-        // Apertura registrazione di un'atleta
-        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener{
-            val nuovo = register_player_fragment()
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(
-                R.id.mainContainer,
-                nuovo
-            )
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-
-        }
         return view
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Predisposizione recycler view
+        setupRecyclerView(view)
+        // Funzione per leggere i giocatori
+        readPlayers()
+        // Funzione per Eliminare i Giocatori
+        deletePlayer()
+        // Apertura registrazione di un'atleta con floating button
+        openAddPlayer(view)
+
+    }
     private fun readPlayers() {
-        val auth = Firebase.auth
-        val currentUser = auth.currentUser
-        val uid = currentUser!!.uid
-        db = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
-            .getReference("Users")
-            .child(uid)
-            .child("Atleti")
         db.addValueEventListener(object :ValueEventListener {
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 list.clear()
                 if(snapshot.exists()) {
@@ -127,6 +84,52 @@ class AtletiFragment : Fragment(){
                 Log.w("TEST",error.getMessage())
             }
         })
+
+    }
+
+    private fun deletePlayer() {
+        val deleteElement = object: SwipeToDeleteCallback() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val a: Atleta = list.removeAt(position)
+                // Rimozione Giocatore
+                a.codiceFiscale?.let { db.child(it) }
+                // Rimozione immagine
+                var path = "/image/${a.nome}"
+                Firebase.storage.reference.child(path).delete()
+                // Rimozione effettiva player
+                db.removeValue()
+
+                reg.adapter?.notifyItemRemoved(position)
+            }
+        }
+        // Sistema di gestione dello swipw
+        val itemTouchHelper = ItemTouchHelper(deleteElement)
+        itemTouchHelper.attachToRecyclerView(reg)
+
+    }
+
+    private fun setupRecyclerView(view: View) {
+        reg = view.findViewById(R.id.recycler_view)
+        reg.layoutManager = LinearLayoutManager(view.context)
+        reg.setHasFixedSize(true)
+        list = arrayListOf<Atleta>()
+    }
+
+    private fun openAddPlayer(view: View) {
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener{
+            val nuovo = register_player_fragment()
+            val fragmentManager = parentFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(
+                R.id.mainContainer,
+                nuovo
+            )
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
+        }
 
     }
 }
