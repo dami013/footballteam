@@ -32,4 +32,14 @@
     <string name="visualizza">visualizza</string>
     <string name="ruolo">Ruolo</string>
     <string name="foto_profilo">Foto profilo</string>
+    <string name="dataNascita">data di nascita</string>
+    <string name="telefono">telefono</string>
+    <string name="telefono1">telefono:</string>
+    <string name="risultati1">risultati:</string>
+    <string name="ruolo1">ruolo:</string>
+    <string name="cognome1">cognome:</string>
+    <string name="certificati1">certificati:</string>
+    <string name="nome1">nome:</string>
+    <string name="cfV">CF:</string>
+    <string name="cfProva">XXXXXXXXXXXXXXX</string>
 </resources>
