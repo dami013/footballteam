@@ -14,8 +14,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.R
@@ -40,7 +38,6 @@ class AtletiFragment : Fragment(){
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
     private  lateinit var db: DatabaseReference
-    private  lateinit var sd: StorageReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +52,7 @@ class AtletiFragment : Fragment(){
         reg.layoutManager = LinearLayoutManager(view.context)
         reg.setHasFixedSize(true)
         list = arrayListOf<Atleta>()
-        readAtlethData()
+        readPlayers()
 
         val deleteElement = object: SwipeToDeleteCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -74,14 +71,17 @@ class AtletiFragment : Fragment(){
                 // Rimozione immagine
                 var path = "/image/${a.nome}"
                 Firebase.storage.reference.child(path).delete()
+                // Rimozione effettiva player
                 db.removeValue()
 
                 reg.adapter?.notifyItemRemoved(position)
             }
         }
+        // Sistema di gestione dello swipw
         val itemTouchHelper = ItemTouchHelper(deleteElement)
         itemTouchHelper.attachToRecyclerView(reg)
 
+        // Apertura registrazione di un'atleta
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener{
             val nuovo = register_player_fragment()
@@ -99,7 +99,7 @@ class AtletiFragment : Fragment(){
     }
 
 
-    private fun readAtlethData() {
+    private fun readPlayers() {
         val auth = Firebase.auth
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid
