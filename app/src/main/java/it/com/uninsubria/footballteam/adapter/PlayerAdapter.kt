@@ -32,25 +32,24 @@ class PlayerAdapter(private val atleti:List<Atleta>) : RecyclerView.Adapter<Play
     }
 
     private fun selectPlayer(holder: PlayerViewHolder,position: Int) {
-        isSelected = true
-        var counter = 0
+
         if(position in selectedList) {
             Toast.makeText(holder.itemView.context, "Player già selezionato", Toast.LENGTH_SHORT)
                 .show()
-            counter++
-            Log.d("Count", counter.toString())
+            isSelected = false
 
         } else {
             Toast.makeText(holder.itemView.context, "Player aggiunto ai selezionati", Toast.LENGTH_SHORT)
                 .show()
+            isSelected = true
+            holder.itemView.checkPlayer.visibility = View.VISIBLE
             selectedList.add(position)
         }
-        if(counter > 1) {
+        if(!isSelected) {
             selectedList.removeAt(position)
             holder.itemView.checkPlayer.visibility = View.GONE
-
         }
-        holder.itemView.checkPlayer.visibility = View.VISIBLE
+
         Log.d("Player", selectedList.toString())
 
 
