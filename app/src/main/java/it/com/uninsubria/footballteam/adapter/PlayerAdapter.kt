@@ -31,6 +31,7 @@ class PlayerAdapter(private val atleti:List<Atleta>) : RecyclerView.Adapter<Play
         }
     }
 
+
     private fun selectPlayer(holder: PlayerViewHolder,position: Int) {
 
         if(position in selectedList) {

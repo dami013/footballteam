@@ -2,11 +2,12 @@ package it.com.uninsubria.footballteam.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,6 +17,7 @@ import com.google.firebase.ktx.Firebase
 import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.R
 import it.com.uninsubria.footballteam.adapter.PlayerAdapter
+import it.com.uninsubria.footballteam.adapter.SwipeToDeleteCallback
 import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.giocatore.*
 
@@ -51,6 +53,24 @@ class AtletiFragment : Fragment(){
         list = arrayListOf<Atleta>()
         readAtlethData()
 
+        val deleteElement = object: SwipeToDeleteCallback() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val a: Atleta = list.removeAt(position)
+                db = a.codiceFiscale?.let {
+                    FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
+                        .getReference("Users")
+                        .child(Firebase.auth.currentUser!!.uid)
+                        .child("Atleti")
+                        .child(it)
+
+                }!!
+                db.removeValue()
+                reg.adapter?.notifyItemRemoved(position)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(deleteElement)
+        itemTouchHelper.attachToRecyclerView(reg)
 
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener{
@@ -89,6 +109,7 @@ class AtletiFragment : Fragment(){
                         //Log.e("Atleta","${atleta.dataNascita}")
                     }
                     reg.adapter = PlayerAdapter(list)
+
                 }
             }
 

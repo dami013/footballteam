@@ -78,6 +78,7 @@ class register_player_fragment : Fragment() {
 
     private fun onRegisterClick() {
 
+
         val name = nome.text.toString().trim()
         val codFisc = cf.text.toString().trim().uppercase()
         val cogn = cognome.text.toString().trim()
