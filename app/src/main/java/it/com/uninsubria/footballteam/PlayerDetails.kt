@@ -2,7 +2,7 @@ package it.com.uninsubria.footballteam
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import it.com.uninsubria.footballteam.fragments.visualize_players_details
+
 
 
 class PlayerDetails : AppCompatActivity() {
