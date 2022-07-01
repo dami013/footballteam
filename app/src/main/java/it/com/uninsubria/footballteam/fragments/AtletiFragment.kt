@@ -45,11 +45,11 @@ class AtletiFragment : Fragment(){
     //callback simile a onCreate per le activity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_atleti, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_atleti, container, false)
     }
 
 
+    // callback chiamata quando sono pronti tutti gli elementi grafici
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Predisposizione recycler view
@@ -62,6 +62,8 @@ class AtletiFragment : Fragment(){
         openAddPlayer(view)
 
     }
+
+
     private fun readPlayers() {
         db.addValueEventListener(object :ValueEventListener {
 
