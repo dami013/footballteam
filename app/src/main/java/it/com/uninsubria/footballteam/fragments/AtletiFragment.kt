@@ -63,7 +63,6 @@ class AtletiFragment : Fragment(){
 
     }
 
-
     private fun readPlayers() {
         db.addValueEventListener(object :ValueEventListener {
 

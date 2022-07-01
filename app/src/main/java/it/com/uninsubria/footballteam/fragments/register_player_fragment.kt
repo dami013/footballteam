@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
 import java.util.*
 import kotlin.collections.HashMap
+import kotlin.concurrent.thread
 
 class register_player_fragment : Fragment() {
 
@@ -72,7 +73,6 @@ class register_player_fragment : Fragment() {
 
     private fun onRegisterClick() {
 
-
         val name = nome.text.toString().trim()
         val codFisc = cf.text.toString().trim().uppercase()
         val cogn = cognome.text.toString().trim()
@@ -82,49 +82,44 @@ class register_player_fragment : Fragment() {
         val cert = certificazione.text.toString().trim()  //certificazioni e risultati possono essere nulli
         val ris = risultati.text.toString().trim()
 
-        if (name.isEmpty()) {
+        if (name.isEmpty())
             nome.error = "inserire nome"
-            return
-        }
-        if (cogn.isEmpty()) {
+
+        if (cogn.isEmpty())
             cognome.error = "inserire cognome"
-            return
-        }
-        if (dataN.isEmpty()) {
+
+        if (dataN.isEmpty())
             dataNascita.error = "inserire data di nascita"
-            return
-        }
-        if (rol.isEmpty()) {
+
+        if (rol.isEmpty())
             ruolo.error = "inserire ruolo"
-            return
-        }
-        if(codFisc.isEmpty()||codFisc.length!=16){
+
+        if(codFisc.isEmpty()||codFisc.length!=16)
             cf.error = "codice fiscale non corretto o inesistente"
-            return
-        }
-        if (cel.isEmpty()) {
+
+        if (cel.isEmpty())
             phone.error = "inserire numero di telefono"
-            return
-        }
-        if(cert.isEmpty()){
+
+        if(cert.isEmpty())
             certificazione.error = "inserire certificazione"
-            return
-        }
-        if(ris.isEmpty()){
+
+        if(ris.isEmpty())
             risultati.error = "inserire risultati ottenuti"
-            return
-        }
+
 
         val TAG = "FirebaseStorageManager"
         val ref =
             FirebaseStorage.getInstance().reference.child("/image/${name}")
         // caricamento dell'immagine
+
+
         ref.putFile(img).addOnSuccessListener {
             Log.e(TAG, "OK")
+            thread(start=true){
             ref.downloadUrl.addOnSuccessListener {
                 Log.e(TAG,"$it")
                 saveData(name, cogn, dataN, codFisc, rol, cel, cert, ris,it.toString())
-            }
+            }}
         }.addOnFailureListener {
             Log.e(TAG, "KO")
         }

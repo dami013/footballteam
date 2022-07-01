@@ -14,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
+import kotlin.concurrent.thread
 
 class visualize_players_details : Fragment(){
     private  lateinit var db: DatabaseReference
@@ -79,9 +80,11 @@ class visualize_players_details : Fragment(){
                     ris2.text = atleta.risultati!!.toUpperCase()
                     cert2.text = atleta.certificazioni!!.toUpperCase()
 
-                    Glide.with(imagine.context)
-                        .load(atleta!!.immagine)
-                        .into(imagine)
+                    thread(start=true) {
+                        Glide.with(imagine.context)
+                            .load(atleta!!.immagine)
+                            .into(imagine)
+                    }
                 }
             }
 
