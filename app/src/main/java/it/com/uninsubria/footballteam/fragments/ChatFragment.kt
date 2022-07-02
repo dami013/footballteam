@@ -1,14 +1,19 @@
 package it.com.uninsubria.footballteam.fragments
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.fragment_chat.*
+import java.util.jar.Manifest
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -23,7 +28,16 @@ class ChatFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_chat, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,15 +50,7 @@ class ChatFragment : Fragment() {
             }
             //source address = null di default numero di telefono
             obj.sendTextMessage("3311070793", null, msg,null,null)
+            Log.i("MSG", "messaggio inviato")
         }
-
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_chat, container, false)
-    }
-
 }
