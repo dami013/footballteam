@@ -17,14 +17,14 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val cognome = view.findViewById<TextView>(R.id.tvSurname)
     val cf = view.findViewById<TextView>(R.id.tvCf)
     val foto = view.findViewById<ImageView>(R.id.ivPlayer)
-  
+
 
     fun render(atleta: Atleta) {
         nome.text = atleta.nome
         cognome.text = atleta.cognome
         cf.text = atleta.codiceFiscale
-       // Log.w("Prova","${atleta.immagine}")
-       // Log.w("Prova","${atleta.nome}")
+        // Log.w("Prova","${atleta.immagine}")
+        // Log.w("Prova","${atleta.nome}")
 
         Glide.with(foto.context)
             .load(atleta.immagine)

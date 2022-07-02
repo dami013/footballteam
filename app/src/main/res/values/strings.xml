@@ -42,4 +42,5 @@
     <string name="nome1">nome:</string>
     <string name="cfV">CF:</string>
     <string name="cfProva">XXXXXXXXXXXXXXX</string>
+    <string name="inserisci_qui_il_tuo_messaggio">inserisci qui il tuo messaggio</string>
 </resources>

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.giocatore.view.*
 
 class PlayerAdapter(private val atleti:List<Atleta>) : RecyclerView.Adapter<PlayerViewHolder>() {
     private var isSelected = false
-    private val selectedList = mutableListOf<Int>()
+    private val selectedList = arrayListOf<Int>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {

@@ -44,7 +44,6 @@ class AtletiFragment : Fragment(){
 
     //callback simile a onCreate per le activity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_atleti, container, false)
     }
 
@@ -72,7 +71,7 @@ class AtletiFragment : Fragment(){
                     for(data in snapshot.children) {
                         val atleta = data.getValue(Atleta::class.java)
                         list.add(atleta!!)
-                       // Log.e("Atleta","${atleta.immagine}")
+                        // Log.e("Atleta","${atleta.immagine}")
                         //Log.e("Atleta","${atleta.nome}")
                         //Log.e("Atleta","${atleta.dataNascita}")
                     }
@@ -133,4 +132,3 @@ class AtletiFragment : Fragment(){
 
     }
 }
-
