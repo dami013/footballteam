@@ -110,6 +110,8 @@ class register_player_fragment : Fragment() {
         val TAG = "FirebaseStorageManager"
         val ref =
             FirebaseStorage.getInstance().reference.child("/image/${name}")
+
+        
         // caricamento dell'immagine
 
 

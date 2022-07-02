@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.auth.User
 import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.giocatore.view.*
 
+
 class PlayerAdapter(private val atleti:List<Atleta>) : RecyclerView.Adapter<PlayerViewHolder>() {
     private var isSelected = false
-    private val selectedList = mutableListOf<Int>()
+    private var selectedPlayers = arrayListOf<Atleta>()
+    //private val selectedList = arrayListOf<Int>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
@@ -33,7 +36,7 @@ class PlayerAdapter(private val atleti:List<Atleta>) : RecyclerView.Adapter<Play
 
     private fun selectPlayer(holder: PlayerViewHolder,position: Int) {
 
-        if(position in selectedList) {
+        if(atleti[position] in selectedPlayers) {
             Toast.makeText(holder.itemView.context, "Player già selezionato", Toast.LENGTH_SHORT)
                 .show()
             isSelected = false
@@ -43,19 +46,29 @@ class PlayerAdapter(private val atleti:List<Atleta>) : RecyclerView.Adapter<Play
                 .show()
             isSelected = true
             holder.itemView.checkPlayer.visibility = View.VISIBLE
-            selectedList.add(position)
+           // selectedList.add(position)
+            //val player = atleti[position]
+            selectedPlayers.add(atleti[position])
+
         }
         if(!isSelected) {
-            selectedList.removeAt(position)
+            //val player = atleti[position]
+            //selectedList.removeAt(position)
+            selectedPlayers.remove(atleti[position])
             holder.itemView.checkPlayer.visibility = View.GONE
         }
 
-        Log.d("Player", selectedList.toString())
+        Log.d("Player", selectedPlayers.toString())
 
 
     }
 
     override fun getItemCount(): Int = atleti.size
+
+
+    fun getSelected(): ArrayList<Atleta> {
+        return selectedPlayers
+    }
 
 
 

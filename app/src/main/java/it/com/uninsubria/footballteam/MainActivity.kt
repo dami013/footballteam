@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this,"Benvenuto",Toast.LENGTH_SHORT).show()
 
         val atleti = AtletiFragment()
-        val nuovo = register_player_fragment()
         val chat = ChatFragment()
 
         // Creazione Home

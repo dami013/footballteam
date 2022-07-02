@@ -21,6 +21,7 @@ import it.com.uninsubria.footballteam.adapter.PlayerAdapter
 import it.com.uninsubria.footballteam.adapter.SwipeToDeleteCallback
 import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.giocatore.*
+import kotlin.concurrent.thread
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -44,7 +45,6 @@ class AtletiFragment : Fragment(){
 
     //callback simile a onCreate per le activity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_atleti, container, false)
     }
 
@@ -61,6 +61,8 @@ class AtletiFragment : Fragment(){
         // Apertura registrazione di un'atleta con floating button
         openAddPlayer(view)
 
+       Log.d("A",PlayerAdapter(list).getSelected().toString())
+
     }
 
     private fun readPlayers() {
@@ -70,13 +72,16 @@ class AtletiFragment : Fragment(){
                 list.clear()
                 if(snapshot.exists()) {
                     for(data in snapshot.children) {
-                        val atleta = data.getValue(Atleta::class.java)
-                        list.add(atleta!!)
-                       // Log.e("Atleta","${atleta.immagine}")
-                        //Log.e("Atleta","${atleta.nome}")
-                        //Log.e("Atleta","${atleta.dataNascita}")
+                        thread(start=true) {
+                            val atleta = data.getValue(Atleta::class.java)
+                            list.add(atleta!!)
+                            // Log.e("Atleta","${atleta.immagine}")
+                            //Log.e("Atleta","${atleta.nome}")
+                            //Log.e("Atleta","${atleta.dataNascita}")
+                        }
                     }
                     reg.adapter = PlayerAdapter(list)
+
 
                 }
             }
