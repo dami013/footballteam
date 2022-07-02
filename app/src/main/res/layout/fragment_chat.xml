@@ -27,6 +27,7 @@
         android:text="@string/stai_scrivendo_a"
         app:layout_constraintBottom_toTopOf="@+id/et_boxMessage"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,6 +50,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/inserisci_qui_il_tuo_messaggio"
         android:textStyle="italic"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
