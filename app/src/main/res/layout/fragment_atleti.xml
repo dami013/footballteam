@@ -17,15 +17,15 @@
         app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
 
 
-    <Button
-        android:id="@+id/btn"
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_chat"
+        android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Button>
+        app:layout_constraintRight_toRightOf="@id/fab"
+        android:src="@drawable/ic_chat"
+        app:layout_constraintBottom_toTopOf="@id/fab" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

@@ -34,37 +34,6 @@ class PlayerAdapter(private val atleti:List<Atleta>, val itemClick: (Int) -> Uni
         }
     }
 
-    private fun selectPlayer(holder: PlayerViewHolder,position: Int) {
-
-        if(atleti[position] in selectedPlayers) {
-            Toast.makeText(holder.itemView.context, "Player già selezionato", Toast.LENGTH_SHORT)
-                .show()
-            isSelected = false
-
-        } else {
-            Toast.makeText(holder.itemView.context, "Player aggiunto ai selezionati", Toast.LENGTH_SHORT)
-                .show()
-            isSelected = true
-
-           // selectedList.add(position)
-            //val player = atleti[position]
-            selectedPlayers.add(atleti[position])
-
-        }
-        if(!isSelected) {
-            //val player = atleti[position]
-            //selectedList.removeAt(position)
-            selectedPlayers.remove(atleti[position])
-            holder.itemView.checkPlayer.visibility = View.GONE
-        }
-
-
-
-
-
-
-    }
-
     override fun getItemCount(): Int = atleti.size
 
 

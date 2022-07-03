@@ -10,21 +10,20 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import it.com.uninsubria.footballteam.Atleta
-import it.com.uninsubria.footballteam.MainActivity
+import it.com.uninsubria.footballteam.Communicator
 import it.com.uninsubria.footballteam.R
 import it.com.uninsubria.footballteam.adapter.PlayerAdapter
 import it.com.uninsubria.footballteam.adapter.SwipeToDeleteCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_atleti.*
+import kotlinx.android.synthetic.main.fragment_atleti.view.*
 import kotlinx.android.synthetic.main.giocatore.*
-import kotlin.concurrent.thread
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -37,6 +36,7 @@ private const val ARG_PARAM2 = "param2"
 
 class AtletiFragment : Fragment(){
 
+    private lateinit var com : Communicator
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
     private lateinit var selezionati: ArrayList<String>
@@ -47,10 +47,16 @@ class AtletiFragment : Fragment(){
 
 
 
+
     //callback simile a onCreate per le activity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.fragment_atleti, container, false)
+        val view = inflater.inflate(R.layout.fragment_atleti, container, false)
+        com = activity as Communicator
+        view.btn.setOnClickListener {
+            com.passData(selezionati)
+        }
+        return view
     }
 
 
@@ -65,14 +71,6 @@ class AtletiFragment : Fragment(){
         deletePlayer()
         // Apertura registrazione di un'atleta con floating button
         openAddPlayer(view)
-
-
-
-
-
-
-
-
     }
 
     private fun readPlayers() {
@@ -92,15 +90,6 @@ class AtletiFragment : Fragment(){
                     reg.adapter = PlayerAdapter(list) { position ->
                         val a: Atleta = list[position]
                         selezionati.add(a.telefono!!)
-                        val bundle = Bundle()
-                        bundle.putStringArrayList("list",selezionati)
-                        Log.d("Player",selezionati.toString())
-                        val fragment = ChatFragment()
-                        fragment.arguments = bundle
-
-                      btn.setOnClickListener  {
-                          creazioneFragment(fragment)
-                        }
                     }
 
 
@@ -175,5 +164,7 @@ class AtletiFragment : Fragment(){
             replace(R.id.mainContainer, fragment)
             commit()
         }
+
+
 }
 
