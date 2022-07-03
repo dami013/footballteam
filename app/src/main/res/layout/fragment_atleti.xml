@@ -18,10 +18,21 @@
 
 
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="@id/fab_chat"
+        android:src="@drawable/ic_username"
+        app:layout_constraintBottom_toTopOf="@id/fab_chat" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_chat"
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="@id/fab"
         android:src="@drawable/ic_chat"

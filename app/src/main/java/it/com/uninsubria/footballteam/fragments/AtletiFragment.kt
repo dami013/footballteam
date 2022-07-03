@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -36,6 +39,11 @@ private const val ARG_PARAM2 = "param2"
 
 class AtletiFragment : Fragment(){
 
+    private val open : Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.rotate_open_anim) }
+    private val close : Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.rotate_close_anim) }
+    private val fromBottom : Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.from_bottom_anim) }
+    private val toBottom : Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.to_bottom_anim) }
+    private var clicked = false
     private lateinit var com : Communicator
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
@@ -52,10 +60,6 @@ class AtletiFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_atleti, container, false)
-        com = activity as Communicator
-        view.btn.setOnClickListener {
-            com.passData(selezionati)
-        }
         return view
     }
 
@@ -63,6 +67,7 @@ class AtletiFragment : Fragment(){
     // callback chiamata quando sono pronti tutti gli elementi grafici
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         // Predisposizione recycler view
         setupRecyclerView(view)
         // Funzione per leggere i giocatori
@@ -70,7 +75,7 @@ class AtletiFragment : Fragment(){
         // Funzione per Eliminare i Giocatori
         deletePlayer()
         // Apertura registrazione di un'atleta con floating button
-        openAddPlayer(view)
+        openFunction(view)
     }
 
     private fun readPlayers() {
@@ -143,27 +148,73 @@ class AtletiFragment : Fragment(){
 
     }
 
-    private fun openAddPlayer(view: View) {
+    private fun openFunction(view: View) {
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        var fabChat = view.findViewById<FloatingActionButton>(R.id.fab_chat)
+        var fabAdd = view.findViewById<FloatingActionButton>(R.id.fab_add)
         fab.setOnClickListener{
-            val nuovo = register_player_fragment()
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(
-                R.id.mainContainer,
-                nuovo
-            )
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            onAddButtonClicked()
         }
+        fabAdd.setOnClickListener {
+            val nuovo = register_player_fragment()
+            creazioneFragment(nuovo)
+        }
+        fabChat.setOnClickListener {
+            com = activity as Communicator
+                com.passData(selezionati)
+
+        }
+
 
     }
 
     private fun creazioneFragment(fragment: Fragment) =
         parentFragmentManager.beginTransaction().apply {
             replace(R.id.mainContainer, fragment)
+            addToBackStack(null)
             commit()
         }
+    private fun onAddButtonClicked() {
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+    }
+
+    private fun setAnimation(clicked: Boolean) {
+        val fab = view?.findViewById<FloatingActionButton>(R.id.fab)
+        var fabChat = view?.findViewById<FloatingActionButton>(R.id.fab_chat)
+        var fabAdd = view?.findViewById<FloatingActionButton>(R.id.fab_add)
+        if(!clicked) {
+            fabChat?.startAnimation(fromBottom)
+            fabAdd?.startAnimation(fromBottom)
+            fab?.startAnimation(open)
+        } else {
+            fabChat?.startAnimation(toBottom)
+            fabAdd?.startAnimation(toBottom)
+            fab?.startAnimation(close)
+        }
+
+
+
+
+    }
+
+    private fun setVisibility(clicked: Boolean) {
+        var fabChat = view?.findViewById<FloatingActionButton>(R.id.fab_chat)
+        var fabAdd = view?.findViewById<FloatingActionButton>(R.id.fab_add)
+        if(!clicked) {
+            fabChat?.visibility = View.VISIBLE
+            fabAdd?.visibility = View.VISIBLE
+        }
+        else {
+            fabChat?.visibility = View.INVISIBLE
+            fabAdd?.visibility = View.INVISIBLE
+        }
+
+
+
+
+    }
 
 
 }
