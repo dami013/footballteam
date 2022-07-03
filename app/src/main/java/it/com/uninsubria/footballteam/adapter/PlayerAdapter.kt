@@ -27,7 +27,6 @@ class PlayerAdapter(private val atleti:List<Atleta>, val itemClick: (Int) -> Uni
         holder.render(oggetto)
 
         holder.itemView.setOnLongClickListener {
-            //selectPlayer(holder,position)
             itemClick(position)
             holder.itemView.checkPlayer.visibility = View.VISIBLE
             true

@@ -120,7 +120,7 @@ class AtletiFragment : Fragment(){
                 // Rimozione Giocatore
                 a.codiceFiscale?.let { db.child(it) }
                 // Rimozione immagine
-                var path = "/image/${a.nome}"
+                val path = "/image/${a.nome}"
                 Firebase.storage.reference.child(path).delete()
                 // Rimozione effettiva player
                 db.removeValue()
@@ -150,8 +150,8 @@ class AtletiFragment : Fragment(){
 
     private fun openFunction(view: View) {
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
-        var fabChat = view.findViewById<FloatingActionButton>(R.id.fab_chat)
-        var fabAdd = view.findViewById<FloatingActionButton>(R.id.fab_add)
+        val fabChat = view.findViewById<FloatingActionButton>(R.id.fab_chat)
+        val fabAdd = view.findViewById<FloatingActionButton>(R.id.fab_add)
         fab.setOnClickListener{
             onAddButtonClicked()
         }
@@ -168,12 +168,7 @@ class AtletiFragment : Fragment(){
 
     }
 
-    private fun creazioneFragment(fragment: Fragment) =
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.mainContainer, fragment)
-            addToBackStack(null)
-            commit()
-        }
+
     private fun onAddButtonClicked() {
         setVisibility(clicked)
         setAnimation(clicked)
@@ -182,8 +177,8 @@ class AtletiFragment : Fragment(){
 
     private fun setAnimation(clicked: Boolean) {
         val fab = view?.findViewById<FloatingActionButton>(R.id.fab)
-        var fabChat = view?.findViewById<FloatingActionButton>(R.id.fab_chat)
-        var fabAdd = view?.findViewById<FloatingActionButton>(R.id.fab_add)
+        val fabChat = view?.findViewById<FloatingActionButton>(R.id.fab_chat)
+        val fabAdd = view?.findViewById<FloatingActionButton>(R.id.fab_add)
         if(!clicked) {
             fabChat?.startAnimation(fromBottom)
             fabAdd?.startAnimation(fromBottom)
@@ -200,8 +195,8 @@ class AtletiFragment : Fragment(){
     }
 
     private fun setVisibility(clicked: Boolean) {
-        var fabChat = view?.findViewById<FloatingActionButton>(R.id.fab_chat)
-        var fabAdd = view?.findViewById<FloatingActionButton>(R.id.fab_add)
+        val fabChat = view?.findViewById<FloatingActionButton>(R.id.fab_chat)
+        val fabAdd = view?.findViewById<FloatingActionButton>(R.id.fab_add)
         if(!clicked) {
             fabChat?.visibility = View.VISIBLE
             fabAdd?.visibility = View.VISIBLE
@@ -215,6 +210,12 @@ class AtletiFragment : Fragment(){
 
 
     }
+    private fun creazioneFragment(fragment: Fragment) =
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.mainContainer, fragment)
+            addToBackStack(null)
+            commit()
+        }
 
 
 }
