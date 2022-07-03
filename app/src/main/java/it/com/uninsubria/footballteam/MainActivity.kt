@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         bottom_navigation.setOnItemSelectedListener  {
             when(it.itemId) {
                 R.id.atleti -> creazioneFragment(atleti)
-                R.id.chat -> creazioneFragment(chat)
+               // R.id.chat -> creazioneFragment(chat)
             }
             true
         }

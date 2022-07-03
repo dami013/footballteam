@@ -118,13 +118,13 @@ class AtletiFragment : Fragment(){
                 val a: Atleta = list.removeAt(position)
 
                 // Rimozione Giocatore
-                a.codiceFiscale?.let { db.child(it) }
+                a.codiceFiscale?.let { db.child(it).removeValue() }
                 // Rimozione immagine
                 val path = "/image/${a.nome}"
                 Firebase.storage.reference.child(path).delete()
-                // Rimozione effettiva player
-                db.removeValue()
+
                 reg.adapter?.notifyItemRemoved(position)
+                reg.adapter?.notifyItemRangeChanged(position, list.size)
 
 
             }
