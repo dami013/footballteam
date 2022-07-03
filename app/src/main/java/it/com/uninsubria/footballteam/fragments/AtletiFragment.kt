@@ -10,15 +10,18 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import it.com.uninsubria.footballteam.Atleta
+import it.com.uninsubria.footballteam.MainActivity
 import it.com.uninsubria.footballteam.R
 import it.com.uninsubria.footballteam.adapter.PlayerAdapter
 import it.com.uninsubria.footballteam.adapter.SwipeToDeleteCallback
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.giocatore.*
 import kotlin.concurrent.thread
@@ -36,6 +39,7 @@ class AtletiFragment : Fragment(){
 
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
+    private lateinit var selezionati: ArrayList<String>
     private var db: DatabaseReference = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
         .getReference("Users")
         .child(Firebase.auth.currentUser!!.uid)
@@ -45,6 +49,7 @@ class AtletiFragment : Fragment(){
 
     //callback simile a onCreate per le activity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         return inflater.inflate(R.layout.fragment_atleti, container, false)
     }
 
@@ -61,7 +66,12 @@ class AtletiFragment : Fragment(){
         // Apertura registrazione di un'atleta con floating button
         openAddPlayer(view)
 
-       Log.d("A",PlayerAdapter(list).getSelected().toString())
+
+
+
+
+
+
 
     }
 
@@ -72,15 +82,29 @@ class AtletiFragment : Fragment(){
                 list.clear()
                 if(snapshot.exists()) {
                     for(data in snapshot.children) {
-                        thread(start=true) {
                             val atleta = data.getValue(Atleta::class.java)
                             list.add(atleta!!)
                             // Log.e("Atleta","${atleta.immagine}")
                             //Log.e("Atleta","${atleta.nome}")
                             //Log.e("Atleta","${atleta.dataNascita}")
                         }
+
+                    reg.adapter = PlayerAdapter(list) { position ->
+                        val a: Atleta = list[position]
+                        selezionati.add(a.telefono!!)
+                        val bundle = Bundle()
+                        bundle.putStringArrayList("list",selezionati)
+                        Log.d("Player",selezionati.toString())
+                        val fragment = ChatFragment()
+                        fragment.arguments = bundle
+
+                      btn.setOnClickListener  {
+                          creazioneFragment(fragment)
+                        }
                     }
-                    reg.adapter = PlayerAdapter(list)
+
+
+
 
 
                 }
@@ -98,6 +122,7 @@ class AtletiFragment : Fragment(){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val a: Atleta = list.removeAt(position)
+
                 // Rimozione Giocatore
                 a.codiceFiscale?.let { db.child(it) }
                 // Rimozione immagine
@@ -105,8 +130,9 @@ class AtletiFragment : Fragment(){
                 Firebase.storage.reference.child(path).delete()
                 // Rimozione effettiva player
                 db.removeValue()
-
                 reg.adapter?.notifyItemRemoved(position)
+
+
             }
         }
         // Sistema di gestione dello swipw
@@ -117,9 +143,15 @@ class AtletiFragment : Fragment(){
 
     private fun setupRecyclerView(view: View) {
         reg = view.findViewById(R.id.recycler_view)
-        reg.layoutManager = LinearLayoutManager(view.context)
-        reg.setHasFixedSize(true)
         list = arrayListOf<Atleta>()
+        selezionati = arrayListOf<String>()
+        reg.apply {
+            layoutManager = LinearLayoutManager(view.context)
+            reg.setHasFixedSize(true)
+        }
+
+
+
     }
 
     private fun openAddPlayer(view: View) {
@@ -137,5 +169,11 @@ class AtletiFragment : Fragment(){
         }
 
     }
+
+    private fun creazioneFragment(fragment: Fragment) =
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.mainContainer, fragment)
+            commit()
+        }
 }
 

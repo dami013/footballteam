@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import it.com.uninsubria.footballteam.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,8 +35,12 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        val view = inflater.inflate(R.layout.fragment_chat, container, false)
+        val numeri: TextView = view.findViewById(R.id.num)
+        val args = this.arguments
+        val li = args?.get("list")
+        numeri.text = li.toString()
+        return view
 
     }
 

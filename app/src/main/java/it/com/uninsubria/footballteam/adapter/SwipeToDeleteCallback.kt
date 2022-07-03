@@ -9,8 +9,6 @@ import com.google.firebase.ktx.Firebase
 
 abstract class SwipeToDeleteCallback: ItemTouchHelper.Callback() {
 
-
-
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
