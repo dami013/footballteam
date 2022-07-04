@@ -1,7 +1,6 @@
 package it.com.uninsubria.footballteam.fragments
 
 import android.Manifest
-import android.Manifest.permission.SEND_SMS
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
