@@ -33,9 +33,6 @@ class register_player_fragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var img: Uri
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -110,6 +107,8 @@ class register_player_fragment : Fragment() {
         val TAG = "FirebaseStorageManager"
         val ref =
             FirebaseStorage.getInstance().reference.child("/image/${name}")
+
+        
         // caricamento dell'immagine
 
 
