@@ -1,5 +1,7 @@
 package it.com.uninsubria.footballteam
 
+import android.os.Parcel
+import android.os.Parcelable
 import java.io.Serializable
 
 data class Atleta(
@@ -12,8 +14,21 @@ data class Atleta(
     var certificazioni: String?,
     var immagine : String?,
     var risultati: String?,
-) : Serializable {
+) : Serializable, Parcelable {
     // Serve un constructor vuoto per firebase
+
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
 
     constructor() : this("","","","","","","","","")
 
@@ -32,5 +47,31 @@ data class Atleta(
         certificazioni = atleta.certificazioni
         immagine = atleta.immagine
         risultati = atleta.risultati
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(nome)
+        parcel.writeString(cognome)
+        parcel.writeString(dataNascita)
+        parcel.writeString(codiceFiscale)
+        parcel.writeString(ruolo)
+        parcel.writeString(telefono)
+        parcel.writeString(certificazioni)
+        parcel.writeString(immagine)
+        parcel.writeString(risultati)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Atleta> {
+        override fun createFromParcel(parcel: Parcel): Atleta {
+            return Atleta(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Atleta?> {
+            return arrayOfNulls(size)
+        }
     }
 }

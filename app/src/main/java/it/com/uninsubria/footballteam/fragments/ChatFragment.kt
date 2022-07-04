@@ -18,21 +18,20 @@ import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.fragment_chat.*
 import java.io.Serializable
 
-private const val list = "list"
+private const val atleti = "lista"
 private const val SMS_PERMISSION_CODE = 100
 
 class ChatFragment : Fragment() {
 
-    private var lista: Serializable? = null
+    private var selezionati : ArrayList<Atleta>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            lista = it.getSerializable(list)
-        }
-    }
+        val args = this.arguments
+        selezionati = args?.getParcelableArrayList(atleti)
 
+    }
     fun checkAndroidVersion(phone : String) {
         if (Build.VERSION.SDK_INT >= 23) {
             val checkCallPhonePermission = ContextCompat.checkSelfPermission(
@@ -64,9 +63,8 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         invia.setOnClickListener{
-            val lista = list as ArrayList<Atleta>
-           for (atl in list)
-            checkAndroidVersion(atl.telefono!!)
+            for(atl in selezionati!!)
+                checkAndroidVersion(atl.telefono!!)
         }
     }
 
@@ -77,7 +75,7 @@ class ChatFragment : Fragment() {
             Toast.makeText(this.requireContext(), "inserire massimo 130 caratteri", Toast.LENGTH_SHORT).show()
         }
         //source address = null di default numero di telefono
-        obj.sendTextMessage("3882550870", null, msg,null,null)
+        obj.sendTextMessage(phone, null, msg,null,null)
         Log.i("MSG", "messaggio inviato")
         Toast.makeText(this.requireContext(),"messaggio inviato",Toast.LENGTH_SHORT).show()
     }

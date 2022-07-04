@@ -28,15 +28,6 @@ import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.fragment_atleti.view.*
 import kotlinx.android.synthetic.main.giocatore.*
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AtletiFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-
 class AtletiFragment : Fragment(){
 
     private val open : Animation by lazy { AnimationUtils.loadAnimation(context,R.anim.rotate_open_anim) }
@@ -99,7 +90,6 @@ class AtletiFragment : Fragment(){
                 Log.w("TEST",error.getMessage())
             }
         })
-
     }
 
     private fun deletePlayer() {
@@ -190,6 +180,4 @@ class AtletiFragment : Fragment(){
             addToBackStack(null)
             commit()
         }
-
-
 }

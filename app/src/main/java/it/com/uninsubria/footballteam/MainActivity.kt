@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), Communicator {
 
     override fun passData(data: ArrayList<Atleta>) {
         val bundle = Bundle()
-        bundle.putSerializable("list",data)
+        bundle.putParcelableArrayList("lista",data)
         val trans = this@MainActivity.supportFragmentManager.beginTransaction()
         val chat = ChatFragment()
         chat.arguments  = bundle
