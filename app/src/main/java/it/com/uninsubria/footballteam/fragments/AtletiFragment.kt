@@ -47,13 +47,11 @@ class AtletiFragment : Fragment(){
     private lateinit var com : Communicator
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
-    private lateinit var selezionati: ArrayList<String>
+    private lateinit var selezionati: ArrayList<Atleta>
     private var db: DatabaseReference = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
         .getReference("Users")
         .child(Firebase.auth.currentUser!!.uid)
         .child("Atleti")
-
-
 
 
     //callback simile a onCreate per le activity
@@ -92,7 +90,7 @@ class AtletiFragment : Fragment(){
 
                     reg.adapter = PlayerAdapter(list) { position ->
                         val a: Atleta = list[position]
-                        selezionati.add(a.telefono!!)
+                        selezionati.add(a)
                     }
                 }
             }
@@ -128,7 +126,7 @@ class AtletiFragment : Fragment(){
     private fun setupRecyclerView(view: View) {
         reg = view.findViewById(R.id.recycler_view)
         list = arrayListOf<Atleta>()
-        selezionati = arrayListOf<String>()
+        selezionati = arrayListOf<Atleta>()
         reg.apply {
             layoutManager = LinearLayoutManager(view.context)
             reg.setHasFixedSize(true)
