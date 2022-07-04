@@ -61,7 +61,10 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        val view = inflater.inflate(R.layout.fragment_chat, container, false)
+        val args = this.arguments
+        val li = args?.get("list")
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
