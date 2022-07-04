@@ -58,9 +58,7 @@ class AtletiFragment : Fragment(){
 
     //callback simile a onCreate per le activity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        val view = inflater.inflate(R.layout.fragment_atleti, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_atleti, container, false)
     }
 
 
@@ -96,11 +94,6 @@ class AtletiFragment : Fragment(){
                         val a: Atleta = list[position]
                         selezionati.add(a.telefono!!)
                     }
-
-
-
-
-
                 }
             }
 
@@ -125,14 +118,11 @@ class AtletiFragment : Fragment(){
 
                 reg.adapter?.notifyItemRemoved(position)
                 reg.adapter?.notifyItemRangeChanged(position, list.size)
-
-
             }
         }
         // Sistema di gestione dello swipw
         val itemTouchHelper = ItemTouchHelper(deleteElement)
         itemTouchHelper.attachToRecyclerView(reg)
-
     }
 
     private fun setupRecyclerView(view: View) {
@@ -143,9 +133,6 @@ class AtletiFragment : Fragment(){
             layoutManager = LinearLayoutManager(view.context)
             reg.setHasFixedSize(true)
         }
-
-
-
     }
 
     private fun openFunction(view: View) {
@@ -162,12 +149,8 @@ class AtletiFragment : Fragment(){
         fabChat.setOnClickListener {
             com = activity as Communicator
                 com.passData(selezionati)
-
         }
-
-
     }
-
 
     private fun onAddButtonClicked() {
         setVisibility(clicked)
@@ -189,9 +172,6 @@ class AtletiFragment : Fragment(){
             fab?.startAnimation(close)
         }
 
-
-
-
     }
 
     private fun setVisibility(clicked: Boolean) {
@@ -205,10 +185,6 @@ class AtletiFragment : Fragment(){
             fabChat?.visibility = View.INVISIBLE
             fabAdd?.visibility = View.INVISIBLE
         }
-
-
-
-
     }
     private fun creazioneFragment(fragment: Fragment) =
         parentFragmentManager.beginTransaction().apply {
@@ -219,4 +195,3 @@ class AtletiFragment : Fragment(){
 
 
 }
-

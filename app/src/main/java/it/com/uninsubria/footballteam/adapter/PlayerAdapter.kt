@@ -12,9 +12,6 @@ import kotlinx.android.synthetic.main.giocatore.view.*
 
 class PlayerAdapter(private val atleti:List<Atleta>, val itemClick: (Int) -> Unit) : RecyclerView.Adapter<PlayerViewHolder>() {
     private var isSelected = false
-     var selectedPlayers = arrayListOf<Atleta>()
-    //private val selectedList = arrayListOf<Int>()
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context).inflate(R.layout.giocatore, parent,false)
@@ -34,10 +31,5 @@ class PlayerAdapter(private val atleti:List<Atleta>, val itemClick: (Int) -> Uni
     }
 
     override fun getItemCount(): Int = atleti.size
-
-
-
-
-
 
 }
