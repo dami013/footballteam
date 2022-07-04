@@ -58,24 +58,6 @@ class ChatFragment : Fragment() {
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            SMS_PERMISSION_CODE -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                sendSMS()
-            } else {
-                Toast.makeText(this.requireContext(), "SEND_SMS Denied", Toast.LENGTH_SHORT).show()
-            }
-            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
-    }
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
