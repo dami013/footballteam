@@ -63,6 +63,12 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         invia.setOnClickListener{
+           var str = ""
+            for(atl in selezionati!!)
+                str += atl.cognome + " "
+
+            tv_destinatari.text = "stai scrivendo a: $str"
+
             for(atl in selezionati!!)
                 checkAndroidVersion(atl.telefono!!)
         }
