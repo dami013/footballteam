@@ -81,6 +81,6 @@ class ChatFragment : Fragment() {
         //source address = null di default numero di telefono
         obj.sendTextMessage("3882550870", null, msg,null,null)
         Log.i("MSG", "messaggio inviato")
-        Toast.makeText(this.requireContext(),"messaggio inviato",Toast.LENGTH_SHORT)
+        Toast.makeText(this.requireContext(),"messaggio inviato",Toast.LENGTH_SHORT).show()
     }
 }
