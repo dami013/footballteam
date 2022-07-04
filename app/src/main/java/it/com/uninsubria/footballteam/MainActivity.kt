@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         Toast.makeText(this,"Benvenuto",Toast.LENGTH_SHORT).show()
 
         val atleti = AtletiFragment()
@@ -43,15 +42,14 @@ class MainActivity : AppCompatActivity(), Communicator {
             commit()
         }
 
-    override fun passData(data: ArrayList<String>) {
+    override fun passData(data: ArrayList<Atleta>) {
         val bundle = Bundle()
-        bundle.putStringArrayList("list",data)
+        bundle.putParcelableArrayList("lista",data)
         val trans = this@MainActivity.supportFragmentManager.beginTransaction()
         val chat = ChatFragment()
         chat.arguments  = bundle
         trans.replace(R.id.mainContainer,chat)
         trans.addToBackStack(null)
         trans.commit()
-
     }
 }
