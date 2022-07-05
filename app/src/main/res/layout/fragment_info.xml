@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:text="@string/username">
+            android:text="user">
         </TextView>
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:text="@string/e_mail">
+            android:text="e_mail">
         </TextView>
 
         <TextView
