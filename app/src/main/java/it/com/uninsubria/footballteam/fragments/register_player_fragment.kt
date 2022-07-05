@@ -136,31 +136,34 @@ class register_player_fragment : Fragment() {
 
         // caricamento dell'immagine
 
+        if(check) {
+            thread(start=true){
+                ref.putFile(img).addOnSuccessListener {
+                        ref.downloadUrl.addOnSuccessListener {
+                            Log.e(TAG,"$it")
 
-        ref.putFile(img).addOnSuccessListener {
-                ref.downloadUrl.addOnSuccessListener {
-                    Log.e(TAG,"$it")
-                    if(check) {
-                        thread(start=true){
-                            saveData(
-                                name.text.toString(), surname.text.toString(),
-                                birthDate.text.toString(), codiceFiscale.text.toString().uppercase(),
-                                posizione.text.toString().lowercase(), phoneNumber.text.toString(),
-                                certification.text.toString(),
-                                results.text.toString(), it.toString()
-                            )
-                            Log.d(TAG, "Giocatore aggiunto con successo")
-                            progressBar.visibility = View.INVISIBLE
+                                    saveData(
+                                        name.text.toString(), surname.text.toString(),
+                                        birthDate.text.toString(), codiceFiscale.text.toString().uppercase(),
+                                        posizione.text.toString().lowercase(), phoneNumber.text.toString(),
+                                        certification.text.toString(),
+                                        results.text.toString(), it.toString()
+                                    )
+                                    Log.d(TAG, "Giocatore aggiunto con successo")
+                                    progressBar.visibility = View.INVISIBLE
 
+                                }
+
+
+                                val main = AtletiFragment()
+                                creazioneFragment(main)
+                            }.addOnFailureListener {
+                            Log.e(TAG, "KO")
                         }
-
-
-                        val main = AtletiFragment()
-                        creazioneFragment(main)
-                    }
                 }
-        }.addOnFailureListener {
-            Log.e(TAG, "KO")
+        }
+        else {
+            progressBar.visibility = View.INVISIBLE
         }
     }
 
