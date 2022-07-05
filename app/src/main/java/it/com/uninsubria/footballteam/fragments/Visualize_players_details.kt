@@ -16,7 +16,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
 import kotlin.concurrent.thread
 
-class visualize_players_details : Fragment(){
+class Visualize_players_details : Fragment(){
     private  lateinit var db: DatabaseReference
     private var cf: String? = null
 
