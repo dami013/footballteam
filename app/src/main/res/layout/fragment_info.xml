@@ -47,8 +47,9 @@
         <TextView
             android:id="@+id/username"
             android:layout_width="match_parent"
+            android:fontFamily="@font/sublima"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:drawableStart="@drawable/ic_personale"
             android:ems="10"
             android:padding="15dp"
@@ -64,9 +65,10 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/sublima"
                 android:drawableStart="@drawable/ic_baseline_alternate_email_24"
                 android:ems="10"
-                android:textSize="32sp"
+                android:textSize="24sp"
                 android:padding="15dp"
                 android:text="E-mail" />
         </LinearLayout>
