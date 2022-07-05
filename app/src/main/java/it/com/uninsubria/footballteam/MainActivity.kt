@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         Toast.makeText(this,"Benvenuto",Toast.LENGTH_SHORT).show()
 
         val atleti = AtletiFragment()
-        val chat = ChatFragment()
+        val info = infoFragment()
 
         // Creazione Home
         // Modifica metodo precedentemente deprecato
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         bottom_navigation.setOnItemSelectedListener  {
             when(it.itemId) {
                 R.id.atleti -> creazioneFragment(atleti)
-               // R.id.chat -> creazioneFragment(chat)
+                R.id.info -> creazioneFragment(info)
             }
             true
         }
