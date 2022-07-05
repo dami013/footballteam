@@ -16,9 +16,11 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val cognome = view.findViewById<TextView>(R.id.tvSurname)
     val cf = view.findViewById<TextView>(R.id.tvCf)
     val foto = view.findViewById<ImageView>(R.id.ivPlayer)
+    val progressBar = view.findViewById<ImageView>(R.id.progressBar)
 
 
     fun render(atleta: Atleta) {
+
         nome.text = atleta.nome
         cognome.text = atleta.cognome
         cf.text = atleta.codiceFiscale
@@ -36,5 +38,6 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             itemView.context.startActivity(intent)
         }
     }
+
 
 }

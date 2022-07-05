@@ -83,6 +83,7 @@ class AtletiFragment : Fragment(){
                         val a: Atleta = list[position]
                         selezionati.add(a)
                     }
+                    progressBar.visibility = View.GONE
                 }
             }
 
