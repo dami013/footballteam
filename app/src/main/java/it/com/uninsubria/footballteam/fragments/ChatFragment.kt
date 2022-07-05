@@ -65,7 +65,7 @@ class ChatFragment : Fragment() {
 
             var str = ""
             for(atl in selezionati!!)
-                str += atl.cognome + " "
+                str += atl.nome + " " + atl.cognome + " "
 
             tv_destinatari.text = "stai scrivendo a: $str"
 
