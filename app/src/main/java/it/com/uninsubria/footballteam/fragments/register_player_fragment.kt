@@ -84,7 +84,8 @@ class register_player_fragment : Fragment() {
 
     private fun onRegisterClick() {
         var check = true
-        if(!checkImage()) {
+        if(!hasImage) {
+            Toast.makeText(view?.context,"Immagine non inserita",Toast.LENGTH_SHORT).show()
             check = false
         }
         if (!checkName()) {
@@ -156,14 +157,7 @@ class register_player_fragment : Fragment() {
         }
     }
 
-    private fun checkImage(): Boolean {
-        if(hasImage == null) {
-            Toast.makeText(view?.context,"Immagine non inserita",Toast.LENGTH_SHORT).show()
-            return false
-        }
-        return true
 
-    }
 
     private fun saveData(name: String, cogn: String, dataN: String, codFisc: String, rol: String,
                          cel: String, cert: String, ris: String, data: String
