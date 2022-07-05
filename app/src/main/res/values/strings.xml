@@ -26,7 +26,7 @@
     <string name="risultati">Risultati</string>
     <string name="registra">Registra</string>
     <string name="aggiungi_giocatore">Aggiungi atleta</string>
-    <string name="codice_fiscale">codice fiscale</string>
+    <string name="codice_fiscale">Codice Fiscale</string>
     <string name="Cognome">Cognome:</string>
     <string name="modifica">modifica</string>
     <string name="visualizza">visualizza</string>
@@ -46,4 +46,10 @@
     <string name="stai_scrivendo_a">stai scrivendo a</string>
     <string name="ciao_sono_il_mister_ti_scrivo_per">Ciao sono il mister, ti scrivo per...</string>
     <string name="invia">invia</string>
+    <string-array name="Ruoli" >
+        <item>Portiere</item>
+        <item>Difensore</item>
+        <item>Centrocampista</item>
+        <item>Attaccante</item>
+    </string-array>
 </resources>

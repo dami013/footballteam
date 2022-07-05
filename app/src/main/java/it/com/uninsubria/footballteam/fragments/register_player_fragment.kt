@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
@@ -18,21 +18,42 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import it.com.uninsubria.footballteam.R
+import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
 import java.util.*
+import java.util.regex.Pattern
 import kotlin.collections.HashMap
 import kotlin.concurrent.thread
 
 class register_player_fragment : Fragment() {
 
     private val FOTO = 1
+    private var hasImage = false
     private val ref =
         FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
             .getReference("Users")
     private lateinit var auth: FirebaseAuth
     private lateinit var img: Uri
+    private lateinit var name: EditText
+    private lateinit var surname: EditText
+    private lateinit var codiceFiscale: EditText
+    private lateinit var birthDate: TextView
+    private lateinit var phoneNumber: EditText
+    private lateinit var immagine: ImageView
+    private lateinit var posizione: AutoCompleteTextView
+    private lateinit var certification: EditText
+    private lateinit var results: EditText
 
+
+
+    override fun onResume() {
+        super.onResume()
+        val ruoliPossibili = resources.getStringArray(R.array.Ruoli)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item,ruoliPossibili)
+        posizione.setAdapter(arrayAdapter)
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,88 +61,110 @@ class register_player_fragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.register_player_fragment, container, false)
         auth = Firebase.auth
+        immagine = view.findViewById<ImageView>(R.id.immagine)
+        name = view.findViewById<EditText>(R.id.nome)
+        surname = view.findViewById<EditText>(R.id.cognome)
+        codiceFiscale = view.findViewById<EditText>(R.id.cf)
+        phoneNumber = view.findViewById<EditText>(R.id.phone)
+        posizione = view.findViewById<AutoCompleteTextView>(R.id.ruolo)
+        certification = view.findViewById<EditText>(R.id.certificazione)
+        birthDate = view.findViewById<TextView>(R.id.dataNascita)
+        results = view.findViewById<EditText>(R.id.risultati)
 
-        val date = view.findViewById<TextView>(R.id.dataNascita)
-
-        val main = AtletiFragment()
 
         view.immagine.setOnClickListener {
             openGalleryForImage()
         }
-        date.setOnClickListener {
+        birthDate.setOnClickListener {
             dataPicker()
         }
 
         view.register.setOnClickListener {
             onRegisterClick()
-            view.register.setOnClickListener {
-                val fragmentManager = parentFragmentManager
-                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(
-                    R.id.mainContainer,
-                    main
-                )
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-            }
+            //progressBar.visibility = View.GONE
         }
         return view
     }
 
     private fun onRegisterClick() {
-
-        val name = nome.text.toString().trim()
-        val codFisc = cf.text.toString().trim().uppercase()
-        val cogn = cognome.text.toString().trim()
-        val dataN = dataNascita.text.toString().trim()
-        val cel = phone.text.toString().trim()
-        val rol = ruolo.text.toString().trim()
-        val cert = certificazione.text.toString().trim()  //certificazioni e risultati possono essere nulli
-        val ris = risultati.text.toString().trim()
-
-        if (name.isEmpty())
-            nome.error = "inserire nome"
-
-        if (cogn.isEmpty())
+        var check = true
+        if(!checkImage()) {
+            check = false
+        }
+        if (!checkName()) {
+            name.error = "inserire nome"
+            check = false
+        }
+        if (!checkSurname()) {
             cognome.error = "inserire cognome"
+            check = false
+        }
+        if (posizione.text.isEmpty()) {
+            Log.d("Ruolo", posizione.text.toString())
+            check = false
+        }
 
-        if (dataN.isEmpty())
-            dataNascita.error = "inserire data di nascita"
-
-        if (rol.isEmpty())
-            ruolo.error = "inserire ruolo"
-
-        if(codFisc.isEmpty()||codFisc.length!=16)
+        Log.d("Ruolo", codiceFiscale.text.toString())
+        if(codiceFiscale.text.isEmpty()||codiceFiscale.text.length!=16) {
             cf.error = "codice fiscale non corretto o inesistente"
+            check = false
+        }
 
-        if (cel.isEmpty())
+        if (!checkPhone()) {
             phone.error = "inserire numero di telefono"
+            check = false
+        }
 
-        if(cert.isEmpty())
+        if(!checkCertficazione()) {
             certificazione.error = "inserire certificazione"
+            check = false
+        }
 
-        if(ris.isEmpty())
+        if(!checkResults()) {
             risultati.error = "inserire risultati ottenuti"
+            check = false
+        }
 
 
         val TAG = "FirebaseStorageManager"
         val ref =
             FirebaseStorage.getInstance().reference.child("/image/${name}")
 
-        
+
         // caricamento dell'immagine
 
 
         ref.putFile(img).addOnSuccessListener {
             Log.e(TAG, "OK")
             thread(start=true){
-            ref.downloadUrl.addOnSuccessListener {
-                Log.e(TAG,"$it")
-                saveData(name, cogn, dataN, codFisc, rol, cel, cert, ris,it.toString())
-            }}
+                ref.downloadUrl.addOnSuccessListener {
+                    Log.e(TAG,"$it")
+                    if(check) {
+
+                        saveData(
+                            name.text.toString(), surname.text.toString(),
+                            birthDate.text.toString(), codiceFiscale.text.toString().uppercase(),
+                            posizione.text.toString().lowercase(), phoneNumber.text.toString(),
+                            certification.text.toString(),
+                            results.text.toString(), it.toString()
+                        )
+
+                        val main = AtletiFragment()
+                        creazioneFragment(main)
+                    }
+                }}
         }.addOnFailureListener {
             Log.e(TAG, "KO")
         }
+    }
+
+    private fun checkImage(): Boolean {
+        if(hasImage == null) {
+            Toast.makeText(view?.context,"Immagine non inserita",Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+
     }
 
     private fun saveData(name: String, cogn: String, dataN: String, codFisc: String, rol: String,
@@ -155,6 +198,7 @@ class register_player_fragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == FOTO) {
             img = data?.data!!
             immagine.setImageURI(img)
+            hasImage=true;
         }
     }
 
@@ -165,11 +209,38 @@ class register_player_fragment : Fragment() {
         val day = c.get(Calendar.DAY_OF_MONTH)
         DatePickerDialog(view?.context!!,{
                 view, y, m, d ->
-                val a = "$d/${m+1}/$y"
-                dataNascita.text = a
+            val a = "$d/${m+1}/$y"
+            dataNascita.text = a
 
         },year,month,day).show()
 
-    }
-}
 
+    }
+
+    private fun checkPhone(): Boolean {
+        if(phoneNumber.text.isEmpty()){
+            return false
+        } else return phoneNumber.text.length == 10
+    }
+
+    private fun checkSurname(): Boolean {
+        return !surname.text.isEmpty()
+    }
+
+    private fun checkName(): Boolean {
+        return !name.text.isEmpty()
+    }
+    private fun checkResults(): Boolean {
+        return !results.text.isEmpty()
+    }
+    private fun checkCertficazione(): Boolean {
+        return !certification.text.isEmpty()
+    }
+    private fun creazioneFragment(fragment: Fragment) =
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.mainContainer, fragment)
+            addToBackStack(null)
+            commit()
+        }
+
+}

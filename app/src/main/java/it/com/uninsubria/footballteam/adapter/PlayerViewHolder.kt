@@ -18,7 +18,9 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val foto = view.findViewById<ImageView>(R.id.ivPlayer)
 
 
+
     fun render(atleta: Atleta) {
+
         nome.text = atleta.nome
         cognome.text = atleta.cognome
         cf.text = atleta.codiceFiscale
@@ -36,5 +38,6 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             itemView.context.startActivity(intent)
         }
     }
+
 
 }
