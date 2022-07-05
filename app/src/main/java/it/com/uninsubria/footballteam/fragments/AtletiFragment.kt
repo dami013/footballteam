@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -39,6 +40,7 @@ class AtletiFragment : Fragment(){
     private lateinit var reg: RecyclerView
     private lateinit var list: ArrayList<Atleta>
     private lateinit var selezionati: ArrayList<Atleta>
+    private lateinit var progressBar: ProgressBar
     private var db: DatabaseReference = FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
         .getReference("Users")
         .child(Firebase.auth.currentUser!!.uid)
@@ -74,9 +76,6 @@ class AtletiFragment : Fragment(){
                     for(data in snapshot.children) {
                             val atleta = data.getValue(Atleta::class.java)
                             list.add(atleta!!)
-                            // Log.e("Atleta","${atleta.immagine}")
-                            //Log.e("Atleta","${atleta.nome}")
-                            //Log.e("Atleta","${atleta.dataNascita}")
                         }
 
 
@@ -84,6 +83,8 @@ class AtletiFragment : Fragment(){
                         val a: Atleta = list[position]
                         selezionati.add(a)
                     }
+                    progressBar.visibility = View.GONE
+
                 }
             }
 
@@ -116,6 +117,7 @@ class AtletiFragment : Fragment(){
 
     private fun setupRecyclerView(view: View) {
         reg = view.findViewById(R.id.recycler_view)
+        progressBar = view.findViewById(R.id.caricamentoBarra)
         list = arrayListOf<Atleta>()
         selezionati = arrayListOf<Atleta>()
         reg.apply {
