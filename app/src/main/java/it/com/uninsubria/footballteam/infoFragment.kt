@@ -33,7 +33,6 @@ class infoFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
 
         }
-        insertData()
     }
 
     override fun onCreateView(
@@ -41,6 +40,7 @@ class infoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        insertData()
         return inflater.inflate(R.layout.fragment_info, container, false)
     }
 
