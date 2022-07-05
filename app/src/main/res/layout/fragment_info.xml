@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
+
     tools:context=".infoFragment">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_info"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="80dp"
-        app:tint="@color/golden_yellow"
-        app:srcCompat="@drawable/ic_baseline_info_24" />
+        android:layout_marginBottom="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_info_24"
+        app:tint="@color/golden_yellow" />
 
-    <LinearLayout
+
+    <TextView
+
+        android:id="@+id/textUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="90dp">
+        android:text="Utente: "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/guideone"
+        app:layout_constraintTop_toBottomOf="@id/iv_info"></TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:text="user">
-        </TextView>
-
-        <TextView
-            android:id="@+id/tv_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:textSize="20sp"
-            android:text="user vero">
-        </TextView>
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="30dp">
+        android:text="loremIpsum"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/guidedue"
+        app:layout_constraintStart_toEndOf="@id/textUser"
+        app:layout_constraintTop_toBottomOf="@id/iv_info"></TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:text="e_mail">
-        </TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/tv_email"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:textSize="20sp"
-            android:text="email vera">
-        </TextView>
+    <TextView
 
-    </LinearLayout>
+        android:id="@+id/textMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E_mail: "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/guideone"
+        app:layout_constraintTop_toBottomOf="@id/textUser"></TextView>
+
+    <TextView
+        android:id="@+id/tv_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="loremipsum@gmail.com"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/guidedue"
+        app:layout_constraintStart_toEndOf="@id/textUser"
+        app:layout_constraintTop_toBottomOf="@id/tv_user"/>
+
+
+
+
 
     <Button
         android:layout_width="wrap_content"
@@ -72,6 +76,23 @@
         android:id="@+id/btn_signOut"
         android:layout_gravity="center_horizontal"
         android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:text="sign out">
     </Button>
-</LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidedue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.80" />
+</androidx.constraintlayout.widget.ConstraintLayout>
