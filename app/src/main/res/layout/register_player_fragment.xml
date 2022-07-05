@@ -11,6 +11,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.register_player_fragment">
 
+
     <EditText
         android:id="@+id/nome"
         android:layout_width="0dp"

@@ -79,11 +79,11 @@ class AtletiFragment : Fragment(){
                             //Log.e("Atleta","${atleta.dataNascita}")
                         }
 
+
                     reg.adapter = PlayerAdapter(list) { position ->
                         val a: Atleta = list[position]
                         selezionati.add(a)
                     }
-                    progressBar.visibility = View.GONE
                 }
             }
 

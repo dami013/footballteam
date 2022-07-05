@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import it.com.uninsubria.footballteam.R
+import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
 import java.util.*
@@ -45,6 +46,7 @@ class register_player_fragment : Fragment() {
     private lateinit var results: EditText
 
 
+
     override fun onResume() {
         super.onResume()
         val ruoliPossibili = resources.getStringArray(R.array.Ruoli)
@@ -69,6 +71,7 @@ class register_player_fragment : Fragment() {
         birthDate = view.findViewById<TextView>(R.id.dataNascita)
         results = view.findViewById<EditText>(R.id.risultati)
 
+
         view.immagine.setOnClickListener {
             openGalleryForImage()
         }
@@ -78,7 +81,7 @@ class register_player_fragment : Fragment() {
 
         view.register.setOnClickListener {
             onRegisterClick()
-            //creazioneFragment(main)
+            //progressBar.visibility = View.GONE
         }
         return view
     }
@@ -137,6 +140,7 @@ class register_player_fragment : Fragment() {
                 ref.downloadUrl.addOnSuccessListener {
                     Log.e(TAG,"$it")
                     if(check) {
+
                         saveData(
                             name.text.toString(), surname.text.toString(),
                             birthDate.text.toString(), codiceFiscale.text.toString().uppercase(),
@@ -144,6 +148,7 @@ class register_player_fragment : Fragment() {
                             certification.text.toString(),
                             results.text.toString(), it.toString()
                         )
+
                         val main = AtletiFragment()
                         creazioneFragment(main)
                     }
