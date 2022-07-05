@@ -9,7 +9,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +23,7 @@ import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.register_player_fragment.*
 import kotlinx.android.synthetic.main.register_player_fragment.view.*
 import java.util.*
+import java.util.regex.Pattern
 import kotlin.collections.HashMap
 import kotlin.concurrent.thread
 
@@ -32,6 +35,14 @@ class register_player_fragment : Fragment() {
             .getReference("Users")
     private lateinit var auth: FirebaseAuth
     private lateinit var img: Uri
+    private lateinit var name: EditText
+    private lateinit var surname: EditText
+    private lateinit var codiceFiscale: EditText
+    private lateinit var birthDate: TextView
+    private lateinit var phoneNumber: EditText
+    private lateinit var role: EditText
+    private lateinit var certification: EditText
+    private lateinit var results: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,85 +51,92 @@ class register_player_fragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.register_player_fragment, container, false)
         auth = Firebase.auth
+        name = view.findViewById<EditText>(R.id.nome)
+        surname = view.findViewById<EditText>(R.id.cognome)
+        codiceFiscale = view.findViewById<EditText>(R.id.cf)
+        phoneNumber = view.findViewById<EditText>(R.id.phone)
+        role = view.findViewById<EditText>(R.id.ruolo)
+        certification = view.findViewById<EditText>(R.id.certificazione)
+        birthDate = view.findViewById<TextView>(R.id.dataNascita)
+        results = view.findViewById<EditText>(R.id.risultati)
 
-        val date = view.findViewById<TextView>(R.id.dataNascita)
 
         val main = AtletiFragment()
 
         view.immagine.setOnClickListener {
             openGalleryForImage()
         }
-        date.setOnClickListener {
+        birthDate.setOnClickListener {
             dataPicker()
         }
 
         view.register.setOnClickListener {
             onRegisterClick()
-            view.register.setOnClickListener {
-                val fragmentManager = parentFragmentManager
-                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-                fragmentTransaction.replace(
-                    R.id.mainContainer,
-                    main
-                )
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-            }
+            //creazioneFragment(main)
         }
         return view
     }
 
     private fun onRegisterClick() {
-
-        val name = nome.text.toString().trim()
-        val codFisc = cf.text.toString().trim().uppercase()
-        val cogn = cognome.text.toString().trim()
-        val dataN = dataNascita.text.toString().trim()
-        val cel = phone.text.toString().trim()
-        val rol = ruolo.text.toString().trim()
-        val cert = certificazione.text.toString().trim()  //certificazioni e risultati possono essere nulli
-        val ris = risultati.text.toString().trim()
-
-        if (name.isEmpty())
-            nome.error = "inserire nome"
-
-        if (cogn.isEmpty())
+        var check = true
+        if (!checkName()) {
+            name.error = "inserire nome"
+            check = false
+        }
+        if (!checkSurname()) {
             cognome.error = "inserire cognome"
-
-        if (dataN.isEmpty())
-            dataNascita.error = "inserire data di nascita"
-
-        if (rol.isEmpty())
+            check = false
+        }
+        if (!checkRole()) {
             ruolo.error = "inserire ruolo"
+            check = false
+        }
 
-        if(codFisc.isEmpty()||codFisc.length!=16)
+        if(codiceFiscale.text.isEmpty()||codiceFiscale.text.length!=16) {
             cf.error = "codice fiscale non corretto o inesistente"
+            check = false
+        }
 
-        if (cel.isEmpty())
+        if (!checkPhone()) {
             phone.error = "inserire numero di telefono"
+            check = false
+        }
 
-        if(cert.isEmpty())
+        if(!checkCertficazione()) {
             certificazione.error = "inserire certificazione"
+            check = false
+        }
 
-        if(ris.isEmpty())
+        if(!checkResults()) {
             risultati.error = "inserire risultati ottenuti"
+            check = false
+        }
 
 
         val TAG = "FirebaseStorageManager"
         val ref =
             FirebaseStorage.getInstance().reference.child("/image/${name}")
 
-        
+
         // caricamento dell'immagine
 
 
         ref.putFile(img).addOnSuccessListener {
             Log.e(TAG, "OK")
             thread(start=true){
-            ref.downloadUrl.addOnSuccessListener {
-                Log.e(TAG,"$it")
-                saveData(name, cogn, dataN, codFisc, rol, cel, cert, ris,it.toString())
-            }}
+                ref.downloadUrl.addOnSuccessListener {
+                    Log.e(TAG,"$it")
+                    if(check) {
+                        Toast.makeText(view?.context,"Aggiunto",Toast.LENGTH_SHORT).show()
+                        saveData(
+                            name.text.toString(), surname.text.toString(),
+                            birthDate.text.toString(), codiceFiscale.text.toString(),
+                            role.text.toString(), phoneNumber.text.toString(),
+                            certification.text.toString(),
+                            results.text.toString(), it.toString()
+                        )
+                    }
+                }}
         }.addOnFailureListener {
             Log.e(TAG, "KO")
         }
@@ -165,11 +183,40 @@ class register_player_fragment : Fragment() {
         val day = c.get(Calendar.DAY_OF_MONTH)
         DatePickerDialog(view?.context!!,{
                 view, y, m, d ->
-                val a = "$d/${m+1}/$y"
-                dataNascita.text = a
+            val a = "$d/${m+1}/$y"
+            dataNascita.text = a
 
         },year,month,day).show()
 
-    }
-}
 
+    }
+
+    private fun checkPhone(): Boolean {
+        if(phoneNumber.text.isEmpty()){
+            return false
+        } else return phoneNumber.text.length == 10
+    }
+
+    private fun checkRole(): Boolean {
+        if(role.text.isEmpty()){
+            return false
+        }else return role.text.equals("attaccante") || role.text.equals("centrocampista")
+                || role.text.equals("difensore") || role.text.equals("portiere")
+    }
+
+    private fun checkSurname(): Boolean {
+        return !surname.text.isEmpty()
+    }
+
+    private fun checkName(): Boolean {
+        val name: String = nome.text.toString()
+        return !name.isEmpty()
+    }
+    private fun checkResults(): Boolean {
+        return !results.text.isEmpty()
+    }
+    private fun checkCertficazione(): Boolean {
+        return !certification.text.isEmpty()
+    }
+
+}
