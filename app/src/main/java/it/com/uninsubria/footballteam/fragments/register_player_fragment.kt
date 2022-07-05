@@ -17,6 +17,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import it.com.uninsubria.footballteam.Atleta
 import it.com.uninsubria.footballteam.R
 import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.register_player_fragment.*
@@ -44,6 +45,7 @@ class register_player_fragment : Fragment() {
     private lateinit var posizione: AutoCompleteTextView
     private lateinit var certification: EditText
     private lateinit var results: EditText
+    private lateinit var progressBar: ProgressBar
 
 
 
@@ -70,6 +72,7 @@ class register_player_fragment : Fragment() {
         certification = view.findViewById<EditText>(R.id.certificazione)
         birthDate = view.findViewById<TextView>(R.id.dataNascita)
         results = view.findViewById<EditText>(R.id.risultati)
+        progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
 
         view.immagine.setOnClickListener {
@@ -80,8 +83,8 @@ class register_player_fragment : Fragment() {
         }
 
         view.register.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             onRegisterClick()
-            //progressBar.visibility = View.GONE
         }
         return view
     }
@@ -135,24 +138,27 @@ class register_player_fragment : Fragment() {
 
 
         ref.putFile(img).addOnSuccessListener {
-            Log.e(TAG, "OK")
-            thread(start=true){
                 ref.downloadUrl.addOnSuccessListener {
                     Log.e(TAG,"$it")
                     if(check) {
+                        thread(start=true){
+                            saveData(
+                                name.text.toString(), surname.text.toString(),
+                                birthDate.text.toString(), codiceFiscale.text.toString().uppercase(),
+                                posizione.text.toString().lowercase(), phoneNumber.text.toString(),
+                                certification.text.toString(),
+                                results.text.toString(), it.toString()
+                            )
+                            Log.d(TAG, "Giocatore aggiunto con successo")
+                            progressBar.visibility = View.INVISIBLE
 
-                        saveData(
-                            name.text.toString(), surname.text.toString(),
-                            birthDate.text.toString(), codiceFiscale.text.toString().uppercase(),
-                            posizione.text.toString().lowercase(), phoneNumber.text.toString(),
-                            certification.text.toString(),
-                            results.text.toString(), it.toString()
-                        )
+                        }
+
 
                         val main = AtletiFragment()
                         creazioneFragment(main)
                     }
-                }}
+                }
         }.addOnFailureListener {
             Log.e(TAG, "KO")
         }
