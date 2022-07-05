@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class PlayerDetails : AppCompatActivity() {
-    private val fragmentDetails = visualize_players_details()
+    private val fragmentDetails = Visualize_players_details()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
