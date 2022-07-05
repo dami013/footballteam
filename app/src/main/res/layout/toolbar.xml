@@ -3,6 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/toolbar"
-    android:title="F"
     android:background="?attr/colorPrimary">
 </androidx.appcompat.widget.Toolbar>

@@ -16,7 +16,12 @@ class MainActivity : AppCompatActivity(), Communicator {
 
         toolbar = findViewById(R.id.toolbar)
         toolbar.title = "Football team"
+        toolbar.setTitleTextAppearance(this,R.style.TextAppearance_AppCompat_Widget_ActionBar_Title)
         setSupportActionBar(toolbar)
+        supportActionBar?.setHomeButtonEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setIcon(R.drawable.ic_soccer); //also displays wide logo
+
 
         Toast.makeText(this,"Benvenuto",Toast.LENGTH_SHORT).show()
 
