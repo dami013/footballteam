@@ -46,4 +46,10 @@
     <string name="stai_scrivendo_a">stai scrivendo a</string>
     <string name="ciao_sono_il_mister_ti_scrivo_per">Ciao sono il mister, ti scrivo per...</string>
     <string name="invia">invia</string>
+    <string-array name="Ruoli" >
+        <item>Portiere</item>
+        <item>Difensore</item>
+        <item>Centrocampista</item>
+        <item>Attaccante</item>
+    </string-array>
 </resources>

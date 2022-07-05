@@ -141,26 +141,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ruolo" />
+        app:layout_constraintTop_toBottomOf="@+id/ro" />
 
-    <EditText
-        android:id="@+id/ruolo"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ro"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/tv_contorno"
-        android:drawableStart="@drawable/ic_baseline_sports_24"
-        android:ems="10"
-        android:hint="@string/ruolo"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:padding="15dp"
+        android:inputType="none"
         app:layout_constraintBottom_toTopOf="@+id/risultati"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
+        app:layout_constraintTop_toBottomOf="@+id/phone" >
+        <AutoCompleteTextView
+            android:id="@+id/ruolo"
+            android:background="@drawable/tv_contorno"
+            android:drawableStart="@drawable/ic_baseline_sports_24"
+            android:padding="15dp"
+
+            android:text="@string/ruolo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+             />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/register"

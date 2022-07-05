@@ -9,10 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
@@ -43,11 +40,18 @@ class register_player_fragment : Fragment() {
     private lateinit var birthDate: TextView
     private lateinit var phoneNumber: EditText
     private lateinit var immagine: ImageView
-    private lateinit var posizione: EditText
+    private lateinit var posizione: AutoCompleteTextView
     private lateinit var certification: EditText
     private lateinit var results: EditText
 
 
+    override fun onResume() {
+        super.onResume()
+        val ruoliPossibili = resources.getStringArray(R.array.Ruoli)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item,ruoliPossibili)
+        posizione.setAdapter(arrayAdapter)
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,13 +64,10 @@ class register_player_fragment : Fragment() {
         surname = view.findViewById<EditText>(R.id.cognome)
         codiceFiscale = view.findViewById<EditText>(R.id.cf)
         phoneNumber = view.findViewById<EditText>(R.id.phone)
-        posizione = view.findViewById<EditText>(R.id.ruolo)
+        posizione = view.findViewById<AutoCompleteTextView>(R.id.ruolo)
         certification = view.findViewById<EditText>(R.id.certificazione)
         birthDate = view.findViewById<TextView>(R.id.dataNascita)
         results = view.findViewById<EditText>(R.id.risultati)
-
-
-
 
         view.immagine.setOnClickListener {
             openGalleryForImage()
@@ -84,8 +85,7 @@ class register_player_fragment : Fragment() {
 
     private fun onRegisterClick() {
         var check = true
-        if(!hasImage) {
-            Toast.makeText(view?.context,"Immagine non inserita",Toast.LENGTH_SHORT).show()
+        if(!checkImage()) {
             check = false
         }
         if (!checkName()) {
@@ -96,11 +96,7 @@ class register_player_fragment : Fragment() {
             cognome.error = "inserire cognome"
             check = false
         }
-        if (posizione.text.isEmpty() ||
-            posizione.text.toString().uppercase() != "PORTIERE" ||
-            posizione.text.toString().uppercase() != "DIFENSORE" ||
-            posizione.text.toString().uppercase() != "CENTROCAMPISTA" ||
-            posizione.text.toString().uppercase() != "ATTACCANTE") {
+        if (posizione.text.isEmpty()) {
             Log.d("Ruolo", posizione.text.toString())
             check = false
         }
@@ -157,7 +153,14 @@ class register_player_fragment : Fragment() {
         }
     }
 
+    private fun checkImage(): Boolean {
+        if(hasImage == null) {
+            Toast.makeText(view?.context,"Immagine non inserita",Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
 
+    }
 
     private fun saveData(name: String, cogn: String, dataN: String, codFisc: String, rol: String,
                          cel: String, cert: String, ris: String, data: String
