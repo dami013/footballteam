@@ -7,15 +7,10 @@
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout-large/login.xml" value="0.275" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/activity_main.xml" value="0.3365036231884058" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_atleti.xml" value="0.25" />
-
-        <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_change_password.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_change_pw.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_chat.xml" value="0.33" />
+        <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_chat.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_info.xml" value="0.33" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_register__player_.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_register_player_fragment.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/fragment_visualize_players_details.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/giocatore.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/register.xml" value="0.3365036231884058" />
         <entry key="..\:/Users/admin/footballteam/app/src/main/res/layout/register_player_fragment.xml" value="0.36666666666666664" />
@@ -52,15 +47,18 @@
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/edit_text.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_atleti.xml" value="0.264" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_blank.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_calendar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_chat.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_home.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_info.xml" value="0.264" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_lock.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_sign_in.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_sign_up.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/fragment_visualize_players_details.xml" value="0.264" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/giocatore.xml" value="0.264" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/loading_player.xml" value="0.20199275362318841" />
-        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/login.xml" value="0.536" />
+        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/login.xml" value="0.43052837573385516" />
+        <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/nav_header.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/register.xml" value="0.264" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/register_player_fragment.xml" value="0.264" />
         <entry key="..\:/Users/damia/Desktop/footballteam/app/src/main/res/layout/toolbar.xml" value="0.20199275362318841" />
