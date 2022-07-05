@@ -1,98 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:layout_toEndOf="@id/iv_info"
+    android:gravity="center_horizontal"
     tools:context=".infoFragment">
 
-    <ImageView
-        android:id="@+id/iv_info"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_info_24"
-        app:tint="@color/golden_yellow" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/golden_yellow"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/iv_info"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_verified_user_24" />
 
 
-    <TextView
+        <TextView
+            android:id="@+id/work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@id/iv_info"
+            android:fontFamily="@font/futuraheavy"
+            android:text="Ciao Allenatore"
+            android:textSize="24sp" />
 
-        android:id="@+id/textUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Utente: "
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/guideone"
-        app:layout_constraintTop_toBottomOf="@id/iv_info"></TextView>
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="loremIpsum"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/guidedue"
-        app:layout_constraintStart_toEndOf="@id/textUser"
-        app:layout_constraintTop_toBottomOf="@id/iv_info"></TextView>
-
-
-    <TextView
-
-        android:id="@+id/textMail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="E_mail: "
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/guideone"
-        app:layout_constraintTop_toBottomOf="@id/textUser"></TextView>
-
-    <TextView
-        android:id="@+id/tv_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="loremipsum@gmail.com"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/guidedue"
-        app:layout_constraintStart_toEndOf="@id/textUser"
-        app:layout_constraintTop_toBottomOf="@id/tv_user"/>
-
-
-
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:id="@+id/btn_signOut"
-        android:layout_gravity="center_horizontal"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="sign out">
-    </Button>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideone"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.20" />
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidedue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.80" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:padding="16dp" >
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:drawableStart="@drawable/ic_personale"
+            android:ems="10"
+            android:padding="15dp"
+            android:text="Username" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_alternate_email_24"
+                android:ems="10"
+                android:textSize="32sp"
+                android:padding="15dp"
+                android:text="E-mail" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tv_contorno"
+
+                android:id="@+id/btn_signOut"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="sign out">
+            </Button>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

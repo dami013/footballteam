@@ -69,8 +69,8 @@ class infoFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
                     val user = snapshot.getValue(User::class.java)!!
-                    tv_user.text = user.name
-                    tv_email.text = user.email
+                    username.text = user.name
+                    email.text = user.email
                 }
             }
 
