@@ -31,6 +31,7 @@ import kotlin.concurrent.thread
 class register_player_fragment : Fragment() {
 
     private val FOTO = 1
+    private var hasImage = false
     private val ref =
         FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
             .getReference("Users")
@@ -42,9 +43,10 @@ class register_player_fragment : Fragment() {
     private lateinit var birthDate: TextView
     private lateinit var phoneNumber: EditText
     private lateinit var immagine: ImageView
-    private lateinit var role: EditText
+    private lateinit var posizione: EditText
     private lateinit var certification: EditText
     private lateinit var results: EditText
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,13 +60,13 @@ class register_player_fragment : Fragment() {
         surname = view.findViewById<EditText>(R.id.cognome)
         codiceFiscale = view.findViewById<EditText>(R.id.cf)
         phoneNumber = view.findViewById<EditText>(R.id.phone)
-        role = view.findViewById<EditText>(R.id.ruolo)
+        posizione = view.findViewById<EditText>(R.id.ruolo)
         certification = view.findViewById<EditText>(R.id.certificazione)
         birthDate = view.findViewById<TextView>(R.id.dataNascita)
         results = view.findViewById<EditText>(R.id.risultati)
 
 
-        val main = AtletiFragment()
+
 
         view.immagine.setOnClickListener {
             openGalleryForImage()
@@ -83,7 +85,6 @@ class register_player_fragment : Fragment() {
     private fun onRegisterClick() {
         var check = true
         if(!checkImage()) {
-
             check = false
         }
         if (!checkName()) {
@@ -94,11 +95,16 @@ class register_player_fragment : Fragment() {
             cognome.error = "inserire cognome"
             check = false
         }
-        if (!checkRole()) {
-            ruolo.error = "inserire ruolo"
+        if (posizione.text.isEmpty() ||
+            posizione.text.toString().uppercase() != "PORTIERE" ||
+            posizione.text.toString().uppercase() != "DIFENSORE" ||
+            posizione.text.toString().uppercase() != "CENTROCAMPISTA" ||
+            posizione.text.toString().uppercase() != "ATTACCANTE") {
+            Log.d("Ruolo", posizione.text.toString())
             check = false
         }
 
+        Log.d("Ruolo", codiceFiscale.text.toString())
         if(codiceFiscale.text.isEmpty()||codiceFiscale.text.length!=16) {
             cf.error = "codice fiscale non corretto o inesistente"
             check = false
@@ -134,14 +140,15 @@ class register_player_fragment : Fragment() {
                 ref.downloadUrl.addOnSuccessListener {
                     Log.e(TAG,"$it")
                     if(check) {
-                        Toast.makeText(view?.context,"Aggiunto",Toast.LENGTH_SHORT).show()
                         saveData(
                             name.text.toString(), surname.text.toString(),
-                            birthDate.text.toString(), codiceFiscale.text.toString(),
-                            role.text.toString(), phoneNumber.text.toString(),
+                            birthDate.text.toString(), codiceFiscale.text.toString().uppercase(),
+                            posizione.text.toString().lowercase(), phoneNumber.text.toString(),
                             certification.text.toString(),
                             results.text.toString(), it.toString()
                         )
+                        val main = AtletiFragment()
+                        creazioneFragment(main)
                     }
                 }}
         }.addOnFailureListener {
@@ -150,9 +157,11 @@ class register_player_fragment : Fragment() {
     }
 
     private fun checkImage(): Boolean {
-        if(img == null) {
-
+        if(hasImage == null) {
+            Toast.makeText(view?.context,"Immagine non inserita",Toast.LENGTH_SHORT).show()
+            return false
         }
+        return true
 
     }
 
@@ -187,6 +196,7 @@ class register_player_fragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == FOTO) {
             img = data?.data!!
             immagine.setImageURI(img)
+            hasImage=true;
         }
     }
 
@@ -211,20 +221,12 @@ class register_player_fragment : Fragment() {
         } else return phoneNumber.text.length == 10
     }
 
-    private fun checkRole(): Boolean {
-        if(role.text.isEmpty()){
-            return false
-        }else return role.text.equals("attaccante") || role.text.equals("centrocampista")
-                || role.text.equals("difensore") || role.text.equals("portiere")
-    }
-
     private fun checkSurname(): Boolean {
         return !surname.text.isEmpty()
     }
 
     private fun checkName(): Boolean {
-        val name: String = nome.text.toString()
-        return !name.isEmpty()
+        return !name.text.isEmpty()
     }
     private fun checkResults(): Boolean {
         return !results.text.isEmpty()
@@ -232,5 +234,11 @@ class register_player_fragment : Fragment() {
     private fun checkCertficazione(): Boolean {
         return !certification.text.isEmpty()
     }
+    private fun creazioneFragment(fragment: Fragment) =
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.mainContainer, fragment)
+            addToBackStack(null)
+            commit()
+        }
 
 }
