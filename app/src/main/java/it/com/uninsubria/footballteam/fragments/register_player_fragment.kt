@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -40,6 +41,7 @@ class register_player_fragment : Fragment() {
     private lateinit var codiceFiscale: EditText
     private lateinit var birthDate: TextView
     private lateinit var phoneNumber: EditText
+    private lateinit var immagine: ImageView
     private lateinit var role: EditText
     private lateinit var certification: EditText
     private lateinit var results: EditText
@@ -51,6 +53,7 @@ class register_player_fragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.register_player_fragment, container, false)
         auth = Firebase.auth
+        immagine = view.findViewById<ImageView>(R.id.immagine)
         name = view.findViewById<EditText>(R.id.nome)
         surname = view.findViewById<EditText>(R.id.cognome)
         codiceFiscale = view.findViewById<EditText>(R.id.cf)
@@ -79,6 +82,10 @@ class register_player_fragment : Fragment() {
 
     private fun onRegisterClick() {
         var check = true
+        if(!checkImage()) {
+
+            check = false
+        }
         if (!checkName()) {
             name.error = "inserire nome"
             check = false
@@ -140,6 +147,13 @@ class register_player_fragment : Fragment() {
         }.addOnFailureListener {
             Log.e(TAG, "KO")
         }
+    }
+
+    private fun checkImage(): Boolean {
+        if(img == null) {
+
+        }
+
     }
 
     private fun saveData(name: String, cogn: String, dataN: String, codFisc: String, rol: String,
