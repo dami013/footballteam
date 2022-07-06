@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,51 +10,51 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical" >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@color/golden_yellow"
-        android:padding="20dp">
-
-        <ImageView
-            android:id="@+id/iv_info"
-            android:contentDescription="Info"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_verified_user_24" />
-
-
-        <TextView
-            android:id="@+id/work"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@id/iv_info"
-            android:fontFamily="@font/futuraheavy"
-            android:text="@string/Hello"
-            android:textSize="24sp" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp" >
-        <TextView
-            android:id="@+id/username"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:fontFamily="@font/sublima"
+            android:layout_height="480dp"
+            android:background="@color/golden_yellow"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/iv_info"
+                android:layout_width="350dp"
+                android:layout_height="250dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_verified_user_24" />
+
+
+            <TextView
+                android:id="@+id/work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="9dp"
+                android:layout_toEndOf="@id/iv_info"
+                android:fontFamily="@font/futuraheavy"
+                android:text="Ciao Allenatore"
+                android:textSize="48sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:drawableStart="@drawable/ic_personale"
-            android:ems="10"
-            android:padding="15dp"
-            android:text="@string/username" />
+            android:orientation="vertical"
+            android:padding="16dp" >
+            <TextView
+
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/sublima"
+                android:layout_height="wrap_content"
+                android:textSize="64sp"
+                android:drawableStart="@drawable/ic_personale"
+                android:ems="10"
+                android:padding="15dp"
+                android:text="Username" />
         </LinearLayout>
 
         <LinearLayout
@@ -68,9 +69,9 @@
                 android:fontFamily="@font/sublima"
                 android:drawableStart="@drawable/ic_baseline_alternate_email_24"
                 android:ems="10"
-                android:textSize="24sp"
+                android:textSize="64sp"
                 android:padding="15dp"
-                android:text="@string/e_mail" />
+                android:text="E-mail" />
         </LinearLayout>
 
 
@@ -80,13 +81,14 @@
             android:orientation="vertical"
             android:padding="16dp" >
             <Button
+                android:textSize="48sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/tv_contorno"
                 android:id="@+id/btn_signOut"
                 android:layout_gravity="center_horizontal"
                 android:padding="10dp"
-                android:text="@string/sign_out">
+                android:text="sign out">
             </Button>
         </LinearLayout>
 
