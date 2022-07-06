@@ -78,17 +78,21 @@ class AtletiFragment : Fragment(){
                             list.add(atleta!!)
                         }
 
-
                     reg.adapter = PlayerAdapter(list, context!!) { position ->
                         val a: Atleta = list[position]
                         if(selezionati.contains(a)) {
+                            Log.d("SELEZ",selezionati.toString())
                             selezionati.remove(a)
-                            Toast.makeText(view?.context,"Già selezionato",Toast.LENGTH_SHORT).show()
-                        }
+                            Log.d("SELEZ",selezionati.toString())
+                            Toast.makeText(view?.context,"Eliminato",Toast.LENGTH_SHORT).show()
+                            selezionati.remove(a)
+                            Log.d("SELEZ",selezionati.toString())
+
+                        }else{
                         selezionati.add(a)
+                        }
                     }
                     progressBar.visibility = View.GONE
-
                 }
             }
 

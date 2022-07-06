@@ -26,8 +26,15 @@ class PlayerAdapter(private val atleti:List<Atleta>, val context : Context ,val 
         holder.render(oggetto)
 
         holder.itemView.setOnLongClickListener {
+            var flag = true
             itemClick(position)
-            holder.itemView.setBackgroundColor(myResources.getColor(R.color.light_yellow))
+            if(flag){
+                holder.itemView.setBackgroundColor(myResources.getColor(R.color.light_yellow))
+                flag = false
+            }else{
+                holder.itemView.setBackgroundColor(myResources.getColor(R.color.light_grey))
+                flag = true
+            }
             holder.itemView.checkPlayer.visibility = View.VISIBLE
             true
         }
