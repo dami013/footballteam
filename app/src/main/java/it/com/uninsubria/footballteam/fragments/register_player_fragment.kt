@@ -3,6 +3,7 @@ package it.com.uninsubria.footballteam.fragments
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
@@ -69,6 +71,7 @@ class register_player_fragment : Fragment() {
         codiceFiscale = view.findViewById<EditText>(R.id.cf)
         phoneNumber = view.findViewById<EditText>(R.id.phone)
         posizione = view.findViewById<AutoCompleteTextView>(R.id.ruolo)
+        posizione.setDropDownBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this.requireContext(),R.color.golden_yellow)))
         certification = view.findViewById<EditText>(R.id.certificazione)
         birthDate = view.findViewById<TextView>(R.id.dataNascita)
         results = view.findViewById<EditText>(R.id.risultati)
@@ -221,8 +224,6 @@ class register_player_fragment : Fragment() {
             dataNascita.text = a
 
         },year,month,day).show()
-
-
     }
 
     private fun checkPhone(): Boolean {
@@ -250,5 +251,4 @@ class register_player_fragment : Fragment() {
             addToBackStack(null)
             commit()
         }
-
 }
