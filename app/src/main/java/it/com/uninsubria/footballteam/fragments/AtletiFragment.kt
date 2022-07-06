@@ -79,7 +79,7 @@ class AtletiFragment : Fragment(){
                         }
 
 
-                    reg.adapter = PlayerAdapter(list) { position ->
+                    reg.adapter = PlayerAdapter(list, context!!) { position ->
                         val a: Atleta = list[position]
                         if(selezionati.contains(a)) {
                             selezionati.remove(a)

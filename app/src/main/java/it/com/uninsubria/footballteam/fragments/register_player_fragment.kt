@@ -180,21 +180,9 @@ class register_player_fragment : Fragment() {
     private fun saveData(name: String, cogn: String, dataN: String, codFisc: String, rol: String,
                          cel: String, cert: String, ris: String, data: String
     ) {
-
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid
-        val atletiMap = HashMap<String, String>()
         val atleta = Atleta(name,cogn,dataN,codFisc,rol,cel,cert,data,ris)
-       //atletiMap["immagine"] = data
-       //atletiMap["nome"] = name
-       //atletiMap["cognome"] = cogn
-       //atletiMap["dataNascita"] = dataN
-       //atletiMap["codiceFiscale"] = codFisc
-       //atletiMap["telefono"] = cel
-       //atletiMap["ruolo"] = rol
-       //atletiMap["certificazioni"] = cert
-       //atletiMap["risultati"] = ris
-
         ref.child(uid).child("Atleti").child(codFisc).setValue(atleta)
     }
 
