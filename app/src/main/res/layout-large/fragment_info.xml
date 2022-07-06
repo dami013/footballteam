@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:fontFamily="@font/sublima"
                 android:layout_height="wrap_content"
-                android:textSize="64sp"
+                android:textSize="48sp"
                 android:drawableStart="@drawable/ic_personale"
                 android:ems="10"
                 android:padding="15dp"
@@ -69,7 +69,7 @@
                 android:fontFamily="@font/sublima"
                 android:drawableStart="@drawable/ic_baseline_alternate_email_24"
                 android:ems="10"
-                android:textSize="64sp"
+                android:textSize="48sp"
                 android:padding="15dp"
                 android:text="E-mail" />
         </LinearLayout>
@@ -81,7 +81,7 @@
             android:orientation="vertical"
             android:padding="16dp" >
             <Button
-                android:textSize="48sp"
+                android:textSize="32sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/tv_contorno"

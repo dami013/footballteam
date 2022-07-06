@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:hint="modifica le informazioni qui"
         android:id="@+id/et_edtex"
-        android:textSize="64sp"
+        android:textSize="32sp"
         android:layout_marginHorizontal="30dp">
     </EditText>
 </LinearLayout>
