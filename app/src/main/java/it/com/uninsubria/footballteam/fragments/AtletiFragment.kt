@@ -121,7 +121,7 @@ class AtletiFragment : Fragment(){
                 reg.adapter?.notifyItemRangeChanged(position, list.size)
             }
         }
-        // Sistema di gestione dello swipw
+        // Sistema di gestione dello swipe
         val itemTouchHelper = ItemTouchHelper(deleteElement)
         itemTouchHelper.attachToRecyclerView(reg)
     }

@@ -42,27 +42,27 @@ class RegisterActivity : AppCompatActivity() {
         val userName = name.text.toString().trim()
         val confPw = confirm_pw.text.toString().trim()
         if (userName.isEmpty()) {
-            name.error = "Enter userName"
+            name.error = "Inserisci nome utente"
             return
         }
         if (mail.isEmpty()) {
-            email.error = "Enter email"
+            email.error = "Inserisci E-mail"
             return
         }
         if(!check.isValidEmail(mail)){
-            email.error = "invalid email"
+            email.error = "E-mail non vailida"
             return
         }
-        if (psw.isEmpty()) {
-            et_password.error = "Enter password"
+        if (psw.isEmpty() && psw.length <=4 ) {
+            et_password.error = "Inserisci password di almeno 6 caratteri"
             return
         }
         if(!check.isValidPassword(psw)){
-            et_password.error = "invalid password"
+            et_password.error = "Password non valida"
             return
         }
         if(psw!=confPw){
-            confirm_pw.error = "password and confirm password not matched"
+            confirm_pw.error = "Le password non coincidono"
             return
         }
         createUser(userName, mail, psw)
