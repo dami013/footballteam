@@ -72,6 +72,9 @@ class AtletiFragment : Fragment(){
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 list.clear()
+
+                progressBar.visibility = View.GONE
+                Toast.makeText(view?.context,"Nessun giocatore registrato",Toast.LENGTH_SHORT).show()
                 if(snapshot.exists()) {
                     for(data in snapshot.children) {
                             val atleta = data.getValue(Atleta::class.java)
@@ -128,6 +131,7 @@ class AtletiFragment : Fragment(){
             layoutManager = LinearLayoutManager(view.context)
             reg.setHasFixedSize(true)
         }
+
     }
 
     private fun openFunction(view: View) {

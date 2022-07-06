@@ -3,6 +3,7 @@ package it.com.uninsubria.footballteam
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.login.*
 
 
@@ -39,11 +41,11 @@ class Login : AppCompatActivity() {
         val mail = et_email.text.toString().trim()
         val pw = password.text.toString().trim()
         if (mail.isEmpty()||!check.isValidEmail(mail)) {
-            et_email.error = "empty password or invalid"
+            et_email.error = "Password vuota o non corretta"
             return
         }
         if (pw.isEmpty()||!check.isValidPassword(pw)) {
-            password.error = "empty password or invalid"
+            password.error = "Password vuota o non corretta"
             return
         }
         loginUser(mail, pw)

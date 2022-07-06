@@ -3,6 +3,7 @@ package it.com.uninsubria.footballteam
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -10,7 +11,9 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.register.*
+import kotlinx.android.synthetic.main.register_player_fragment.*
 
 
 class RegisterActivity : AppCompatActivity() {
