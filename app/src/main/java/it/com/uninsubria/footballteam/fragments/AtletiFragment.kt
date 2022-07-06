@@ -74,7 +74,6 @@ class AtletiFragment : Fragment(){
                 list.clear()
 
                 progressBar.visibility = View.GONE
-                Toast.makeText(view?.context,"Nessun giocatore registrato",Toast.LENGTH_SHORT).show()
                 if(snapshot.exists()) {
                     for(data in snapshot.children) {
                             val atleta = data.getValue(Atleta::class.java)
@@ -96,7 +95,7 @@ class AtletiFragment : Fragment(){
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w("TEST",error.getMessage())
+                Log.w("TEST",error.message)
             }
         })
     }

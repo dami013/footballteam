@@ -37,7 +37,7 @@ class register_player_fragment : Fragment() {
         FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
             .getReference("Users")
     private lateinit var auth: FirebaseAuth
-    private lateinit var img: Uri
+    private  var img: Uri? = null
     private lateinit var name: EditText
     private lateinit var surname: EditText
     private lateinit var codiceFiscale: EditText
@@ -140,7 +140,7 @@ class register_player_fragment : Fragment() {
 
         if(check) {
             thread(start=true){
-                ref.putFile(img).addOnSuccessListener {
+                ref.putFile(img!!).addOnSuccessListener {
                         ref.downloadUrl.addOnSuccessListener {
                             Log.e(TAG,"$it")
 
@@ -169,7 +169,7 @@ class register_player_fragment : Fragment() {
     }
 
     private fun checkImage(): Boolean {
-        if(hasImage == null) {
+        if(img == null) {
             Toast.makeText(view?.context,"Immagine non inserita",Toast.LENGTH_SHORT).show()
             return false
         }
@@ -183,18 +183,7 @@ class register_player_fragment : Fragment() {
 
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid
-        val atletiMap = HashMap<String, String>()
         val atleta = Atleta(name,cogn,dataN,codFisc,rol,cel,cert,data,ris)
-       //atletiMap["immagine"] = data
-       //atletiMap["nome"] = name
-       //atletiMap["cognome"] = cogn
-       //atletiMap["dataNascita"] = dataN
-       //atletiMap["codiceFiscale"] = codFisc
-       //atletiMap["telefono"] = cel
-       //atletiMap["ruolo"] = rol
-       //atletiMap["certificazioni"] = cert
-       //atletiMap["risultati"] = ris
-
         ref.child(uid).child("Atleti").child(codFisc).setValue(atleta)
     }
 
