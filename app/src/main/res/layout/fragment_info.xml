@@ -73,7 +73,6 @@
                 android:text="@string/e_mail" />
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,6 +81,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/tv_contorno"
                 android:id="@+id/btn_signOut"
                 android:layout_gravity="center_horizontal"
@@ -90,9 +90,6 @@
             </Button>
         </LinearLayout>
 
-
-
     </LinearLayout>
-
 
 </ScrollView>
