@@ -90,6 +90,7 @@ class AtletiFragment : Fragment(){
 
                         }else{
                         selezionati.add(a)
+                            Toast.makeText(view?.context,"Aggiunto",Toast.LENGTH_SHORT).show()
                         }
                     }
                     progressBar.visibility = View.GONE

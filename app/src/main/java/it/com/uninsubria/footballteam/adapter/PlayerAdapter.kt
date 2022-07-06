@@ -30,11 +30,9 @@ class PlayerAdapter(private val atleti:List<Atleta>, val context : Context ,val 
             itemClick(position)
             if(flag){
                 holder.itemView.setBackgroundColor(myResources.getColor(R.color.light_yellow))
-                holder.itemView.checkPlayer.visibility = View.VISIBLE
                 flag = false
             }else{
                 holder.itemView.setBackgroundColor(myResources.getColor(R.color.light_grey))
-                holder.itemView.checkPlayer.visibility = View.GONE
                 flag = true
             }
             true
