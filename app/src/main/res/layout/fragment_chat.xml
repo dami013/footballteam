@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/et_boxMessage"
-        android:layout_width="306dp"
-        android:layout_height="57dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/ciao_sono_il_mister_ti_scrivo_per"
@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/stai_scrivendo_a"
+        android:fontFamily="@font/sublima"
         app:layout_constraintBottom_toTopOf="@+id/et_boxMessage"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="15sp"
@@ -35,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/invia"
+        android:background="@drawable/tv_contorno"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -101,7 +101,7 @@ class Visualize_players_details : Fragment(){
             val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
             with(builder){
-                setTitle("modifica nome")
+                setTitle("Modifica nome")
                 setPositiveButton("modifica"){dialog, which ->
                     var str = editText.text.toString()
                     nome2.text = str
@@ -122,7 +122,7 @@ class Visualize_players_details : Fragment(){
             val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
             with(builder){
-                setTitle("modifica cognome")
+                setTitle("Modifica cognome")
                 setPositiveButton("modifica"){dialog, which ->
                     val str = editText.text.toString()
                     surname2.text = str
@@ -142,7 +142,7 @@ class Visualize_players_details : Fragment(){
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
                 with(builder){
-                    setTitle("modifica data di nascita")
+                    setTitle("Modifica data di nascita")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
                         dataN2.text = str
@@ -163,7 +163,7 @@ class Visualize_players_details : Fragment(){
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
                 with(builder){
-                    setTitle("modifica codice fiscale")
+                    setTitle("Modifica codice fiscale")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
                         cf2.text = str
@@ -184,7 +184,7 @@ class Visualize_players_details : Fragment(){
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
                 with(builder){
-                    setTitle("modifica ruolo")
+                    setTitle("Modifica ruolo")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
                         ruolo2.text = str
@@ -205,7 +205,7 @@ class Visualize_players_details : Fragment(){
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
                 with(builder){
-                    setTitle("modifica numero di telefono")
+                    setTitle("Modifica numero di telefono")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
                         num2.text = str
@@ -225,7 +225,7 @@ class Visualize_players_details : Fragment(){
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
                 with(builder){
-                    setTitle("modifica certificazioni")
+                    setTitle("Modifica certificazioni")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
                         cert2.text = str
@@ -246,7 +246,7 @@ class Visualize_players_details : Fragment(){
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
                 with(builder){
-                    setTitle("modifica risultati")
+                    setTitle("Modifica risultati")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
                         ris2.text = str

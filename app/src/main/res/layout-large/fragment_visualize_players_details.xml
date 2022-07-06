@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/imagine"
-                android:layout_width="256dp"
-                android:layout_height="300dp"
+                android:layout_width="350dp"
+                android:layout_height="360dp"
                 android:src="@drawable/ic_baseline_person_24" />
         </LinearLayout>
 
@@ -37,13 +37,13 @@
                 android:id="@+id/nome1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:text="Nome: " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:id="@+id/nome2"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
@@ -63,14 +63,14 @@
                 android:id="@+id/surname1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:text="Cognome: " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/surname2"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:text="cognome vero"/>
@@ -89,14 +89,14 @@
                 android:id="@+id/dataN1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="data di nascita: " />
+                android:textSize="40sp"
+                android:text="Data di nascita: " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/dataN2"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:text="data di nacita vera"/>
@@ -115,14 +115,14 @@
                 android:id="@+id/cf1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:text="CF: " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/cf2"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:text="CF vero"/>
@@ -141,14 +141,14 @@
                 android:id="@+id/num1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="telefono" />
+                android:textSize="40sp"
+                android:text="Telefono" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/num2"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:text="telefono vero"/>
@@ -167,14 +167,14 @@
                 android:id="@+id/ruolo1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:text="Ruolo: " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/ruolo2"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:text="Ruolo vero"/>
@@ -193,14 +193,14 @@
                 android:id="@+id/ris1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:text="Risultati: " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/ris2"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:text="Risultati vero"/>
@@ -219,14 +219,14 @@
                 android:id="@+id/cert1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:text="Certificazioni: " />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/cert2"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:text="Certificazioni vero"/>

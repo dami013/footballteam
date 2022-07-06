@@ -171,7 +171,6 @@
             android:background="@drawable/tv_contorno"
             android:drawableStart="@drawable/ic_baseline_sports_24"
             android:padding="15dp"
-
             android:text="@string/ruolo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

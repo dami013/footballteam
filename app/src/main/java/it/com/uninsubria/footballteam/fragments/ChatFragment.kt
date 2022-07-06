@@ -65,9 +65,9 @@ class ChatFragment : Fragment() {
 
             var str = ""
             for(atl in selezionati!!)
-                str += atl.nome + " " + atl.cognome + " "
+                str += "\n" + atl.nome + " " + atl.cognome + " "
 
-            tv_destinatari.text = "stai scrivendo a: $str"
+            tv_destinatari.text = "Stai scrivendo a: $str"
 
         invia.setOnClickListener{
             for(atl in selezionati!!)
@@ -79,7 +79,7 @@ class ChatFragment : Fragment() {
         val obj = SmsManager.getDefault()
         val msg = et_boxMessage.text.toString()
         if(msg.length>130){
-            Toast.makeText(this.requireContext(), "inserire massimo 130 caratteri", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.requireContext(), "Inserire massimo 130 caratteri", Toast.LENGTH_SHORT).show()
         }
         //source address = null di default numero di telefono
         obj.sendTextMessage(phone, null, msg,null,null)
