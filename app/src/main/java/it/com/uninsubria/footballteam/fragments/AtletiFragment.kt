@@ -72,6 +72,8 @@ class AtletiFragment : Fragment(){
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 list.clear()
+
+                progressBar.visibility = View.GONE
                 if(snapshot.exists()) {
                     for(data in snapshot.children) {
                             val atleta = data.getValue(Atleta::class.java)
@@ -98,7 +100,7 @@ class AtletiFragment : Fragment(){
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w("TEST",error.getMessage())
+                Log.w("TEST",error.message)
             }
         })
     }
@@ -133,6 +135,7 @@ class AtletiFragment : Fragment(){
             layoutManager = LinearLayoutManager(view.context)
             reg.setHasFixedSize(true)
         }
+
     }
 
     private fun openFunction(view: View) {
