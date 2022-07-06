@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.giocatore.view.*
 
 class PlayerAdapter(private val atleti:List<Atleta>, val context : Context ,val itemClick: (Int) -> Unit) : RecyclerView.Adapter<PlayerViewHolder>() {
 
+    private var flag : Boolean = true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context).inflate(R.layout.giocatore, parent,false)
@@ -26,16 +27,16 @@ class PlayerAdapter(private val atleti:List<Atleta>, val context : Context ,val 
         holder.render(oggetto)
 
         holder.itemView.setOnLongClickListener {
-            var flag = true
             itemClick(position)
             if(flag){
                 holder.itemView.setBackgroundColor(myResources.getColor(R.color.light_yellow))
+                holder.itemView.checkPlayer.visibility = View.VISIBLE
                 flag = false
             }else{
                 holder.itemView.setBackgroundColor(myResources.getColor(R.color.light_grey))
+                holder.itemView.checkPlayer.visibility = View.GONE
                 flag = true
             }
-            holder.itemView.checkPlayer.visibility = View.VISIBLE
             true
         }
     }
