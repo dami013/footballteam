@@ -14,12 +14,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_atleti.*
 import kotlinx.android.synthetic.main.login.*
+import java.util.regex.Pattern
 
 
 class Login : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var TAG = "LoginActivity"
-    private val check = CheckEmailPassword()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +40,11 @@ class Login : AppCompatActivity() {
     private fun onLoginClick() {
         val mail = et_email.text.toString().trim()
         val pw = password.text.toString().trim()
-        if (mail.isEmpty()||!check.isValidEmail(mail)) {
+        if (mail.isEmpty()||!isValidEmail(mail)) {
             et_email.error = "Password vuota o non corretta"
             return
         }
-        if (pw.isEmpty()||!check.isValidPassword(pw)) {
+        if (pw.isEmpty()||!isValidPassword(pw)) {
             password.error = "Password vuota o non corretta"
             return
         }
@@ -68,5 +68,16 @@ class Login : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun isValidEmail(email: String): Boolean {
+        val EMAIL_PATTERN = ("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+        val pattern = Pattern.compile(EMAIL_PATTERN)
+        val matcher = pattern.matcher(email)
+        return matcher.matches()
+    }
+
+    private fun isValidPassword(pass: String?): Boolean {
+        return pass != null && pass.length >= 4
     }
 }

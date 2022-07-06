@@ -9,7 +9,7 @@
     tools:context=".RegisterActivity">
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/posta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -27,10 +27,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/nomeUtente" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/nomeUtente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="username"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toTopOf="@id/guno" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/pwd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="password"
@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/posta" />
 
     <EditText
         android:id="@+id/confirm_pw"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        app:layout_constraintTop_toBottomOf="@+id/pwd" />
 
     <Button
         android:id="@+id/btn_Register"
