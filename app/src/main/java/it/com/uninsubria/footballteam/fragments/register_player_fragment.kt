@@ -133,7 +133,6 @@ class register_player_fragment : Fragment() {
         val ref =
             FirebaseStorage.getInstance().reference.child("/image/${name}")
 
-
         // caricamento dell'immagine
 
         if(check) {
@@ -153,7 +152,6 @@ class register_player_fragment : Fragment() {
                                     progressBar.visibility = View.INVISIBLE
 
                                 }
-
 
                                 val main = AtletiFragment()
                                 creazioneFragment(main)
@@ -183,17 +181,18 @@ class register_player_fragment : Fragment() {
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid
         val atletiMap = HashMap<String, String>()
-        atletiMap["immagine"] = data
-        atletiMap["nome"] = name
-        atletiMap["cognome"] = cogn
-        atletiMap["dataNascita"] = dataN
-        atletiMap["codiceFiscale"] = codFisc
-        atletiMap["telefono"] = cel
-        atletiMap["ruolo"] = rol
-        atletiMap["certificazioni"] = cert
-        atletiMap["risultati"] = ris
+        val atleta = Atleta(name,cogn,dataN,codFisc,rol,cel,cert,data,ris)
+       //atletiMap["immagine"] = data
+       //atletiMap["nome"] = name
+       //atletiMap["cognome"] = cogn
+       //atletiMap["dataNascita"] = dataN
+       //atletiMap["codiceFiscale"] = codFisc
+       //atletiMap["telefono"] = cel
+       //atletiMap["ruolo"] = rol
+       //atletiMap["certificazioni"] = cert
+       //atletiMap["risultati"] = ris
 
-        ref.child(uid).child("Atleti").child(codFisc).setValue(atletiMap)
+        ref.child(uid).child("Atleti").child(codFisc).setValue(atleta)
     }
 
     private fun openGalleryForImage() {
