@@ -90,6 +90,7 @@ class AtletiFragment : Fragment(){
                             selezionati.remove(a)
                             Log.d("SELEZ",selezionati.toString())
 
+
                         }else{
                         selezionati.add(a)
                             Toast.makeText(view?.context,"Aggiunto",Toast.LENGTH_SHORT).show()

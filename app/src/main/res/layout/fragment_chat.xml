@@ -8,9 +8,11 @@
 
     <EditText
         android:id="@+id/et_boxMessage"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:inputType="textPersonName"
         android:text="@string/ciao_sono_il_mister_ti_scrivo_per"
         app:layout_constraintBottom_toBottomOf="parent"
