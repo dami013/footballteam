@@ -26,6 +26,7 @@ class Visualize_players_details : Fragment(){
     private var cf: String? = null
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -160,31 +161,7 @@ class Visualize_players_details : Fragment(){
             }
 
             cf2.setOnClickListener{
-                val builder = AlertDialog.Builder(this.requireContext())
-                val inflater = layoutInflater
-                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
-                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-                var check = true
-                with(builder){
-                    setTitle("Modifica codice fiscale")
-                    setPositiveButton("modifica"){dialog, which ->
-                        var str = editText.text.toString()
-                        if(str.isEmpty() || str.length!=16) {
-                            Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
-                            check = false
-
-                        }
-                        if(check) {
-                            cf2.text = str
-                            dataChange("codiceFiscale", str)
-                        }
-                    }
-                    setNegativeButton("elimina"){dialog,which->
-                        Log.d("negativeButton", "negative button clicked")
-                    }
-                    setView(dialogLayout)
-                    show()
-                }
+                Toast.makeText(view?.context,"Non è possibile modificare il codice fiscale",Toast.LENGTH_SHORT).show()
             }
 
             ruolo2.setOnClickListener{
@@ -197,8 +174,10 @@ class Visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("Modifica ruolo")
                     setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString().uppercase()
-                        if(str.isEmpty() || !str.equals("PORTIERE") || !str.equals("DIFENSORE") || !str.equals("CENTROCAMPISTA") || !str.equals("ATTACCANTE")) {
+                        val str = editText.text.toString().lowercase()
+                        Log.d("Ruolo",str.toString())
+
+                        if(str.isEmpty() || ((!str.equals("portiere") && !str.equals("difensore") &&  !str.equals("centrocampista") &&  !str.equals("attaccante")))) {
                             Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
                             check = false
 
