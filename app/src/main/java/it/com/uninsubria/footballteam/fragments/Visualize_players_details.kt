@@ -1,6 +1,7 @@
 package it.com.uninsubria.footballteam
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
+import kotlinx.android.synthetic.main.register_player_fragment.*
+import java.util.*
+import kotlin.collections.HashMap
 import kotlin.concurrent.thread
 
 class Visualize_players_details : Fragment(){
@@ -115,45 +119,29 @@ class Visualize_players_details : Fragment(){
             }
         }
 
-        surname2.setOnClickListener{
+        surname2.setOnClickListener {
             val builder = AlertDialog.Builder(this.requireContext())
             val inflater = layoutInflater
-            val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+            val dialogLayout = inflater.inflate(R.layout.edit_text, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
 
-            with(builder){
+            with(builder) {
                 setTitle("Modifica cognome")
-                setPositiveButton("modifica"){dialog, which ->
+                setPositiveButton("modifica") { dialog, which ->
                     val str = editText.text.toString()
                     surname2.text = str
-                    dataChange("cognome",str)
+                    dataChange("cognome", str)
                 }
-                setNegativeButton("elimina"){dialog,which->
+                setNegativeButton("elimina") { dialog, which ->
                     Log.d("negativeButton", "negative button clicked")
                 }
                 setView(dialogLayout)
                 show()
             }
+        }
 
             dataN2.setOnClickListener{
-                val builder = AlertDialog.Builder(this.requireContext())
-                val inflater = layoutInflater
-                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
-                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-
-                with(builder){
-                    setTitle("Modifica data di nascita")
-                    setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString()
-                        dataN2.text = str
-                        dataChange("dataNascita",str)
-                    }
-                    setNegativeButton("elimina"){dialog,which->
-                        Log.d("negativeButton", "negative button clicked")
-                    }
-                    setView(dialogLayout)
-                    show()
-                }
+               dataPicker()
             }
 
             cf2.setOnClickListener{
@@ -260,5 +248,17 @@ class Visualize_players_details : Fragment(){
                 }
             }
         }
+    private fun dataPicker() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        DatePickerDialog(view?.context!!,{
+                view, y, m, d ->
+            val str = "$d/${m+1}/$y"
+            dataN2.text = str
+            dataChange("dataNascita",str)
+
+        },year,month,day).show()
     }
 }
