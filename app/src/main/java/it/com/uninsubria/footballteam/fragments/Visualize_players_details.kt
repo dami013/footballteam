@@ -83,7 +83,6 @@ class Visualize_players_details : Fragment(){
                     Glide.with(imagine.context)
                         .load(atleta!!.immagine)
                         .into(imagine)
-
                 }
             }
 
