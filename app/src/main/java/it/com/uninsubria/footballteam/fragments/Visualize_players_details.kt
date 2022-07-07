@@ -1,12 +1,14 @@
 package it.com.uninsubria.footballteam
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -14,11 +16,15 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
+import kotlinx.android.synthetic.main.register_player_fragment.*
+import java.util.*
+import kotlin.collections.HashMap
 import kotlin.concurrent.thread
 
 class Visualize_players_details : Fragment(){
     private  lateinit var db: DatabaseReference
     private var cf: String? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,13 +104,20 @@ class Visualize_players_details : Fragment(){
             val inflater = layoutInflater
             val dialogLayout = inflater.inflate(R.layout.edit_text,null)
             val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-
+            var check = true
             with(builder){
                 setTitle("Modifica nome")
                 setPositiveButton("modifica"){dialog, which ->
                     var str = editText.text.toString()
-                    nome2.text = str
-                    dataChange("nome",str)
+                    if(str.isEmpty()) {
+                        Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
+                        check = false
+
+                    }
+                    if(check) {
+                        nome2.text = str
+                        dataChange("nome", str)
+                    }
                 }
                 setNegativeButton("elimina"){dialog,which->
                     Log.d("negativeButton", "negative button clicked")
@@ -114,66 +127,40 @@ class Visualize_players_details : Fragment(){
             }
         }
 
-        surname2.setOnClickListener{
+        surname2.setOnClickListener {
             val builder = AlertDialog.Builder(this.requireContext())
             val inflater = layoutInflater
-            val dialogLayout = inflater.inflate(R.layout.edit_text,null)
+            val dialogLayout = inflater.inflate(R.layout.edit_text, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-
-            with(builder){
+            var check = true
+            with(builder) {
                 setTitle("Modifica cognome")
-                setPositiveButton("modifica"){dialog, which ->
-                    val str = editText.text.toString()
-                    surname2.text = str
-                    dataChange("cognome",str)
+                setPositiveButton("modifica") { dialog, which ->
+                    var str = editText.text.toString()
+                    if(str.isEmpty()) {
+                        Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
+                        check = false
+
+                    }
+                    if(check) {
+                        surname2.text = str
+                        dataChange("cognome", str)
+                    }
                 }
-                setNegativeButton("elimina"){dialog,which->
+                setNegativeButton("elimina") { dialog, which ->
                     Log.d("negativeButton", "negative button clicked")
                 }
                 setView(dialogLayout)
                 show()
             }
+        }
 
             dataN2.setOnClickListener{
-                val builder = AlertDialog.Builder(this.requireContext())
-                val inflater = layoutInflater
-                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
-                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-
-                with(builder){
-                    setTitle("Modifica data di nascita")
-                    setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString()
-                        dataN2.text = str
-                        dataChange("dataNascita",str)
-                    }
-                    setNegativeButton("elimina"){dialog,which->
-                        Log.d("negativeButton", "negative button clicked")
-                    }
-                    setView(dialogLayout)
-                    show()
-                }
+               dataPicker()
             }
 
             cf2.setOnClickListener{
-                val builder = AlertDialog.Builder(this.requireContext())
-                val inflater = layoutInflater
-                val dialogLayout = inflater.inflate(R.layout.edit_text,null)
-                val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-
-                with(builder){
-                    setTitle("Modifica codice fiscale")
-                    setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString()
-                        cf2.text = str
-                        dataChange("codiceFiscale",str)
-                    }
-                    setNegativeButton("elimina"){dialog,which->
-                        Log.d("negativeButton", "negative button clicked")
-                    }
-                    setView(dialogLayout)
-                    show()
-                }
+                Toast.makeText(view?.context,"Non è possibile modificare il codice fiscale",Toast.LENGTH_SHORT).show()
             }
 
             ruolo2.setOnClickListener{
@@ -181,13 +168,23 @@ class Visualize_players_details : Fragment(){
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
+                var check = true
 
                 with(builder){
                     setTitle("Modifica ruolo")
                     setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString()
-                        ruolo2.text = str
-                        dataChange("ruolo",str)
+                        val str = editText.text.toString().lowercase()
+                        Log.d("Ruolo",str.toString())
+
+                        if(str.isEmpty() || ((!str.equals("portiere") && !str.equals("difensore") &&  !str.equals("centrocampista") &&  !str.equals("attaccante")))) {
+                            Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
+                            check = false
+
+                        }
+                        if(check) {
+                            ruolo2.text = str
+                            dataChange("ruolo", str)
+                        }
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -202,13 +199,20 @@ class Visualize_players_details : Fragment(){
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-
+                var check = true
                 with(builder){
                     setTitle("Modifica numero di telefono")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        num2.text = str
-                        dataChange("telefono",str)
+                        if(str.isEmpty() || str.length!=10) {
+                            Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
+                            check = false
+
+                        }
+                        if(check) {
+                            num2.text = str
+                            dataChange("telefono", str)
+                        }
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -222,13 +226,20 @@ class Visualize_players_details : Fragment(){
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-
+                var check = true
                 with(builder){
                     setTitle("Modifica certificazioni")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        cert2.text = str
-                        dataChange("certificazioni",str)
+                        if(str.isEmpty()) {
+                            Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
+                            check = false
+
+                        }
+                        if(check) {
+                            cert2.text = str
+                            dataChange("certificazioni", str)
+                        }
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -243,13 +254,20 @@ class Visualize_players_details : Fragment(){
                 val inflater = layoutInflater
                 val dialogLayout = inflater.inflate(R.layout.edit_text,null)
                 val editText = dialogLayout.findViewById<EditText>(R.id.et_edtex)
-
+                var check = true
                 with(builder){
                     setTitle("Modifica risultati")
                     setPositiveButton("modifica"){dialog, which ->
                         val str = editText.text.toString()
-                        ris2.text = str
-                        dataChange("risultati",str)
+                        if(str.isEmpty()) {
+                            Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
+                            check = false
+
+                        }
+                        if(check) {
+                            ris2.text = str
+                            dataChange("risultati", str)
+                        }
                     }
                     setNegativeButton("elimina"){dialog,which->
                         Log.d("negativeButton", "negative button clicked")
@@ -259,5 +277,17 @@ class Visualize_players_details : Fragment(){
                 }
             }
         }
+    private fun dataPicker() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        DatePickerDialog(view?.context!!,{
+                view, y, m, d ->
+            val str = "$d/${m+1}/$y"
+            dataN2.text = str
+            dataChange("dataNascita",str)
+
+        },year,month,day).show()
     }
 }
