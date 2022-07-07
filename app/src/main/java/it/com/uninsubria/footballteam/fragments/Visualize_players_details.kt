@@ -16,14 +16,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_visualize_players_details.*
-import kotlinx.android.synthetic.main.register_player_fragment.*
 import java.util.*
-import kotlin.collections.HashMap
-import kotlin.concurrent.thread
 
 class Visualize_players_details : Fragment(){
     private  lateinit var db: DatabaseReference
     private var cf: String? = null
+    private val ruoliDiGioco = listOf("portiere", "difensore", "centrocampista","attaccante")
 
 
 
@@ -173,10 +171,10 @@ class Visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("Modifica ruolo")
                     setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString().lowercase()
+                        val str = editText.text.toString().lowercase().trim()
                         Log.d("Ruolo",str.toString())
 
-                        if(str.isEmpty() || ((!str.equals("portiere") && !str.equals("difensore") &&  !str.equals("centrocampista") &&  !str.equals("attaccante")))) {
+                        if(str.isEmpty() || !(ruoliDiGioco.contains(str))) {
                             Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
                             check = false
 
