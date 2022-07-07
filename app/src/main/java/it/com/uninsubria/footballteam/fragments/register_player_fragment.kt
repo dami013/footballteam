@@ -110,7 +110,6 @@ class register_player_fragment : Fragment() {
             check = false
         }
 
-        Log.d("Ruolo", codiceFiscale.text.toString())
         if(codiceFiscale.text.isEmpty()||codiceFiscale.text.length!=16) {
             cf.error = "codice fiscale non corretto o inesistente"
             check = false
