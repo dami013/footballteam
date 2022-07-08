@@ -2,6 +2,7 @@ package it.com.uninsubria.footballteam
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -66,16 +67,16 @@ class RegisterActivity : AppCompatActivity() {
             posta.error = "E-mail non vailida"
             check = false
         }
-        if (psw.isEmpty() || psw.length <=4 ) {
+        if (!isValidPassword(psw)) {
             pwd.error = "Inserisci password di almeno 6 caratteri"
             check = false
         }
-        if(!isValidPassword(psw)){
-            pwd.error = "Password non valida"
+        if (!isValidPassword(confPw) ) {
+            confirm_pw.error = "Inserisci password di almeno 6 caratteri"
             check = false
         }
         if(psw!=confPw){
-            confirm_pw.error = "Le password non coincidono"
+            Toast.makeText(this,"Password non corrispondenti",Toast.LENGTH_SHORT).show()
             check = false
         }
         if(check) {
@@ -129,7 +130,7 @@ class RegisterActivity : AppCompatActivity() {
         return matcher.matches()
     }
 
-    private fun isValidPassword(pass: String?): Boolean {
-        return pass != null && pass.length >= 4
+    private fun isValidPassword(pass: String): Boolean {
+        return !pass.isEmpty() && pass.length > 5
     }
 }
