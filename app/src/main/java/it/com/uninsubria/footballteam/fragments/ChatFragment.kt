@@ -27,17 +27,20 @@ class ChatFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // passaggio della lista dei selezionati
         super.onCreate(savedInstanceState)
         val args = this.arguments
         selezionati = args?.getParcelableArrayList(atleti)
 
     }
+    // controllo dei permessi
     fun checkAndroidVersion(phone : String) {
         if (Build.VERSION.SDK_INT >= 23) {
             val checkCallPhonePermission = ContextCompat.checkSelfPermission(
                 this.requireContext(),
                 Manifest.permission.SEND_SMS
             )
+            // controlli il risultato dell'utente, se accetta o meno
             if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(
                     this.requireActivity(),

@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Footballteam.login"
+        android:theme="@style/Theme.Footballteam.Standard"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".PlayerDetails"
@@ -29,8 +29,7 @@
             tools:ignore="Instantiatable" />
         <activity
             android:name=".WelcomeActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,7 +38,7 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
-            android:theme="@style/Theme.Footballteam.login"
+            android:theme="@style/Theme.Footballteam.Standard"
             tools:ignore="Instantiatable" />
     </application>
 
