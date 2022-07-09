@@ -33,17 +33,20 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register)
+        // identificazione campi in uso
         userName = findViewById<EditText>(R.id.nomeUtente)
         password = findViewById<EditText>(R.id.pwd)
         confirmPassword= findViewById<EditText>(R.id.confirm_pw)
         mail = findViewById<EditText>(R.id.posta)
 
+        // permette di tornare al form di login
         login.setOnClickListener{
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
 
         auth = Firebase.auth
+        // aggiunta dell'utente a firebase
         btn_Register.setOnClickListener{
             onSignUpClick()
         }
@@ -64,7 +67,7 @@ class RegisterActivity : AppCompatActivity() {
             check = false
         }
         if(!isValidEmail(mail)){
-            posta.error = "E-mail non vailida"
+            posta.error = "E-mail non valida"
             check = false
         }
         if (!isValidPassword(psw)) {
@@ -90,12 +93,15 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){
             if (it.isSuccessful) {
                 Log.d(TAG, "createUserWithEmail:success")
+                // Si rileva la sequenza univoca di identificazione dell'utente, creata in automatico
                 val currentUser = auth.currentUser
                 val uid = currentUser!!.uid
+                // creazione mappa dove si associa una chiave ad un valore
                 val userMap = HashMap<String, String>()
                 userMap["name"] = userName
                 userMap["password"] = password
                 userMap["email"] = email
+                // cerchiamo il nodo di quell'utente e associamo i campi relativi
                 val database = FirebaseDatabase.getInstance().getReference("Users").child(uid)
                 database.setValue(userMap).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -105,7 +111,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                     else {
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.makeText(baseContext, "Autentificazione fallita",
                             Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -115,7 +121,7 @@ class RegisterActivity : AppCompatActivity() {
                     throw it.exception!!
                 } catch (e: FirebaseAuthUserCollisionException) {
                     // email already in use
-                    Toast.makeText(applicationContext, "Email already taken!", Toast.LENGTH_SHORT)
+                    Toast.makeText(applicationContext, "Email già presente!", Toast.LENGTH_SHORT)
                         .show()
                 }
             }

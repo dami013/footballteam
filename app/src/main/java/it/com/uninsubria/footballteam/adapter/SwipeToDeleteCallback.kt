@@ -9,10 +9,12 @@ import com.google.firebase.ktx.Firebase
 
 abstract class SwipeToDeleteCallback: ItemTouchHelper.Callback() {
 
+    // identifica il movimento dello swipe
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
+        // Sx o Dx
         val swipe = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
         return makeMovementFlags(0,swipe)
     }
@@ -23,7 +25,7 @@ abstract class SwipeToDeleteCallback: ItemTouchHelper.Callback() {
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        return false
+        return false // non si prevede funzioni di copia e incolla
     }
 
 

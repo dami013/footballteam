@@ -45,11 +45,13 @@ class infoFragment : Fragment() {
         return view
     }
 
+    // Inserimento dati
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         insertData()
         btn_signOut.setOnClickListener{
-            auth.signOut()
+            auth.signOut() // metodo predefinito
+            // si torna nel login e si "pulisce" il backstack
             var intent = Intent(this.requireContext(), Login::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -58,6 +60,7 @@ class infoFragment : Fragment() {
         }
     }
 
+    // Si prelevano i dati dell'allenatore
     private fun insertData(){
         val currentUser = auth.currentUser
         val uid = currentUser!!.uid

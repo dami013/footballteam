@@ -24,15 +24,16 @@ class PlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         nome.text = atleta.nome
         cognome.text = atleta.cognome
         cf.text = atleta.codiceFiscale
-        // Log.w("Prova","${atleta.immagine}")
-        // Log.w("Prova","${atleta.nome}")
+
 
         Glide.with(foto.context)
             .load(atleta.immagine)
             .into(foto)
 
+        // quando selezioni si aprono i dettagli dell'atleta
         itemView.setOnClickListener {
             val intent = Intent(itemView.context, PlayerDetails::class.java)
+            // passiamo il codice fiscale
             intent.putExtra("cf",cf.text)
             Log.e("ATTENZIONE", "${cf}")
             itemView.context.startActivity(intent)

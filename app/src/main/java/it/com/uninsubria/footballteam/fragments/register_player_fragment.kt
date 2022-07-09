@@ -32,7 +32,6 @@ import kotlin.concurrent.thread
 class register_player_fragment : Fragment() {
 
     private val FOTO = 1
-    private var hasImage = false
     private val ref =
         FirebaseDatabase.getInstance("https://footballteam-d5795-default-rtdb.firebaseio.com/")
             .getReference("Users")
@@ -44,13 +43,14 @@ class register_player_fragment : Fragment() {
     private lateinit var birthDate: TextView
     private lateinit var phoneNumber: EditText
     private lateinit var immagine: ImageView
-    private lateinit var posizione: AutoCompleteTextView
+    private lateinit var posizione: AutoCompleteTextView // ruolo
     private lateinit var certification: EditText
     private lateinit var results: EditText
     private lateinit var progressBar: ProgressBar
 
 
 
+    // Serve per visualizzare i dati del menu a tendina, altrimenti si perde nel cambio
     override fun onResume() {
         super.onResume()
         val ruoliPossibili = resources.getStringArray(R.array.Ruoli)
@@ -78,13 +78,16 @@ class register_player_fragment : Fragment() {
         progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
 
+        // Apre la galleria del telefono
         view.immagine.setOnClickListener {
             openGalleryForImage()
         }
+        // apre la selezione della data di nascita
         birthDate.setOnClickListener {
             dataPicker()
         }
 
+        // Permette di registrare un atleta
         view.register.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             onRegisterClick()
@@ -132,17 +135,22 @@ class register_player_fragment : Fragment() {
 
 
         val TAG = "FirebaseStorageManager"
+        // identificazione per memorizzare immagine
         val ref =
             FirebaseStorage.getInstance().reference.child("/image/${name.text}${surname.text}")
 
         // caricamento dell'immagine
 
+        // se supera i controlli
         if(check) {
             thread(start=true){
+                // inserimento nel firebase storage
                 ref.putFile(img!!).addOnSuccessListener {
+                    // la stringa che rappresenta immagine
                         ref.downloadUrl.addOnSuccessListener {
                             Log.e(TAG,"$it")
 
+                                   // funzione che memorizza il giocatore nel database
                                     saveData(
                                         name.text.toString(), surname.text.toString(),
                                         birthDate.text.toString(), codiceFiscale.text.toString().uppercase(),
@@ -151,10 +159,12 @@ class register_player_fragment : Fragment() {
                                         results.text.toString(), it.toString()
                                     )
                                     Log.d(TAG, "Giocatore aggiunto con successo")
+                                   // finito il caricamento dell'atleta scompare la progress bar
                                     progressBar.visibility = View.INVISIBLE
 
                                 }
 
+                                // finito il caricamento si torna su atleti fragment
                                 val main = AtletiFragment()
                                 creazioneFragment(main)
                             }.addOnFailureListener {
@@ -162,6 +172,7 @@ class register_player_fragment : Fragment() {
                         }
                 }
         }
+        // In ogni caso se i controlli non vanno a buon fine , "scompare" la progress bar
         else {
             progressBar.visibility = View.INVISIBLE
         }
@@ -185,6 +196,7 @@ class register_player_fragment : Fragment() {
         ref.child(uid).child("Atleti").child(codFisc).setValue(atleta)
     }
 
+    // assegna un'immagine della galleria all'image view
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -194,12 +206,12 @@ class register_player_fragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == FOTO) {
-            img = data?.data!!
-            immagine.setImageURI(img)
-            hasImage=true;
+            img = data?.data!! // Uri
+            immagine.setImageURI(img) // assegna all'image view uni
         }
     }
 
+    // funzione per aprire la selezione della data
     private fun dataPicker() {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -208,10 +220,11 @@ class register_player_fragment : Fragment() {
         DatePickerDialog(view?.context!!,{
                 view, y, m, d ->
             val a = "$d/${m+1}/$y"
-            dataNascita.text = a
+            dataNascita.text = a // associ la selezione alla data di nascita
 
         },year,month,day).show()
     }
+
 
     private fun checkPhone(): Boolean {
         if(phoneNumber.text.isEmpty()){

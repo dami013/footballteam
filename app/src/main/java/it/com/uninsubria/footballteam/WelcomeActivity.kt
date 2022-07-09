@@ -12,6 +12,9 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
+
+        // thread per il passaggio del tempo e visualizzazione di un messaggio di benvenuto
+        // viene aggiunto la durata di questo messaggio di benvenuto
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent (this, Login::class.java)
             startActivity(intent)
