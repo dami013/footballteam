@@ -113,7 +113,7 @@ class Visualize_players_details : Fragment(){
 
                     }
                     if(check) {
-                        nome2.text = str
+                        nome2.text = str.toUpperCase()
                         dataChange("nome", str)
                     }
                 }
@@ -141,7 +141,7 @@ class Visualize_players_details : Fragment(){
 
                     }
                     if(check) {
-                        surname2.text = str
+                        surname2.text = str.toUpperCase()
                         dataChange("cognome", str)
                     }
                 }
@@ -171,7 +171,7 @@ class Visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("Modifica ruolo")
                     setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString().lowercase().trim()
+                        var str = editText.text.toString().lowercase().trim()
                         Log.d("Ruolo",str.toString())
 
                         if(str.isEmpty() || !(ruoliDiGioco.contains(str))) {
@@ -180,7 +180,7 @@ class Visualize_players_details : Fragment(){
 
                         }
                         if(check) {
-                            ruolo2.text = str
+                            ruolo2.text = str.toUpperCase()
                             dataChange("ruolo", str)
                         }
                     }
@@ -201,14 +201,14 @@ class Visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("Modifica numero di telefono")
                     setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString()
+                        var str = editText.text.toString()
                         if(str.isEmpty() || str.length!=10) {
                             Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
                             check = false
 
                         }
                         if(check) {
-                            num2.text = str
+                            num2.text = str.toUpperCase()
                             dataChange("telefono", str)
                         }
                     }
@@ -228,14 +228,14 @@ class Visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("Modifica certificazioni")
                     setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString()
+                        var str = editText.text.toString()
                         if(str.isEmpty()) {
                             Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
                             check = false
 
                         }
                         if(check) {
-                            cert2.text = str
+                            cert2.text = str.toUpperCase()
                             dataChange("certificazioni", str)
                         }
                     }
@@ -256,14 +256,14 @@ class Visualize_players_details : Fragment(){
                 with(builder){
                     setTitle("Modifica risultati")
                     setPositiveButton("modifica"){dialog, which ->
-                        val str = editText.text.toString()
+                        var str = editText.text.toString()
                         if(str.isEmpty()) {
                             Toast.makeText(builder.context,"Campo vuoto o errato",Toast.LENGTH_SHORT).show()
                             check = false
 
                         }
                         if(check) {
-                            ris2.text = str
+                            ris2.text = str.toUpperCase()
                             dataChange("risultati", str)
                         }
                     }
