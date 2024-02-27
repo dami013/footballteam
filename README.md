@@ -1,6 +1,1 @@
-# footballteam
-Descrizione: app per la gestione della squadra di calcio da parte di un allenatore, dove sia possibile registrare tutti gli atleti con relative informazioni, certificazioni, risultati raggiunti e foto.
-Selezionando un’atleta, si possono mostrate e/o modificare le relative informazioni in una seconda activity.
-L'app è pensata per dispositivi con schermo piccolo e con schermo grande facendo uso dei Fragments.
-Viene utilizzata autenticazione e database Firebase per poter accedere alla stessa informazione da più dispositivi.
-Dalla stessa app è possibile inviare dei messaggi a tutta la squadra o ad un suo sottogruppo.
+Description: app for a coach to manage the soccer team, where it is possible to record all athletes with related information, certifications, achievements and photos. By selecting an athlete, related information can be shown and/or edited in a second activity. The app is designed for small screen and large screen devices making use of Fragments. Authentication and Firebase database is used so that the same information can be accessed from multiple devices. Messages can be sent from the same app to the whole team or a subgroup of the team.
